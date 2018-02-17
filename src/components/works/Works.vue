@@ -1,8 +1,18 @@
 <template>
-  <h1>Works</h1>
+  <div>
+    <app-header/>
+
+  </div>
 </template>
 
 <script>
+import Header from '../shared/Header';
+
+export default {
+  components: {
+    appHeader: Header,
+  },
+};
 </script>
 
 <style>
