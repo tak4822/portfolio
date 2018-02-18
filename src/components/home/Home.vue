@@ -11,10 +11,10 @@
     <div class="home-nav-wrapper works">
       <router-link to="/works">
         <div class="home-nav out">
-          <img src="../../assets/img/works_top.svg" alt="">
+          <img src="../../assets/img/assets/works_top.svg" alt="">
         </div>
         <div class="home-nav inside">
-          <img src="../../assets/img/works_bottom.svg" alt="">
+          <img src="../../assets/img/assets/works_bottom.svg" alt="">
         </div>
       </router-link>
     </div>
@@ -22,17 +22,17 @@
       <div class="about-link">
         <router-link to="/about">
           <div class="home-nav out">
-            <img src="../../assets/img/about_top.svg" alt="">
+            <img src="../../assets/img/assets/about_top.svg" alt="">
           </div>
           <div class="home-nav inside">
-            <img src="../../assets/img/about_bottom.svg" alt="">
+            <img src="../../assets/img/assets/about_bottom.svg" alt="">
           </div>
         </router-link>
       </div>
     </div>
     <div class="home-wrapper">
       <div class="home-name-images home-t">
-        <img class="rose collage" src="../../assets/img/rose.png" alt="">
+        <img class="rose collage" src="../../assets/img/assets/rose.png" alt="">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
           <clipPath id="t">
             <polygon
@@ -40,7 +40,7 @@
               points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
             ></polygon>
           </clipPath>
-          <image clip-path="url(#t)" xlink:href="../../assets/img/bg_blue.jpg"></image>
+          <image clip-path="url(#t)" xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
         </svg>
       </div>
       <div class="home-name-images home-a">
@@ -49,8 +49,8 @@
         </svg>
       </div>
       <div class="home-name-images home-k">
-        <img class="planet collage" src="../../assets/img/planet.png" alt="">
-        <img class="women collage" src="../../assets/img/women.png" alt="">
+        <img class="planet collage" src="../../assets/img/assets/planet.png" alt="">
+        <img class="women collage" src="../../assets/img/assets/women.png" alt="">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
           <clipPath id="k">
           <polygon
@@ -58,7 +58,11 @@
             points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
           ></polygon>
           </clipPath>
-          <image clip-path="url(#k)" height="100%" xlink:href="../../assets/img/bg_red.jpg"></image>
+          <image
+            clip-path="url(#k)"
+            height="100%"
+            xlink:href="../../assets/img/assets/bg_red.jpg">
+          </image>
         </svg>
       </div>
     </div>

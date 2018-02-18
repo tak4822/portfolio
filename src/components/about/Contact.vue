@@ -3,13 +3,13 @@
     <div class="about-contact-left">
       <div class="about-contact-socials">
         <a class="icon-wrap contact" href="mailto:takeshoide@gmail.com">
-          <img src="../../assets/img/mail.svg" alt="">
+          <img src="../../assets/img/assets/mail.svg" alt="">
         </a>
         <a href="" class="icon-wrap">
-          <img src="../../assets/img/github.svg" alt="">
+          <img src="../../assets/img/assets/github.svg" alt="">
         </a>
         <a href="" class="icon-wrap">
-          <img src="../../assets/img/linkedin.svg" alt="">
+          <img src="../../assets/img/assets/linkedin.svg" alt="">
         </a>
       </div>
       <div class="about-contact-resume">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="about-contact-right">
-      <img src="../../assets/img/fake-pic.jpg" alt="">
+      <img src="../../assets/img/assets/fake-pic.jpg" alt="">
     </div>
   </section>
 </template>

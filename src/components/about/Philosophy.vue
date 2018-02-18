@@ -1,6 +1,6 @@
 <template>
   <section class="about-phi-container">
-    <img class="about-phi-img" src="../../assets/img/about_philosophy.jpg" alt="">
+    <img class="about-phi-img" src="../../assets/img/assets/about_philosophy.jpg" alt="">
     <article class="about-phi-contents">
       <p class="about-phi-text en">
         Let’s create a “beautiful” world to see.<br/><br/>

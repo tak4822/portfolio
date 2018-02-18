@@ -2,7 +2,7 @@
   <div class="header-container">
     <div class="logo-container">
       <router-link to="/">
-        <img src="../../assets/img/logo_glitch.svg" alt="">
+        <img src="../../assets/img/assets/logo_glitch.svg" alt="">
       </router-link>
     </div>
     <div class="global-nav-container">
@@ -11,7 +11,7 @@
           <a class="contact" href="mailto:takeshi@gamil.com">CONTACT</a>
         </li>
         <li class="global-nav-list">
-          <router-link to="/works">ABOUT</router-link>
+          <router-link to="/about">ABOUT</router-link>
         </li>
         <li class="global-nav-list">
           <router-link to="/works">WORKS</router-link>
