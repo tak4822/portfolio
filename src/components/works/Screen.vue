@@ -1,10 +1,8 @@
 <template>
   <div class="screen-container">
-    <app-interactive-screen
-      class="screen-bg"
-    />
     <app-links
       @select="selectWork"
+      :selected="selected"
     />
     <transition name="slide" mode="out-in">
       <app-explanatory
@@ -13,16 +11,39 @@
         v-if="selected !== null"
       />
     </transition>
-    <transition name="slide" mode="out-in">
-      <div class="image-wrap" :key="selected">
+    <div class="filter-container">
+      <transition name="come" mode="out-in">
+        <div class="image-wrap" :key="selected" :style="{'background-color': selectedWork.color}">
         <img
           :src="getImageSrc()"
           alt="">
-      </div>
-    </transition>
-    <div class="baby-contaiiner">
-      <img src="../../assets/img/assets/babies.png" alt="">
+        </div>
+      </transition>
+      <div class="door" :style="{'background-color': selectedWork.color}"></div>
+      <transition name="lSide">
+        <div
+          v-if="isShowing"
+          class="ripple"
+          :style="{'background-color': selectedWork.color}"></div>
+      </transition>
+      <transition name="rSide">
+        <div
+          v-if="isShowing"
+          class="ripple r-side"
+          :style="{'background-color': selectedWork.color}"></div>
+      </transition>
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+          <filter id="fancy-goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"></feColorMatrix>
+            <feComposite in="SourceGraphic" in2="goo" operator="over"></feComposite>
+          </filter>
+        </defs>
+      </svg>
     </div>
+    <div class="three-d-door" :style="{'background-color': selectedWork.color}"></div>
   </div>
 </template>
 
@@ -30,7 +51,7 @@
 import Links from './Links';
 import Explanatory from './Explanatory';
 import works from '../../data/works';
-import InteractiveScreen from './InteractiveScreen';
+import EventBus from '../../store/EventBus';
 
 const images = require.context('../../assets/img/mainImages/', false, /^\.\//);
 
@@ -38,22 +59,30 @@ export default {
   data() {
     return {
       selected: null,
+      isShowing: false, // for liquid animation
     };
   },
   computed: {
     selectedWork() {
-      if (this.selected !== null) return works[this.selected];
+      if (this.selected !== null) {
+        return works[this.selected];
+      }
       return '';
     },
   },
   components: {
     appLinks: Links,
     appExplanatory: Explanatory,
-    appInteractiveScreen: InteractiveScreen,
+    // appInteractiveScreen: InteractiveScreen,
   },
   methods: {
     selectWork(id) {
+      this.isShowing = true;
       this.selected = id;
+      EventBus.changeWork(works[id]);
+      setTimeout(() => {
+        this.isShowing = false;
+      }, 1300);
     },
     getImageSrc() {
       if (this.selected === null) return '';
@@ -73,6 +102,15 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    perspective: 1000px;
+  }
+  .three-d-door {
+    position: absolute;
+    left: 100%;
+    width: 200px;
+    height: 600px;
+    background: black;
+    transform: rotateY(90deg) translateZ(-100px);
   }
   .screen-bg {
     position: absolute;
@@ -82,68 +120,176 @@ export default {
     height: 100%;
     overflow: hidden;
   }
+  .filter-container {
+    filter: url('#fancy-goo');
+    position:relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
   .image-wrap {
-    width: 250px;
-    height: 250px;
+    width: 400px;
+    height: 300px;
     position: absolute;
-    top: calc(50% - 125px);
-    left: calc(50% - 125px);
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
     display: flex;
     align-items: center;
     justify-content: center;
     img {
-      width: 100%;
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
     }
   }
-  .baby-contaiiner {
-   position: absolute;
-    top: calc(100% - 50px);
-    right: 70px;
-    width: 150px;
-    img {
-      width: 100%;
-    }
+  .door {
+    width: 30px;
+    height: 500px;
+    background: black;
+    position: absolute;
+    top: calc(50% - 250px);
+    right: 0;
+    transform: translateZ(100px);
   }
 
   /* ======  animatino ======*/
-  .slide-enter {
+  .come-enter {
     opacity: 0;
   }
 
+  .come-enter-active {
+    animation: come-in .8s ease-out forwards;
+    transition: all .3s;
+  }
+
+  .come-leave-active {
+    animation: come-out .3s linear forwards;
+    transition: all .1s
+  }
+
+  @keyframes come-in {
+    from {
+      transform: translateX(700px);
+    }
+    70% {
+      transform: translateX(100px);
+    }
+    95% {
+      transform: translateX(-10px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes come-out {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-500px);
+    }
+  }
+
+  .slide-enter {
+    opacity: 0;
+  }
   .slide-enter-active {
-    animation: slide-in .5s cubic-bezier(.13,.75,.61,1) forwards;
+    animation: slide-in .4s linear forwards;
     transition: all .3s;
     // transform-origin: 0% 100%;
   }
 
   .slide-leave-active {
-    animation: slide-out .3s linear forwards;
+    animation: slide-out .5s linear forwards;
     transition: all .1s;
     // transform-origin: 0% 100%;
   }
 
   @keyframes slide-in {
     from {
-      // transform: rotate(30deg) translate3d(30px, 30px, 30px);
-      transform: translateX(30px);
+      transform: translateX(-30px);
     }
     to {
-      // transform: rotate(0deg) translate3d(0, 0, 0);
       transform: translateX(0);
     }
   }
-
   @keyframes slide-out {
     from {
-      // transform: rotate(0deg) translateY(0);
       transform: translateX(0);
       opacity: 1;
     }
     to {
-      // transform: rotate(30deg) translateY(30px);
-      transform: translateX(30px);
+      transform: translateX(-30px);
       opacity: 0;
     }
   }
+
+  /* ========  ripple  =========*/
+  .ripple {
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+    overflow: hidden;
+    border-radius: 50%;
+    position: absolute;
+    right: -125px;
+    top: calc(50% - 75px);
+  }
+  .rSide-enter-active {
+    animation: r-side-ripple;
+    animation-duration: .7s;
+    animation-delay: 0.6s;
+  }
+  .lSide-enter-active {
+    animation: l-side-ripple;
+    animation-duration: .7s;
+    animation-delay: 0.6s;
+  }
+  @keyframes l-side-ripple {
+    0% {
+      top: calc(50% - 75px);
+      right: -125px;
+    }
+    45% {
+      top: calc(50% - 75px);
+      right: -50px;
+    }
+    50% {
+      top: calc(50% - 130px);
+      right: -125px;
+    }
+    60% {
+      top: calc(50% - 250px);
+      right: -110px;
+    }
+    100% {
+      top: calc(50% - 300px);
+      right: -125px;
+    }
+  }
+  @keyframes r-side-ripple {
+    0% {
+      top: calc(50% - 75px);
+      right: -125px;
+    }
+    45% {
+      top: calc(50% - 75px);
+      right: -50px;
+    }
+    50% {
+      top: calc(50% - 20px);
+      right: -125px;
+    }
+    60% {
+      top: calc(50% + 100px);
+      right: -110px;
+    }
+    100% {
+      top: calc(50% + 150px);
+      right: -125px;
+    }
+  }
+
 
 </style>

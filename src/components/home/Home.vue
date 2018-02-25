@@ -32,16 +32,18 @@
     </div>
     <div class="home-wrapper">
       <div class="home-name-images home-t">
-        <img class="rose collage" src="../../assets/img/assets/rose.png" alt="">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
-          <clipPath id="t">
-            <polygon
-              class="svg-name t"
-              points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
-            ></polygon>
-          </clipPath>
-          <image clip-path="url(#t)" xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
-        </svg>
+          <img class="rose collage" src="../../assets/img/assets/rose.png" alt="" id="rose">
+        <div class="svg-wrapper" id="nameT">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
+            <clipPath id="t">
+              <polygon
+                class="svg-name t"
+                points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
+              ></polygon>
+            </clipPath>
+            <image clip-path="url(#t)" xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
+          </svg>
+        </div>
       </div>
       <div class="home-name-images home-a">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">
@@ -49,28 +51,38 @@
         </svg>
       </div>
       <div class="home-name-images home-k">
-        <img class="planet collage" src="../../assets/img/assets/planet.png" alt="">
-        <img class="women collage" src="../../assets/img/assets/women.png" alt="">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
-          <clipPath id="k">
-          <polygon
-            class="svg-name k"
-            points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
-          ></polygon>
-          </clipPath>
-          <image
-            clip-path="url(#k)"
-            height="100%"
-            xlink:href="../../assets/img/assets/bg_red.jpg">
-          </image>
-        </svg>
+        <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
+        <img class="women collage" src="../../assets/img/assets/women.png" alt="" id="women">
+        <div class="svg-wrapper" id="nameK">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
+            <clipPath id="k">
+            <polygon
+              class="svg-name k"
+              points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
+            ></polygon>
+            </clipPath>
+            <image
+              clip-path="url(#k)"
+              height="100%"
+              xlink:href="../../assets/img/assets/bg_red.jpg">
+            </image>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { assignAnimation, getMouse, interactiveTAK } from '../../utils/homeMouseOver';
 
+export default {
+  mounted() {
+    assignAnimation();
+    window.addEventListener('mousemove', getMouse, false);
+    interactiveTAK();
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -104,31 +116,28 @@
     align-items: center;
     justify-content: center;
   }
-  .home-name-images {
-    width: 320px;
-    height: 420px;
-    position: relative;
-    z-index: 100;
-    svg {
+  /* =====  nav  ====== */
+  .home-nav {
+    height: 26px;
+    img {
       height: 100%;
     }
   }
 
-  /* =====  nav  ====== */
   .home-nav-wrapper {
     z-index: 1000;
     position: absolute;
     transform: rotate(-90deg);
     cursor: pointer;
     &.works {
-      top: calc(52% + 148px);
-      left: calc(8% - 30px);
+      top: calc(52% + 128px);
+      left: calc(8% - 26px);
       transform-origin: 0 0;
       .inside, .out {
-        transition: all 0.4s cubic-bezier(1, 0.05, 0.78, 1);
+        transition: all 0.4s ease;
       }
       .inside {
-        margin-left: 2.4%;
+        margin-left: 2.2%;
         transform: translateX(15px);
       }
       .out {
@@ -136,14 +145,14 @@
       }
     }
     &.about {
-      top: calc(44% - 134px);
-      right: calc(8% - 30px);
+      top: calc(44% - 116px);
+      right: calc(8% - 26px);
       transform-origin: 100% 100%;
       .inside, .out {
-        transition: all 0.4s cubic-bezier(1, 0.05, 0.78, 1);
+        transition: all 0.4s ease;
       }
       .inside {
-        margin-left: -3.9%;
+        margin-left: -3.8%;
         transform: translateX(-15px);
       }
       .out {
@@ -156,14 +165,24 @@
       }
     }
   }
-  .home-nav {
-    height: 30px;
-    img {
-      height: 100%;
-    }
-  }
+
 
   /* =====  SVG  ====== */
+  .home-name-images {
+    width: 320px;
+    height: 400px;
+    position: relative;
+    z-index: 100;
+    transform-style: preserve-3d;
+    .svg-wrapper {
+      width: 100%;
+      height: 100%;
+      svg {
+        height: 100%;
+      }
+    }
+
+  }
   svg {
     z-index: 10;
   }
@@ -179,36 +198,57 @@
   .home-t {
     margin-right: 100px;
     text-align: right;
+    position: relative;
+    .svg-wrapper {
+      &:after {
+        content: url("../../assets/img/assets/t_shadow.png");
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -10%;
+        left: 0;
+        z-index: -2;
+      }
+    }
   }
-  .rose {
-    width: 300px;
-    top: 65%;
-    right: -10%;
-  }
-  .planet {
-    width: 220px;
-    bottom: calc(100% - 130px);
-    left: -130px;
-  }
-  .women {
-    height: 170px;
-    position: absolute;
-    top: 76%;
-    right: -20%;
-  }
-
-
+  /* =====  A ====== */
   .home-a {
+    display: flex;
+    align-items: center;
     svg {
       width: 100%
     }
   }
+  /* =====  K  ====== */
   .home-k {
     margin-left: 100px;
+    .svg-wrapper {
+      &:after {
+        content: url("../../assets/img/assets/k_shadow.png");
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -10%;
+        left: -10%;
+        z-index: -2;
+      }
+    }
+  }
+  .rose {
+    width: 285px;
+    top: 68%;
+    right: -8%;
+  }
+  .planet {
+    width: 225px;
+    bottom: calc(100% - 130px);
+    left: -130px;
+  }
+  .women {
+    height: 180px;
+    position: absolute;
+    top: 76%;
+    right: -14%;
   }
 
-  /*svg > polygon{*/
-    /*background-image: url("../../assets/img/bg_blue.jpg");*/
-    /*background-size: cover;*/
-  /*}*/
 </style>

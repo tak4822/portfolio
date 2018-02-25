@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="about-contact-right">
-      <img src="../../assets/img/assets/fake-pic.jpg" alt="">
+      <img src="../../assets/img/assets/takeshi_smile_bw.jpg" alt="">
     </div>
   </section>
 </template>
@@ -34,7 +34,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 600px;
+    width: 500px;
   }
   .about-contact-socials{
     display: flex;
@@ -52,7 +52,7 @@
     }
   }
   .about-contact-right {
-    width: 600px;
+    width: 500px;
     img {
       width: 100%;
     }

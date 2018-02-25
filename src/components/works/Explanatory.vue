@@ -16,8 +16,8 @@ export default {
 <style scoped lang="scss">
   .exp-container {
     position: absolute;
-    bottom: 0;
-    left: calc(100% + 20px);
+    bottom: -87px;
+    left: calc(100% + 70px);
     width: 300px;
     height: 250px;
     display: flex;

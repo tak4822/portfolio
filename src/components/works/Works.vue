@@ -2,22 +2,20 @@
   <div>
     <app-header/>
     <app-screen/>
+    <app-detail/>
   </div>
 </template>
 
 <script>
 import Header from '../shared/Header';
 import Screen from './Screen';
+import Detail from '../detail/Detail';
 
 export default {
-  data() {
-    return {
-      works: 'kenPriebe',
-    };
-  },
   components: {
     appHeader: Header,
     appScreen: Screen,
+    appDetail: Detail,
   },
 };
 </script>
