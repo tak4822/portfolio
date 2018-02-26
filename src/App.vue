@@ -2,7 +2,6 @@
   <div id="app">
     <transition
       :name="transitionName"
-      duration="2000"
       mode="out-in"
     >
       <router-view/>
@@ -11,6 +10,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'App',
   data() {
@@ -20,7 +21,7 @@ export default {
   },
   methods: {
     ...mapActions({
-
+      leaveHome: 'leaveHome',
     }),
   },
   watch: {
@@ -30,7 +31,7 @@ export default {
       // console.log('to', toDepth);
       // console.log('from', fromDepth);
       if (fromDepth === '/') {
-        // console.log('fromHome');
+        console.log('fromHome');
         this.transitionName = 'fromHome';
       } else {
         this.transitionName = 'normal';

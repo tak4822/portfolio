@@ -10,7 +10,9 @@
       </div>
     </transition>
 
-    <div class="home-nav-wrapper works">
+    <div
+      class="home-nav-wrapper works"
+      :class="{'to-work': toWork, 'not-active-nav': toAbout}">
       <router-link to="/works">
         <div class="home-nav out">
           <img src="../../assets/img/assets/works_top.svg" alt="">
@@ -20,71 +22,71 @@
         </div>
       </router-link>
     </div>
-    <div class="home-nav-wrapper about">
-      <div class="about-link">
-        <router-link to="/about">
-          <div class="home-nav out">
-            <img src="../../assets/img/assets/about_top.svg" alt="">
-          </div>
-          <div class="home-nav inside">
-            <img src="../../assets/img/assets/about_bottom.svg" alt="">
-          </div>
-        </router-link>
-      </div>
-    </div>
-    <transition name="homeWrapper" appear>
-      <div class="home-wrapper">
-        <div class="home-name-images home-t">
-          <div class="collage-wrap rose collage">
-            <div :class="{'block-reveal' : showBlock}"></div>
-            <img
-              :class="{'hidden': !showRose}"
-              src="../../assets/img/assets/rose.png"
-              alt=""
-              id="rose">
-          </div>
-          <div class="svg-wrapper" id="nameT">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
-              <clipPath id="t">
-                <polygon
-                  class="svg-name t"
-                  points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
-                ></polygon>
-              </clipPath>
-              <image clip-path="url(#t)" xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
-            </svg>
-          </div>
+    <div
+      class="home-nav-wrapper about"
+      :class="{'to-about': toAbout, 'not-active-nav': toWork}">
+      <router-link to="/about">
+        <div class="home-nav out">
+          <img src="../../assets/img/assets/about_top.svg" alt="">
         </div>
-        <div class="home-name-images home-a">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">
-            <polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>
+        <div class="home-nav inside">
+          <img src="../../assets/img/assets/about_bottom.svg" alt="">
+        </div>
+      </router-link>
+    </div>
+    <div class="home-wrapper" :class="{'home-wrapper-leave': leave}">
+      <div class="home-name-images home-t">
+        <div class="collage-wrap rose collage">
+          <div :class="{'block-reveal' : showBlock}"></div>
+          <img
+            :class="{'hidden': !showRose}"
+            src="../../assets/img/assets/rose.png"
+            alt=""
+            id="rose">
+        </div>
+        <div class="svg-wrapper" id="nameT">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
+            <clipPath id="t">
+              <polygon
+                class="svg-name t"
+                points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
+              ></polygon>
+            </clipPath>
+            <image clip-path="url(#t)" xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
           </svg>
         </div>
-        <div class="home-name-images home-k">
-          <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
-          <img class="women collage" src="../../assets/img/assets/women.png" alt="" id="women">
-          <div class="svg-wrapper" id="nameK">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
-              <clipPath id="k">
-                <polygon
-                  class="svg-name k"
-                  points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
-                ></polygon>
-              </clipPath>
-              <image
-                clip-path="url(#k)"
-                height="100%"
-                xlink:href="../../assets/img/assets/bg_red.jpg">
-              </image>
-            </svg>
-          </div>
+      </div>
+      <div class="home-name-images home-a">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">
+          <polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>
+        </svg>
+      </div>
+      <div class="home-name-images home-k">
+        <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
+        <img class="women collage" src="../../assets/img/assets/women.png" alt="" id="women">
+        <div class="svg-wrapper" id="nameK">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
+            <clipPath id="k">
+              <polygon
+                class="svg-name k"
+                points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
+              ></polygon>
+            </clipPath>
+            <image
+              clip-path="url(#k)"
+              height="100%"
+              xlink:href="../../assets/img/assets/bg_red.jpg">
+            </image>
+          </svg>
         </div>
       </div>
-    </transition>
+    </div>
+
   </div>
 </template>
 
 <script>
+// import { mapGetters } from 'vuex';
 import { assignAnimation, getMouse, interactiveTAK } from '../../utils/homeMouseOver';
 
 export default {
@@ -92,14 +94,32 @@ export default {
     return {
       showBlock: false,
       showRose: false,
+      leave: false,
+      toAbout: false,
+      toWork: false,
     };
   },
+  // computed: {
+  //   ...mapGetters({
+  //     isLeaving: 'isLeaving',
+  //   }),
+  // },
+  // watch: {
+  //   isLeaving(val) {
+  //     console.log('watch', val);
+  //   },
+  // },
   methods: {
     triggerCollage() {
       this.showBlock = true;
       setTimeout(() => {
         this.showRose = true;
       }, 500);
+    },
+    reset() {
+      this.leave = false;
+      this.toAbout = false;
+      this.toWork = false;
     },
   },
   mounted() {
@@ -108,16 +128,45 @@ export default {
     window.addEventListener('mousemove', getMouse, false);
     interactiveTAK();
   },
+  beforeRouteLeave(to, from, next) {
+    this.leave = true;
+    console.log(to.path);
+    if (to.path === '/about') {
+      console.log('toAbout');
+      this.toAbout = true;
+    } else if (to.path === '/works') {
+      console.log('toWork');
+      this.toWork = true;
+    }
+    setTimeout(() => {
+      next();
+      this.reset();
+    }, 1500);
+  },
 };
 </script>
 
 <style scoped lang="scss">
+  .home-wrapper-leave {
+    animation: home-wrapper-leave forwards;
+    animation-duration: 1s;
+  }
+  @keyframes home-wrapper-leave {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(1500px);
+    }
+  }
+
   .hidden {
     opacity: 0;
   }
 
   .homeWrapper-leave-active {
-    animation: home-leave forwards;
+    opacity: 0.5;
+    animation: bounce forwards;
     animation-duration: 1s;
   }
   @keyframes home-leave {
@@ -150,40 +199,6 @@ export default {
     }
     to {
       right: -100%;
-    }
-  }
-
-
-  @keyframes bounce {
-    from,
-    20%,
-    53%,
-    80%,
-    to {
-      -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
-
-    40%,
-    43% {
-      -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-      -webkit-transform: translate3d(0, -30px, 0);
-      transform: translate3d(0, -30px, 0);
-    }
-
-    70% {
-      -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-      -webkit-transform: translate3d(0, -15px, 0);
-      transform: translate3d(0, -15px, 0);
-    }
-
-    90% {
-      -webkit-transform: translate3d(0, -4px, 0);
-      transform: translate3d(0, -4px, 0);
     }
   }
 
@@ -238,11 +253,37 @@ export default {
         transition: all 0.4s ease;
       }
       .inside {
-        margin-left: 2.2%;
+        padding-left: 2.2%;
         transform: translateX(15px);
       }
       .out {
         transform: translateX(-15px);
+      }
+      &.to-work {
+        animation: toWork forwards;
+        animation-duration: 1.4s;
+        .out, .inside {
+          overflow: hidden;
+        }
+        .inside {
+          padding-left: 2.4%;
+          animation: work-nav-inside-move forwards;
+          animation-duration: 0.7s;
+          img {
+            animation: home-nav-inside-leave forwards;
+            animation-delay: 1.2s;
+            animation-duration: 0.3s;
+          }
+        }
+        .out {
+          animation: work-nav-outside-move forwards;
+          animation-duration: 0.7s;
+          img {
+            animation: home-nav-outside-leave forwards;
+            animation-delay: 1.2s;
+            animation-duration: 0.3s;
+          }
+        }
       }
     }
     &.about {
@@ -259,13 +300,175 @@ export default {
       .out {
         transform: translateX(15px);
       }
+      &.to-about {
+        animation: toAbout forwards;
+        animation-duration: 1.4s;
+        .out, .inside {
+          overflow: hidden;
+        }
+        .inside {
+           padding-left: -3.6%;
+           animation: about-nav-inside-move forwards;
+           animation-duration: 0.7s;
+           img {
+             animation: home-nav-inside-leave forwards;
+             animation-delay: 1.2s;
+             animation-duration: 0.3s;
+           }
+         }
+        .out {
+          animation: about-nav-outside-move forwards;
+          animation-duration: 0.7s;
+          img {
+            animation: home-nav-outside-leave forwards;
+            animation-delay: 1.2s;
+            animation-duration: 0.3s;
+          }
+        }
+      }
     }
     &:hover {
       .out, .inside {
         transform: translateX(0);
       }
     }
+    &.not-active-nav {
+      .inside {
+        overflow: hidden;
+        img {
+          animation: home-nav-inside-leave forwards;
+          animation-duration: 0.3s;
+        }
+      }
+      .out {
+        overflow: hidden;
+        img {
+          animation: home-nav-outside-leave forwards;
+          animation-duration: 0.3s;
+        }
+      }
+    }
   }
+  /* ========  TO WORK ========== */
+  @keyframes toWork {
+    from {
+      top: calc(52% + 128px);
+      left: calc(8% - 26px);
+      transform: rotate(-90deg);
+    }
+    25% {
+      top: calc(50% - 30px);
+      left: calc(8% - 26px);
+      transform: rotate(0);
+    }
+    60% {
+      top: calc(50% - 30px);
+      left: calc(50% - 128px);
+      transform: rotate(0);
+    }
+    to {
+      top: calc(50% - 30px);
+      left: calc(50% - 128px);
+      transform: rotate(0);
+    }
+  }
+  @keyframes work-nav-inside-move {
+    from {
+      transform: translateX(0);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    90% {
+      transform: translateX(30px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes work-nav-outside-move {
+    from {
+      transform: translateX(0);
+    }
+    40% {
+      transform: translateX(0);
+    }
+    85% {
+      transform: translateX(60px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  /* ========  TO About ========== */
+  @keyframes toAbout {
+    from {
+      top: calc(44% - 116px);
+      right: calc(8% - 26px);
+      transform: rotate(-90deg);
+    }
+    25% {
+      top: calc(50% - 30px);
+      right: calc(8% - 26px);
+      transform: rotate(0);
+    }
+    60% {
+      top: calc(50% - 30px);
+      right: calc(50% - 116px);
+      transform: rotate(0);
+    }
+    to {
+      top: calc(50% - 30px);
+      right: calc(50% - 116px);
+      transform: rotate(0);
+    }
+  }
+  @keyframes about-nav-inside-move {
+    from {
+      transform: translateX(0);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    90% {
+      transform: translateX(-30px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes about-nav-outside-move {
+    from {
+      transform: translateX(0);
+    }
+    40% {
+      transform: translateX(0);
+    }
+    85% {
+      transform: translateX(-60px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  /* ========  TO WORK & ABOUT LEAVE ========== */
+  @keyframes home-nav-inside-leave {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-30px);
+    }
+  }
+  @keyframes home-nav-outside-leave {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(30px);
+    }
+  }
+  /* ========  TO ABOUT ========== */
 
 
   /* =====  SVG  ====== */

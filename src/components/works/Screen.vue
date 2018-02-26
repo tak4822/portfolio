@@ -19,7 +19,9 @@
           alt="">
         </div>
       </transition>
-      <div class="door" :style="{'background-color': selectedWork.color}"></div>
+      <div
+        class="door"
+        :style="{'background-color': selectedWork.color}"></div>
       <transition name="lSide">
         <div
           v-if="isShowing"
@@ -52,7 +54,6 @@ import { mapGetters } from 'vuex';
 import Links from './Links';
 import Explanatory from './Explanatory';
 
-
 const images = require.context('../../assets/img/mainImages/', false, /^\.\//);
 
 export default {
@@ -60,6 +61,7 @@ export default {
     ...mapGetters({
       selectedWork: 'selectedWork',
       isShowing: 'isShowing',
+      pageEnter: false,
     }),
   },
   methods: {
@@ -72,6 +74,10 @@ export default {
     appLinks: Links,
     appExplanatory: Explanatory,
     // appInteractiveScreen: InteractiveScreen,
+  },
+  beforeRouteEnter(to, from, next) {
+    this.pageEnter = true;
+    next();
   },
 };
 

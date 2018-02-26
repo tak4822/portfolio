@@ -15,21 +15,20 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   props: ['selected'],
+  computed: {
+    ...mapGetters({
+      workNames: 'workNames',
+    }),
+  },
   methods: {
     ...mapActions({
       select: 'selectWork',
     }),
   },
-  computed: {
-    workNames() {
-      return this.$store.getters.workNames;
-    },
-  },
-
 };
 </script>
 

@@ -17,25 +17,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Description from './Description';
 import Image from './Image';
 // import works from '../../data/works';
-import EventBus from '../../store/EventBus';
 
 export default {
   components: {
     appDescription: Description,
     appImage: Image,
   },
-  data() {
-    return {
-      selectedWork: {},
-    };
-  },
-  created() {
-    EventBus.$on('workWasChanged', (work) => {
-      this.selectedWork = work;
-    });
+  computed: {
+    ...mapGetters({
+      selectedWork: 'selectedWork',
+    }),
   },
 };
 

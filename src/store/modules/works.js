@@ -12,7 +12,6 @@ const mutations = {
   },
   START_ANIMATION(state) {
     state.isShowing = true;
-    console.log('started', state.isShowing);
   },
   END_ANIMATION(state) {
     state.isShowing = false;
