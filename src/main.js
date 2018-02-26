@@ -5,6 +5,7 @@ import Vue from 'vue';
 import './assets/scss/index.scss';
 import App from './App';
 import router from './router';
+import store from './store/store';
 
 Vue.config.productionTip = false;
 
@@ -13,5 +14,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
+  store,
   template: '<App/>',
 });

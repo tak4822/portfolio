@@ -1,19 +1,19 @@
 <template>
   <div class="screen-container">
-    <app-links
-      @select="selectWork"
-      :selected="selected"
-    />
+    <app-links/>
     <transition name="slide" mode="out-in">
       <app-explanatory
-        :key="selected"
+        :key="selectedWork.name"
         :selectedWork="selectedWork"
-        v-if="selected !== null"
+        v-if="selectedWork !== null"
       />
     </transition>
     <div class="filter-container">
       <transition name="come" mode="out-in">
-        <div class="image-wrap" :key="selected" :style="{'background-color': selectedWork.color}">
+        <div
+          class="image-wrap"
+          :key="selectedWork.name"
+          :style="{'background-color': selectedWork.color}">
         <img
           :src="getImageSrc()"
           alt="">
@@ -48,46 +48,30 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Links from './Links';
 import Explanatory from './Explanatory';
-import works from '../../data/works';
-import EventBus from '../../store/EventBus';
+
 
 const images = require.context('../../assets/img/mainImages/', false, /^\.\//);
 
 export default {
-  data() {
-    return {
-      selected: null,
-      isShowing: false, // for liquid animation
-    };
-  },
   computed: {
-    selectedWork() {
-      if (this.selected !== null) {
-        return works[this.selected];
-      }
-      return '';
+    ...mapGetters({
+      selectedWork: 'selectedWork',
+      isShowing: 'isShowing',
+    }),
+  },
+  methods: {
+    getImageSrc() {
+      if (this.selectedWork.mainImage === undefined) return '';
+      return images(`./${this.selectedWork.mainImage}`);
     },
   },
   components: {
     appLinks: Links,
     appExplanatory: Explanatory,
     // appInteractiveScreen: InteractiveScreen,
-  },
-  methods: {
-    selectWork(id) {
-      this.isShowing = true;
-      this.selected = id;
-      EventBus.changeWork(works[id]);
-      setTimeout(() => {
-        this.isShowing = false;
-      }, 1300);
-    },
-    getImageSrc() {
-      if (this.selected === null) return '';
-      return images(`./${works[this.selected].mainImage}`);
-    },
   },
 };
 
@@ -251,9 +235,13 @@ export default {
       top: calc(50% - 75px);
       right: -125px;
     }
+    30% {
+      top: calc(50% - 75px);
+      right: -125px;
+    }
     45% {
       top: calc(50% - 75px);
-      right: -50px;
+      right: -30px;
     }
     50% {
       top: calc(50% - 130px);
@@ -273,9 +261,13 @@ export default {
       top: calc(50% - 75px);
       right: -125px;
     }
+    30% {
+      top: calc(50% - 75px);
+      right: -125px;
+    }
     45% {
       top: calc(50% - 75px);
-      right: -50px;
+      right: -30px;
     }
     50% {
       top: calc(50% - 20px);

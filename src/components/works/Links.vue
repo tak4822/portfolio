@@ -15,20 +15,21 @@
 </template>
 
 <script>
-import works from '../../data/works';
+import { mapActions } from 'vuex';
 
 export default {
   props: ['selected'],
-  data() {
-    return {
-      workNames: works.map(({ name }) => name),
-    };
-  },
   methods: {
-    select(index) {
-      this.$emit('select', index);
+    ...mapActions({
+      select: 'selectWork',
+    }),
+  },
+  computed: {
+    workNames() {
+      return this.$store.getters.workNames;
     },
   },
+
 };
 </script>
 
