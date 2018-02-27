@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <transition name="slide" >
+      <app-header v-show="!homePage"/>
+    </transition>
     <transition
       :name="transitionName"
       mode="out-in"
@@ -11,6 +14,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import Header from './components/shared/Header';
 
 export default {
   name: 'App',
@@ -19,29 +23,69 @@ export default {
       transitionName: 'home',
     };
   },
+  computed: {
+    homePage() {
+      if (this.$route.path === '/') {
+        return true;
+      }
+      return false;
+    },
+  },
   methods: {
     ...mapActions({
       leaveHome: 'leaveHome',
+      resetWork: 'resetWork',
     }),
   },
   watch: {
     $route(to, from) {
-      // const toDepth = to.path;
-      const fromDepth = from.path;
-      // console.log('to', toDepth);
-      // console.log('from', fromDepth);
-      if (fromDepth === '/') {
-        console.log('fromHome');
-        this.transitionName = 'fromHome';
-      } else {
-        this.transitionName = 'normal';
+      console.log('change routes');
+      this.homePage = false;
+      if (to.path === '/') {
+        this.homePage = true;
       }
-      // this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+      const toDepthLength = to.path.split('/').length;
+      const fromDepthLength = from.path.split('/').length;
+      this.transitionName = toDepthLength < fromDepthLength ? 'normal' : 'toDetail';
     },
+  },
+  components: {
+    appHeader: Header,
   },
 };
 </script>
 
 <style lang="scss">
+  .slide-enter-active {
+    animation: slide-in 400ms ease-in forwards;
+  }
+
+  .slide-leave-active {
+    animation: slide-out 400ms ease-in-out forwards;
+  }
+
+  @keyframes  slide-in{
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes  slide-out{
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    to {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+  }
 
 </style>

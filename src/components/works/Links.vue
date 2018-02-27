@@ -1,16 +1,21 @@
 <template>
   <div class="links-container">
-    <ul class="links">
+    <transition-group tag="ul" class="links" appear v-if="linksAppear"
+      name="links"
+      @before-enter="beforeEnter"
+      @after-enter="afterEnter"
+      @enter-cancelled="afterEnter">
       <li
         class="links-list"
         v-for="(name, index) in workNames"
         :key="index"
-        :class="index === selected ? 'active' : ''"
+        :data-index="index"
+        :class="{'active' : index === selectedId }"
         @mouseover="select(index)"
       >
         <span class="hover-effect">{{ name }}</span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -18,21 +23,35 @@
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  props: ['selected'],
+  props: ['linksAppear'],
   computed: {
     ...mapGetters({
       workNames: 'workNames',
+      selectedId: 'selectedId',
     }),
   },
   methods: {
     ...mapActions({
       select: 'selectWork',
     }),
+    beforeEnter(el) {
+      el.style.transitionDelay = `${100 * el.dataset.index}ms`;
+    },
+    afterEnter(el) {
+      el.style.transitionDelay = '';
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
+  .links-enter {
+    opacity: 0;
+    transform: translatex(-20px);
+  }
+  .links-enter-active {
+    transition: all 0.3s ease;
+  }
   .links-container {
     position: absolute;
     top: -100px;

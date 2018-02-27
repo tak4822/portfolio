@@ -36,10 +36,9 @@
     </div>
     <div class="home-wrapper" :class="{'home-wrapper-leave': leave}">
       <div class="home-name-images home-t">
-        <div class="collage-wrap rose collage">
-          <div :class="{'block-reveal' : showBlock}"></div>
+        <div class="collage-wrap">
           <img
-            :class="{'hidden': !showRose}"
+            class="rose collage"
             src="../../assets/img/assets/rose.png"
             alt=""
             id="rose">
@@ -86,36 +85,17 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
 import { assignAnimation, getMouse, interactiveTAK } from '../../utils/homeMouseOver';
 
 export default {
   data() {
     return {
-      showBlock: false,
-      showRose: false,
       leave: false,
       toAbout: false,
       toWork: false,
     };
   },
-  // computed: {
-  //   ...mapGetters({
-  //     isLeaving: 'isLeaving',
-  //   }),
-  // },
-  // watch: {
-  //   isLeaving(val) {
-  //     console.log('watch', val);
-  //   },
-  // },
   methods: {
-    triggerCollage() {
-      this.showBlock = true;
-      setTimeout(() => {
-        this.showRose = true;
-      }, 500);
-    },
     reset() {
       this.leave = false;
       this.toAbout = false;
@@ -123,19 +103,15 @@ export default {
     },
   },
   mounted() {
-    this.triggerCollage();
     assignAnimation();
     window.addEventListener('mousemove', getMouse, false);
     interactiveTAK();
   },
   beforeRouteLeave(to, from, next) {
     this.leave = true;
-    console.log(to.path);
     if (to.path === '/about') {
-      console.log('toAbout');
       this.toAbout = true;
     } else if (to.path === '/works') {
-      console.log('toWork');
       this.toWork = true;
     }
     setTimeout(() => {
@@ -163,42 +139,12 @@ export default {
   .hidden {
     opacity: 0;
   }
-
-  .homeWrapper-leave-active {
-    opacity: 0.5;
-    animation: bounce forwards;
-    animation-duration: 1s;
-  }
   @keyframes home-leave {
     from {
       top: 12%;
     }
     to {
       top: 100%;
-    }
-  }
-  .block-reveal {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 100%;
-    width: 100%;
-    height: 100%;
-    background: black;
-    animation: block-reveal forwards;
-    animation-duration: 1s;
-  }
-
-
-  @keyframes block-reveal {
-    from {
-      right: 100%;
-    }
-    50% {
-      right: 0;
-    }
-    to {
-      right: -100%;
     }
   }
 
@@ -394,7 +340,7 @@ export default {
       transform: translateX(0);
     }
     85% {
-      transform: translateX(60px);
+      transform: translateX(50px);
     }
     to {
       transform: translateX(0);

@@ -1,6 +1,8 @@
 <template>
   <div class="screen-container">
-    <app-links/>
+    <app-links
+      :linksAppear="linksAppear"
+    />
     <transition name="slide" mode="out-in">
       <app-explanatory
         :key="selectedWork.name"
@@ -45,7 +47,16 @@
         </defs>
       </svg>
     </div>
-    <div class="three-d-door" :style="{'background-color': selectedWork.color}"></div>
+    <div
+      :class="{'door-enter': pageEnter}"
+      class="three-d-door">
+      <div class="door-color-wrapper top">
+        <div class="door-color-top" :style="{'background-color': selectedWork.color}"></div>
+      </div>
+      <div class="door-color-wrapper bottom">
+        <div class="door-color-bottom" :style="{'background-color': selectedWork.color}"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -57,11 +68,16 @@ import Explanatory from './Explanatory';
 const images = require.context('../../assets/img/mainImages/', false, /^\.\//);
 
 export default {
+  data() {
+    return {
+      pageEnter: false,
+      linksAppear: false,
+    };
+  },
   computed: {
     ...mapGetters({
       selectedWork: 'selectedWork',
       isShowing: 'isShowing',
-      pageEnter: false,
     }),
   },
   methods: {
@@ -75,9 +91,11 @@ export default {
     appExplanatory: Explanatory,
     // appInteractiveScreen: InteractiveScreen,
   },
-  beforeRouteEnter(to, from, next) {
+  mounted() {
     this.pageEnter = true;
-    next();
+    setTimeout(() => {
+      this.linksAppear = true;
+    }, 1500);
   },
 };
 
@@ -96,12 +114,79 @@ export default {
   }
   .three-d-door {
     position: absolute;
-    left: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  /* ===== page enter animation ====== */
+  .door-color-wrapper {
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+  }
+  .door-color-top {
+    width: 100%;
+    height: 100%;
+    background: black;
+    transform: translateY(300px);
+  }
+  .door-color-bottom {
+    width: 100%;
+    height: 100%;
+    background: black;
+    transform: translateY(-300px);
+  }
+  .door-enter {
+    top: calc(50% - 300px);
+    left: calc(50% - 100px);
     width: 200px;
     height: 600px;
-    background: black;
-    transform: rotateY(90deg) translateZ(-100px);
+    transform-origin: center center;
+    animation: door-enter forwards;
+    animation-delay: 0.5s;
+    animation-duration: 1s;
+    .door-color-top {
+      animation: door-appear-top forwards;
+      animation-duration: 0.5s;
+      transition-timing-function: ease;
+    }
+    .door-color-bottom {
+      animation: door-appear-bottom forwards;
+      animation-duration: 0.5s;
+      transition-timing-function: ease;
+    }
   }
+  @keyframes door-enter {
+    from {
+      left: calc(50% - 100px);
+      transform: rotateY(0) translateZ(0);
+    }
+    50% {
+      left: 100%;
+      transform: rotateY(0) translateZ(0);
+    }
+    to {
+      left: 100%;
+      transform: rotateY(90deg) translateZ(-100px);
+    }
+  }
+  @keyframes  door-appear-top {
+    from {
+      transform: translateY(300px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes  door-appear-bottom {
+    from {
+      transform: translateY(-300px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+
   .screen-bg {
     position: absolute;
     top: 0;
@@ -135,14 +220,13 @@ export default {
   .door {
     width: 30px;
     height: 500px;
-    background: black;
     position: absolute;
     top: calc(50% - 250px);
     right: 0;
     transform: translateZ(100px);
   }
 
-  /* ======  animatino ======*/
+  /* ======  animation ======*/
   .come-enter {
     opacity: 0;
   }
@@ -186,14 +270,12 @@ export default {
   }
   .slide-enter-active {
     animation: slide-in .4s linear forwards;
-    transition: all .3s;
-    // transform-origin: 0% 100%;
+    transition: all .4s;
   }
 
   .slide-leave-active {
-    animation: slide-out .5s linear forwards;
+    animation: slide-out .4s linear forwards;
     transition: all .1s;
-    // transform-origin: 0% 100%;
   }
 
   @keyframes slide-in {
