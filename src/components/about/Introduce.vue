@@ -179,6 +179,7 @@ export default {
     font-weight: 400;
     font-style: italic;
     font-size: 1.2rem;
+    margin-top: 0;
     margin-bottom: 0;
   }
   .about-introduce {
