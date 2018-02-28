@@ -35,9 +35,11 @@ export default {
       select: 'selectWork',
     }),
     beforeEnter(el) {
+      // eslint-disable-next-line no-param-reassign
       el.style.transitionDelay = `${100 * el.dataset.index}ms`;
     },
     afterEnter(el) {
+      // eslint-disable-next-line no-param-reassign
       el.style.transitionDelay = '';
     },
   },
@@ -54,7 +56,7 @@ export default {
   }
   .links-container {
     position: absolute;
-    top: -100px;
+    top: -70px;
     left: -210px;
   }
   .links {

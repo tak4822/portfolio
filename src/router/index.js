@@ -17,4 +17,7 @@ export default new Router({
     { path: '/works', component: Works },
     { path: '/test', component: Triangle },
   ],
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
 });

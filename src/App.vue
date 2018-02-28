@@ -6,9 +6,14 @@
     <transition
       :name="transitionName"
       mode="out-in"
+      @leave="leavePage"
     >
       <router-view/>
     </transition>
+    <div class="leave-normal-page" :class="{'leaving': normalLeave}">
+      <div class="leave-normal-el black"></div>
+      <div class="leave-normal-el white"></div>
+    </div>
   </div>
 </template>
 
@@ -16,11 +21,13 @@
 import { mapActions } from 'vuex';
 import Header from './components/shared/Header';
 
+// TODO: scroll behavior
 export default {
   name: 'App',
   data() {
     return {
-      transitionName: 'home',
+      transitionName: 'normal',
+      normalLeave: false,
     };
   },
   computed: {
@@ -36,17 +43,29 @@ export default {
       leaveHome: 'leaveHome',
       resetWork: 'resetWork',
     }),
+    leavePage(el, done) {
+      if (this.transitionName === 'normal') {
+        this.normalLeave = true;
+        setTimeout(() => {
+          done();
+          this.normalLeave = false;
+        }, 1600);
+      }
+      if (this.transitionName === 'home') {
+        done();
+      }
+    },
   },
   watch: {
     $route(to, from) {
-      console.log('change routes');
-      this.homePage = false;
-      if (to.path === '/') {
-        this.homePage = true;
-      }
       const toDepthLength = to.path.split('/').length;
       const fromDepthLength = from.path.split('/').length;
-      this.transitionName = toDepthLength < fromDepthLength ? 'normal' : 'toDetail';
+      if (from.path === '/' || to.path === '/') {
+        this.transitionName = 'home';
+      } else {
+        this.transitionName = toDepthLength > fromDepthLength ? 'toDetail' : 'normal';
+      }
+      console.log('route transition', this.transitionName);
     },
   },
   components: {
@@ -85,6 +104,52 @@ export default {
     to {
       transform: translateY(-30px);
       opacity: 0;
+    }
+  }
+  .leave-normal-page {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .leave-normal-el{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    &.black {
+      background: $beige;
+    }
+    &.white {
+      z-index: 2;
+      background: white;
+    }
+  }
+  .leave-normal-page.leaving{
+    display: block;
+    .leave-normal-el {
+      &.black {
+        animation: leavePage forwards;
+        animation-duration: 0.7s;
+      }
+      &.white {
+        animation: leavePage forwards ease-in-out;
+        animation-duration: 0.7s;
+        animation-delay: .9s;
+      }
+    }
+  }
+
+  @keyframes leavePage {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
     }
   }
 

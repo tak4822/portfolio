@@ -16,9 +16,8 @@
           class="image-wrap"
           :key="selectedWork.name"
           :style="{'background-color': selectedWork.color}">
-        <img
-          :src="getImageSrc()"
-          alt="">
+          <img :src="getImageSrc()" alt="">
+          <div class="image-shadow" v-if="selectedWork.name"></div>
         </div>
       </transition>
       <div
@@ -92,6 +91,7 @@ export default {
     // appInteractiveScreen: InteractiveScreen,
   },
   mounted() {
+    console.log('mounted');
     this.pageEnter = true;
     setTimeout(() => {
       this.linksAppear = true;
@@ -105,14 +105,18 @@ export default {
   .screen-container {
     position: relative;
     width: 700px;
-    height: 500px;
-    margin: 230px auto;
+    height: 600px;
+    margin: 180px auto;
     display: flex;
     align-items: center;
     justify-content: center;
     perspective: 1000px;
   }
   .three-d-door {
+    top: calc(50% - 300px);
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 600px;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -136,10 +140,6 @@ export default {
     transform: translateY(-300px);
   }
   .door-enter {
-    top: calc(50% - 300px);
-    left: calc(50% - 100px);
-    width: 200px;
-    height: 600px;
     transform-origin: center center;
     animation: door-enter forwards;
     animation-delay: 0.5s;
@@ -186,7 +186,6 @@ export default {
     }
   }
 
-
   .screen-bg {
     position: absolute;
     top: 0;
@@ -215,6 +214,16 @@ export default {
       width: 250px;
       height: 250px;
       object-fit: contain;
+    }
+    .image-shadow {
+      width: 400px;
+      height: 3px;
+      background: rgba(0,0,0,0.2);
+      position: absolute;
+      left: calc(50% - 200px);
+      bottom: -140px;
+      border-radius: 50%;
+      filter: blur(5px);
     }
   }
   .door {

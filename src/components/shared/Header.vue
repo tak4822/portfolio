@@ -26,6 +26,7 @@
 
 <style scoped lang="scss">
   .header-container {
+    z-index: 100;
     position: fixed;
     top: 0;
     height: 150px;
@@ -53,9 +54,10 @@
   }
   .global-nav-list {
     float: right;
-    margin-right: 30px ;
+    margin-right: 35px ;
     &.contact {
-      margin-left: 45px;
+      padding-left: 35px;
+      border-left: 2px solid $text;
     }
   }
 </style>

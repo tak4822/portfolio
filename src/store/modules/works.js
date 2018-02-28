@@ -22,6 +22,7 @@ const mutations = {
   },
   RESET_WORK(state) {
     state.selectedWork = {};
+    state.selectedId = '';
   },
 };
 
