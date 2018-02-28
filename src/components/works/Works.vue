@@ -1,7 +1,8 @@
 <template>
   <div>
     <app-screen/>
-    <app-detail/>
+    <!--<app-detail/>-->
+    <router-view class="child"/>
   </div>
 </template>
 

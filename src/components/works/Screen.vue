@@ -7,7 +7,7 @@
       <app-explanatory
         :key="selectedWork.name"
         :selectedWork="selectedWork"
-        v-if="selectedWork !== null"
+        v-if="selectedWork.name"
       />
     </transition>
     <div class="filter-container">
@@ -77,6 +77,7 @@ export default {
     ...mapGetters({
       selectedWork: 'selectedWork',
       isShowing: 'isShowing',
+      toDetail: 'toDetail',
     }),
   },
   methods: {
@@ -91,7 +92,6 @@ export default {
     // appInteractiveScreen: InteractiveScreen,
   },
   mounted() {
-    console.log('mounted');
     this.pageEnter = true;
     setTimeout(() => {
       this.linksAppear = true;

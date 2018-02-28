@@ -1,5 +1,5 @@
 <template>
-  <div class="exp-container">
+  <div class="exp-container" :class="{ 'to-detail': toDetail }">
     <p class="exp-date">{{ selectedWork.date }}</p>
     <h3 class="exp-title">{{ selectedWork.shortTitle }}</h3>
     <p class="exp-short-desc">{{ selectedWork.shortDesc }}</p>
@@ -8,8 +8,20 @@
 </template>
 
 <script>
+import mapGetters from 'vuex';
+
 export default {
   props: ['selectedWork'],
+  computed: {
+    toDetail() {
+      return this.$store.getters.toDetail;
+    },
+  },
+  watch: {
+    toDetail(val) {
+      console.log('suki', val);
+    },
+  },
 };
 </script>
 
@@ -40,5 +52,21 @@ export default {
   }
   .exp-skills {
     margin-bottom: 0;
+  }
+
+  /* ==========    leaving animation    =========== */
+  .exp-container {
+    &.to-detail {
+      animation: to-detail forwards;
+      animation-duration: 1s;
+    }
+  }
+  @keyframes to-detail {
+    from {
+      left: calc(100% + 70px);
+    }
+    to {
+      left: calc(300%);
+    }
   }
 </style>

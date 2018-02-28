@@ -13,7 +13,9 @@
         :class="{'active' : index === selectedId }"
         @mouseover="select(index)"
       >
-        <span class="hover-effect">{{ name }}</span>
+        <router-link
+          :to="{ name: 'detail', params: { id: index }}"
+          class="hover-effect">{{ name }}</router-link>
       </li>
     </transition-group>
   </div>
@@ -56,7 +58,7 @@ export default {
   }
   .links-container {
     position: absolute;
-    top: -70px;
+    top: -30px;
     left: -210px;
   }
   .links {
@@ -71,8 +73,8 @@ export default {
     cursor: pointer;
     z-index: 2;
     &.active {
-      color: white;
       .hover-effect {
+        color: white;
         position: relative ;
         overflow: hidden;
         &::before, &::after {

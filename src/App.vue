@@ -42,8 +42,11 @@ export default {
     ...mapActions({
       leaveHome: 'leaveHome',
       resetWork: 'resetWork',
+      toDetail: 'toDetail',
+      resetToDetail: 'resetToDetail',
     }),
     leavePage(el, done) {
+      this.resetToDetail();
       if (this.transitionName === 'normal') {
         this.normalLeave = true;
         setTimeout(() => {
@@ -52,6 +55,9 @@ export default {
         }, 1600);
       }
       if (this.transitionName === 'home') {
+        done();
+      }
+      if (this.transitionName === 'toDetail') {
         done();
       }
     },
@@ -65,7 +71,13 @@ export default {
       } else {
         this.transitionName = toDepthLength > fromDepthLength ? 'toDetail' : 'normal';
       }
+      console.log('to', toDepthLength);
+      console.log('from', fromDepthLength);
       console.log('route transition', this.transitionName);
+      if (this.transitionName === 'toDetail') {
+        console.log('tototo');
+        this.toDetail();
+      }
     },
   },
   components: {
