@@ -1,14 +1,18 @@
 <template>
   <div>
     <div class="image-frame">
-      <img :src="computedSrc" alt="">
+      <img
+        :src="computedSrc"
+        alt=""
+        :class="{ 'is-mobile': isMobile }"
+      >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['src'],
+  props: ['src', 'isMobile'],
   computed: {
     computedSrc() {
       if (this.src !== null) {
@@ -24,7 +28,7 @@ export default {
   .image-frame {
     width: 90%;
     margin-left: 5%;
-    margin-bottom: 200px;
+    margin-top: 200px;
     height: 50vw;
     display: flex;
     align-items: center;

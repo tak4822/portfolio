@@ -65,14 +65,14 @@ export default {
   watch: {
     $route(to, from) {
       const toDepthLength = to.path.split('/').length;
-      const fromDepthLength = from.path.split('/').length;
+      // const fromDepthLength = from.path.split('/').length;
       if (from.path === '/' || to.path === '/') {
         this.transitionName = 'home';
+      } else if (toDepthLength >= 3) {
+        this.transitionName = 'toDetail';
       } else {
-        this.transitionName = toDepthLength > fromDepthLength ? 'toDetail' : 'normal';
+        this.transitionName = 'normal';
       }
-      console.log('to', toDepthLength);
-      console.log('from', fromDepthLength);
       console.log('route transition', this.transitionName);
       if (this.transitionName === 'toDetail') {
         console.log('tototo');
@@ -134,7 +134,7 @@ export default {
     height: 100%;
     transform: translateX(-100%);
     &.black {
-      background: $beige;
+      background: $text;
     }
     &.white {
       z-index: 2;

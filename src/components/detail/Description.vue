@@ -39,7 +39,7 @@
         </div>
         <p class="desc-text">{{ description }}</p>
       </div>
-      <a :href="url" class="visit-site-container">
+      <a :href="url" target="_blank" class="visit-site-container">
         <img class="big-deco" src="../../assets/img/assets/desc_deco_bottom.svg" alt="">
         <p class="visit-site-link">
           VIEW SITE
@@ -94,7 +94,7 @@ export default {
 
 <style lang="scss" scoped>
   .desc-container {
-    padding: 300px 0;
+    padding: 50px 0;
     margin-left: calc(50% - 500px);
   }
   .desc-name {

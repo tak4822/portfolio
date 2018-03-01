@@ -10,29 +10,36 @@
         v-if="selectedWork.name"
       />
     </transition>
-    <div class="filter-container">
+    <div class="filter-container" :class="{'to-detail': toDetail}">
       <transition name="come" mode="out-in">
         <div
           class="image-wrap"
+          :class="{'to-detail': toDetail}"
           :key="selectedWork.name"
           :style="{'background-color': selectedWork.color}">
           <img :src="getImageSrc()" alt="">
-          <div class="image-shadow" v-if="selectedWork.name"></div>
+          <div
+            :class="{'to-detail': toDetail}"
+            class="image-shadow"
+            v-if="selectedWork.name"></div>
         </div>
       </transition>
       <div
         class="door"
-        :style="{'background-color': selectedWork.color}"></div>
-      <transition name="lSide">
+        :class="{'to-detail': toDetail}"
+        :style="{'background-color': selectedWork.color, }"></div>
+      <transition name="lSide ">
         <div
           v-if="isShowing"
           class="ripple"
+          :class="{'to-detail': toDetail}"
           :style="{'background-color': selectedWork.color}"></div>
       </transition>
       <transition name="rSide">
         <div
           v-if="isShowing"
           class="ripple r-side"
+          :class="{'to-detail': toDetail}"
           :style="{'background-color': selectedWork.color}"></div>
       </transition>
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -47,7 +54,7 @@
       </svg>
     </div>
     <div
-      :class="{'door-enter': pageEnter}"
+      :class="{'door-enter': pageEnter, 'to-detail': toDetail}"
       class="three-d-door">
       <div class="door-color-wrapper top">
         <div class="door-color-top" :style="{'background-color': selectedWork.color}"></div>
@@ -55,6 +62,9 @@
       <div class="door-color-wrapper bottom">
         <div class="door-color-bottom" :style="{'background-color': selectedWork.color}"></div>
       </div>
+    </div>
+    <div class="scroll-icon-wrap" :class="{ 'to-detail': toDetail }">
+      <div class="scroll-icon"></div>
     </div>
   </div>
 </template>
@@ -102,6 +112,34 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .scroll-icon-wrap {
+    position: absolute;
+    width: 1px;
+    height: 100px;
+    bottom: -50px;
+    left: 50%;
+    overflow: hidden;
+    &.to-detail {
+      .scroll-icon {
+        width: 100%;
+        height: 100%;
+        background: black;
+        transform: translateY(-100%);
+        animation: scroll-icon infinite;
+        animation-delay: 2s;
+        animation-duration: 1.6s;
+      }
+    }
+  }
+  @keyframes scroll-icon {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
   .screen-container {
     position: relative;
     width: 700px;
@@ -120,6 +158,64 @@ export default {
     position: absolute;
     display: flex;
     flex-direction: column;
+  }
+  /* ===== To Detail animation ====== */
+  .image-wrap {
+    &.to-detail {
+      /*animation: zoom-work forwards linear;*/
+      /*animation-delay: 0.5s;*/
+      /*animation-duration: .5s;*/
+    }
+  }
+  @keyframes zoom-work {
+    from {
+      width: 400px;
+      height: 300px;
+      top: calc(50% - 150px);
+      left: calc(50% - 200px);
+    }
+    to {
+      width: 70vw;
+      height: 60vh;
+      left: calc(50% - 40vw);
+      top: calc(50% - 30vh);
+    }
+  }
+  .image-shadow {
+    &.to-detail {
+      animation: fade-out forwards linear;
+      animation-duration: 0.5s;
+    }
+  }
+  .door {
+    &.to-detail {
+      animation: door-to-detail forwards ease-in;
+      animation-duration: 1s;
+    }
+  }
+  .three-d-door {
+    &.to-detail {
+      animation: three-d-door-to-detail forwards ease-in;
+      animation-duration: 1s;
+    }
+  }
+  @keyframes door-to-detail {
+    from {
+      top: calc(50% - 300px);
+    }
+    to {
+      top: -1000px;
+    }
+  }
+  @keyframes three-d-door-to-detail {
+    from {
+      left: 100%;
+      transform: rotateY(90deg) translateZ(-100px) translateY(0);
+    }
+    to {
+      left: 100%;
+      transform: rotateY(90deg) translateZ(-100px) translateY(-1000px);
+    }
   }
   /* ===== page enter animation ====== */
   .door-color-wrapper {
@@ -200,13 +296,16 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    &.to-detail {
+      overflow: visible;
+    }
   }
   .image-wrap {
     width: 400px;
     height: 300px;
-    position: absolute;
     top: calc(50% - 150px);
     left: calc(50% - 200px);
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -317,6 +416,11 @@ export default {
     right: -125px;
     top: calc(50% - 75px);
   }
+  .ripple {
+    &.to-detail {
+      opacity: 0;
+    }
+  }
   .rSide-enter-active {
     animation: r-side-ripple;
     animation-duration: .7s;
@@ -379,6 +483,7 @@ export default {
       right: -125px;
     }
   }
+
 
 
 </style>

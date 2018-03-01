@@ -64,7 +64,9 @@ export default {
     // },
   },
   mounted() {
-    this.triggerCollage();
+    setTimeout(() => {
+      this.triggerCollage();
+    }, 500)
   },
 };
 </script>

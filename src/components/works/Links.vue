@@ -1,5 +1,5 @@
 <template>
-  <div class="links-container">
+  <div class="links-container" :class="{ 'to-detail': toDetail }">
     <transition-group tag="ul" class="links" appear v-if="linksAppear"
       name="links"
       @before-enter="beforeEnter"
@@ -11,7 +11,7 @@
         :key="index"
         :data-index="index"
         :class="{'active' : index === selectedId }"
-        @mouseover="select(index)"
+        @mouseover="hoverWork(index)"
       >
         <router-link
           :to="{ name: 'detail', params: { id: index }}"
@@ -30,12 +30,18 @@ export default {
     ...mapGetters({
       workNames: 'workNames',
       selectedId: 'selectedId',
+      toDetail: 'toDetail',
     }),
   },
   methods: {
     ...mapActions({
       select: 'selectWork',
     }),
+    hoverWork(id) {
+      if (!this.toDetail) {
+        this.select(id);
+      }
+    },
     beforeEnter(el) {
       // eslint-disable-next-line no-param-reassign
       el.style.transitionDelay = `${100 * el.dataset.index}ms`;
@@ -49,6 +55,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  /* ======== Enter animation ========= */
   .links-enter {
     opacity: 0;
     transform: translatex(-20px);
@@ -56,6 +63,22 @@ export default {
   .links-enter-active {
     transition: all 0.3s ease;
   }
+  /* ======== To Detail animation ========= */
+  .links-container {
+    &.to-detail {
+      animation: links-to-detail forwards ease-in;
+      animation-duration: 1s;
+    }
+  }
+  @keyframes links-to-detail {
+    from {
+      left: -210px;
+    }
+    to {
+      left: -1000px;
+    }
+  }
+  /* ======== General ========= */
   .links-container {
     position: absolute;
     top: -30px;

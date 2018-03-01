@@ -8,7 +8,9 @@
     <div class="global-nav-container">
       <ul class="global-nav">
         <li class="global-nav-list contact">
-          <a class="contact" href="mailto:takeshi@gamil.com">CONTACT</a>
+          <a class="contact" href="mailto:takeshi@gamil.com">
+            <img src="../../assets/img/assets/mail.svg" alt="">
+          </a>
         </li>
         <li class="global-nav-list">
           <router-link to="/about">ABOUT</router-link>
@@ -57,7 +59,11 @@
     margin-right: 35px ;
     &.contact {
       padding-left: 35px;
-      border-left: 2px solid $text;
+      border-left: 1px solid $text;
+      height: 24px;
+      img {
+        height: 100%;
+      }
     }
   }
 </style>

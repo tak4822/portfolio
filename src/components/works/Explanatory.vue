@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import mapGetters from 'vuex';
-
 export default {
   props: ['selectedWork'],
   computed: {
@@ -59,6 +57,7 @@ export default {
     &.to-detail {
       animation: to-detail forwards;
       animation-duration: 1s;
+      transition-timing-function: ease-in;
     }
   }
   @keyframes to-detail {
