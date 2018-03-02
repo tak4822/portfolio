@@ -56,9 +56,11 @@
         </div>
       </div>
       <div class="home-name-images home-a">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">
-          <polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>
-        </svg>
+        <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">-->
+          <!--<polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>-->
+        <!--</svg>-->
+        <app-triangle
+        />
       </div>
       <div class="home-name-images home-k">
         <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
@@ -86,6 +88,7 @@
 
 <script>
 import { assignAnimation, getMouse, interactiveTAK } from '../../utils/homeMouseOver';
+import Triangle from './Triangle';
 
 export default {
   data() {
@@ -119,7 +122,11 @@ export default {
       this.reset();
     }, 1500);
   },
+  components: {
+    appTriangle: Triangle,
+  },
 };
+
 </script>
 
 <style scoped lang="scss">
@@ -424,6 +431,9 @@ export default {
     position: relative;
     z-index: 100;
     transform-style: preserve-3d;
+    &.home-a {
+      width: 500px;
+    }
     .svg-wrapper {
       width: 100%;
       height: 100%;
@@ -452,7 +462,7 @@ export default {
 
   /* =====  T  ====== */
   .home-t {
-    margin-right: 100px;
+    // margin-right: 100px;
     text-align: right;
     position: relative;
     .svg-wrapper {
@@ -477,7 +487,7 @@ export default {
   }
   /* =====  K  ====== */
   .home-k {
-    margin-left: 100px;
+    // margin-left: 100px;
     .svg-wrapper {
       &:after {
         content: url("../../assets/img/assets/k_shadow.png");

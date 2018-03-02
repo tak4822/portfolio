@@ -48,7 +48,6 @@ export default {
       resetWork: 'resetWork',
       toDetail: 'toDetail',
       resetToDetail: 'resetToDetail',
-      changeDetail: 'changeDetail',
     }),
     leavePage(el, done) {
       this.resetToDetail();
@@ -69,7 +68,6 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log('route update', to.path);
       const toDepthLength = to.path.split('/').length;
       // const fromDepthLength = from.path.split('/').length;
       if (from.path === '/' || to.path === '/') {
@@ -81,7 +79,7 @@ export default {
       } else {
         this.transitionName = 'normal';
       }
-      console.log('route transition', this.transitionName);
+      // console.log('route transition', this.transitionName);
       if (this.transitionName === 'toDetail') {
         this.toDetail();
       }

@@ -20,11 +20,6 @@ export default {
       return this.$store.getters.toDetail;
     },
   },
-  watch: {
-    changeDetail(val) {
-      console.log('gg', val);
-    }
-  }
 };
 </script>
 
