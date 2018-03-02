@@ -3,11 +3,11 @@
 const state = {
   homeLeaving: false,
   toDetail: false,
+  changeDetail: false,
 };
 
 const mutations = {
   START_LEAVING(state) {
-    console.log('leaving');
     state.homeLeaving = true;
   },
   END_LEAVING(state) {
@@ -18,6 +18,12 @@ const mutations = {
   },
   RESET_TO_DETAIL(state) {
     state.toDetail = false;
+  },
+  CHANGE_DETAIL(state) {
+    state.changeDetail = true;
+    setTimeout(() => {
+      state.changeDetail = false;
+    }, 3500);
   },
 };
 
@@ -34,11 +40,15 @@ const actions = {
   resetToDetail({ commit }) {
     commit('RESET_TO_DETAIL');
   },
+  changeDetail({ commit }) {
+    commit('CHANGE_DETAIL');
+  },
 };
 
 const getters = {
   isLeaving: state => state.homeLeaving,
   toDetail: state => state.toDetail,
+  changeDetail: state => state.changeDetail,
 };
 
 export default {

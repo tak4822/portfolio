@@ -9,6 +9,16 @@ import store from './store/store';
 
 Vue.config.productionTip = false;
 
+router.beforeEach((to, from, next) => {
+  if (to.name === 'changeDetail') {
+    setTimeout(() => {
+      next();
+    }, 1000);
+  } else {
+    next();
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -29,7 +29,7 @@ export default {
     width: 90%;
     margin-left: 5%;
     margin-top: 200px;
-    height: 50vw;
+    height: 52vw;
     display: flex;
     align-items: center;
     justify-content: center;

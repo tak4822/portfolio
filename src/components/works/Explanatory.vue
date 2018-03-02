@@ -1,5 +1,5 @@
 <template>
-  <div class="exp-container" :class="{ 'to-detail': toDetail }">
+  <div class="exp-container" :class="{ 'to-detail': toDetail }" v-if="!changeDetail">
     <p class="exp-date">{{ selectedWork.date }}</p>
     <h3 class="exp-title">{{ selectedWork.shortTitle }}</h3>
     <p class="exp-short-desc">{{ selectedWork.shortDesc }}</p>
@@ -8,18 +8,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   props: ['selectedWork'],
   computed: {
+    ...mapGetters({
+      changeDetail: 'changeDetail',
+    }),
     toDetail() {
       return this.$store.getters.toDetail;
     },
   },
   watch: {
-    toDetail(val) {
-      console.log('suki', val);
-    },
-  },
+    changeDetail(val) {
+      console.log('gg', val);
+    }
+  }
 };
 </script>
 
@@ -56,8 +61,8 @@ export default {
   .exp-container {
     &.to-detail {
       animation: to-detail forwards;
-      animation-duration: 1s;
-      transition-timing-function: ease-in;
+      animation-duration: 0.6s;
+      transition-timing-function: cubic-bezier(.14,0,.39,.75);
     }
   }
   @keyframes to-detail {

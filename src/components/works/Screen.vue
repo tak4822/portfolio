@@ -63,7 +63,7 @@
         <div class="door-color-bottom" :style="{'background-color': selectedWork.color}"></div>
       </div>
     </div>
-    <div class="scroll-icon-wrap" :class="{ 'to-detail': toDetail }">
+    <div class="scroll-icon-wrap" :class="{ 'to-detail': toDetail }" v-if="showScrollIcon">
       <div class="scroll-icon"></div>
     </div>
   </div>
@@ -88,6 +88,7 @@ export default {
       selectedWork: 'selectedWork',
       isShowing: 'isShowing',
       toDetail: 'toDetail',
+      showScrollIcon: 'showScrollIcon',
     }),
   },
   methods: {
@@ -126,7 +127,7 @@ export default {
         background: black;
         transform: translateY(-100%);
         animation: scroll-icon infinite;
-        animation-delay: 2s;
+        animation-delay: 1s;
         animation-duration: 1.6s;
       }
     }
@@ -160,13 +161,6 @@ export default {
     flex-direction: column;
   }
   /* ===== To Detail animation ====== */
-  .image-wrap {
-    &.to-detail {
-      /*animation: zoom-work forwards linear;*/
-      /*animation-delay: 0.5s;*/
-      /*animation-duration: .5s;*/
-    }
-  }
   @keyframes zoom-work {
     from {
       width: 400px;
@@ -189,14 +183,16 @@ export default {
   }
   .door {
     &.to-detail {
-      animation: door-to-detail forwards ease-in;
-      animation-duration: 1s;
+      animation: door-to-detail forwards;
+      animation-duration: 0.6s;
+      transition-timing-function: cubic-bezier(.14,0,.39,.75);
     }
   }
   .three-d-door {
     &.to-detail {
-      animation: three-d-door-to-detail forwards ease-in;
-      animation-duration: 1s;
+      animation: three-d-door-to-detail forwards;
+      animation-duration: 0.6s;
+      transition-timing-function: cubic-bezier(.14,0,.39,.75);
     }
   }
   @keyframes door-to-detail {
@@ -483,7 +479,4 @@ export default {
       right: -125px;
     }
   }
-
-
-
 </style>

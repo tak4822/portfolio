@@ -66,8 +66,9 @@ export default {
   /* ======== To Detail animation ========= */
   .links-container {
     &.to-detail {
-      animation: links-to-detail forwards ease-in;
-      animation-duration: 1s;
+      animation: links-to-detail forwards;
+      animation-duration: 0.6s;
+      transition-timing-function: cubic-bezier(.14,0,.39,.75);
     }
   }
   @keyframes links-to-detail {

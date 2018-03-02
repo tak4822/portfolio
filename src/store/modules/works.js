@@ -5,6 +5,8 @@ const state = {
   selectedWork: {},
   isShowing: false,
   selectedId: '',
+  worksLength: works.length,
+  showScrollIcon: true,
 };
 
 const mutations = {
@@ -24,6 +26,12 @@ const mutations = {
     state.selectedWork = {};
     state.selectedId = '';
   },
+  HIDE_SCROLL_ICON(state) {
+    state.showScrollIcon = false;
+  },
+  SHOW_SCROLL_ICON(state) {
+    state.showScrollIcon = true;
+  },
 };
 
 const actions = {
@@ -38,6 +46,12 @@ const actions = {
   resetWork: ({ commit }) => {
     commit('RESET_WORK');
   },
+  hideScrollIcon: ({ commit }) => {
+    commit('HIDE_SCROLL_ICON');
+    setTimeout(() => {
+      commit('SHOW_SCROLL_ICON');
+    }, 1500);
+  },
 };
 
 const getters = {
@@ -45,6 +59,9 @@ const getters = {
   workNames: () => works.map(({ name }) => name),
   isShowing: state => state.isShowing,
   selectedId: state => state.selectedId,
+  worksLength: state => state.worksLength,
+  showScrollIcon: state => state.showScrollIcon,
+
 };
 
 export default {

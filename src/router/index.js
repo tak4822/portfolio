@@ -24,6 +24,12 @@ export default new Router({
           component: Detail,
           // props: true,
         },
+        {
+          path: 'change/:id',
+          name: 'changeDetail',
+          component: Detail,
+          // props: true,
+        },
       ],
     },
     { path: '/test', component: Triangle },

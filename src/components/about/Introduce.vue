@@ -33,7 +33,9 @@
       </div>
     </article>
     <div class="video-container">
-      video
+      <video autoplay loop>
+        <source src="../../assets/img/assets/portfolio_2.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 </template>
@@ -66,7 +68,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.triggerCollage();
-    }, 500)
+    }, 500);
   },
 };
 </script>
@@ -190,12 +192,14 @@ export default {
 
   .video-container {
     position: absolute;
-    top: 150px;
-    right: 100px;
-    width: 800px;
+    top: 90px;
+    right: 40px;
+    width: 1100px;
     height: 700px;
-    background: pink;
     z-index: -10;
+    video {
+      width: 100%;
+    }
   }
 
 </style>

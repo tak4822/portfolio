@@ -1,5 +1,6 @@
 export default [
   {
+    id: 0,
     name: 'Board Buddies',
     shortTitle: 'Mobile App Development',
     mainImage: 'board_buddies.png',
@@ -16,9 +17,10 @@ export default [
     ],
     url: 'http://alpha.boardbuddiesapp.com',
     testimonials: [],
-    images: ['boardBuddies/mainPage.jpg', 'boardBuddies/createPage.jpg', 'boardBuddies/detailPage.jpg'],
+    images: ['boardBuddies/mainPage.jpg', 'boardBuddies/detailPage.jpg', 'boardBuddies/createPage.jpg'],
   },
   {
+    id: 1,
     name: 'Ken Priebe',
     shortTitle: 'Portfolio Website',
     mainImage: 'ken_priebe.svg',
@@ -38,6 +40,7 @@ export default [
     images: ['kenPriebe/book_page.jpg', 'kenPriebe/illustration.jpg', 'kenPriebe/animation.jpg', 'kenPriebe/illustration.jpg'],
   },
   {
+    id: 2,
     name: 'Box Spring',
     shortTitle: 'Design Company Website',
     mainImage: 'box_spring.svg',
@@ -57,6 +60,7 @@ export default [
     images: ['boxSpring/home.jpg', 'boxSpring/about.jpg', 'boxSpring/graphic.jpg', 'boxSpring/team.jpg'],
   },
   {
+    id: 3,
     name: 'Exotic Typography',
     shortTitle: 'Typography Company Website',
     mainImage: 'exotic_typography.svg',
@@ -76,6 +80,7 @@ export default [
     images: ['exoticTypo/projects.jpg', 'exoticTypo/detail.jpg', 'exoticTypo/test.jpg', 'exoticTypo/contact.jpg'],
   },
   {
+    id: 4,
     name: 'Hamptons',
     shortTitle: ' B&B hostel Website',
     mainImage: 'hamptons.svg',
@@ -92,6 +97,7 @@ export default [
     images: ['hamptons/activity.jpg', 'hamptons/home.jpg', 'hamptons/wine.jpg', 'hamptons/rooms.jpg'],
   },
   {
+    id: 5,
     name: 'Time To Do You',
     shortTitle: 'EC Site for Fitness Clothing',
     mainImage: 'time_to_do_you.svg',
@@ -108,6 +114,7 @@ export default [
     images: ['timeToDoYou/home.jpg', 'timeToDoYou/shop.jpg', 'timeToDoYou/modal.jpg', 'timeToDoYou/bag.jpg'],
   },
   {
+    id: 6,
     name: 'Assemblage',
     shortTitle: ' Typography & Graphic',
     mainImage: 'assembledge.jpg',
@@ -121,13 +128,14 @@ export default [
     description:
     [
       'I love typography. I made Gastrotypographicalassemblage with a number of typographies. I modified some of typography to enhance their the feature of typography and fit for spaces.I was very careful about movement of eyes which is  how to control user’s eyes and allow them to read the sentences.',
-      'Original copy:<br/>"The first requirement for an exemplary user experience is to meet the exact needs of the customer, without fuss or bother. Next comes simplicity and elegance that produce products that are a joy to own, a joy to use. True user experience goes far beyond giving customers what they say they want, or providing checklist features."',
+      'Original copy: "The first requirement for an exemplary user experience is to meet the exact needs of the customer, without fuss or bother. Next comes simplicity and elegance that produce products that are a joy to own, a joy to use. True user experience goes far beyond giving customers what they say they want, or providing checklist features."',
     ],
     url: '',
     testimonials: [],
-    images: [''],
+    images: ['assembledge/assembledge.jpg'],
   },
   {
+    id: 7,
     name: 'Just be',
     shortTitle: 'Print Design',
     mainImage: 'just_be.jpg',
@@ -141,6 +149,6 @@ export default [
     description: ['I created graphic design for print. I applied same style for two different flowers. I tried making good color combinations and best practice of setting for print.'],
     url: '',
     testimonials: [],
-    images: [''],
+    images: ['justBe/sunflower_2.jpg', 'justBe/lavender_2.jpg', 'justBe/print.jpg'],
   },
 ];

@@ -10,7 +10,9 @@
     >
       <router-view/>
     </transition>
-    <div class="leave-normal-page" :class="{'leaving': normalLeave}">
+    <div
+      class="leave-normal-page"
+      :class="{'leaving': normalLeave, 'change-detail': changeDetail}" >
       <div class="leave-normal-el black"></div>
       <div class="leave-normal-el white"></div>
     </div>
@@ -18,10 +20,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import Header from './components/shared/Header';
 
-// TODO: scroll behavior
 export default {
   name: 'App',
   data() {
@@ -31,6 +32,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({
+      changeDetail: 'changeDetail',
+    }),
     homePage() {
       if (this.$route.path === '/') {
         return true;
@@ -44,6 +48,7 @@ export default {
       resetWork: 'resetWork',
       toDetail: 'toDetail',
       resetToDetail: 'resetToDetail',
+      changeDetail: 'changeDetail',
     }),
     leavePage(el, done) {
       this.resetToDetail();
@@ -64,19 +69,25 @@ export default {
   },
   watch: {
     $route(to, from) {
+      console.log('route update', to.path);
       const toDepthLength = to.path.split('/').length;
       // const fromDepthLength = from.path.split('/').length;
       if (from.path === '/' || to.path === '/') {
         this.transitionName = 'home';
-      } else if (toDepthLength >= 3) {
+      } else if (toDepthLength === 3) {
         this.transitionName = 'toDetail';
+      } else if (toDepthLength === 4) {
+        this.transitionName = 'changeDetail';
       } else {
         this.transitionName = 'normal';
       }
       console.log('route transition', this.transitionName);
       if (this.transitionName === 'toDetail') {
-        console.log('tototo');
         this.toDetail();
+      }
+      if (to.path === '/works') {
+        this.resetToDetail();
+        this.resetWork();
       }
     },
   },
@@ -100,7 +111,6 @@ export default {
       transform: translateY(-30px);
       opacity: 0;
     }
-
     to {
       transform: translateY(0);
       opacity: 1;
@@ -112,7 +122,6 @@ export default {
       transform: translateY(0);
       opacity: 1;
     }
-
     to {
       transform: translateY(-30px);
       opacity: 0;
@@ -155,13 +164,33 @@ export default {
       }
     }
   }
-
+  .leave-normal-page.change-detail {
+    display: block;
+    .leave-normal-el {
+      &.white {
+        animation: chanegDetail forwards ease-in-out;
+        animation-duration: 0.8s;
+        animation-delay: 0.3s;
+      }
+    }
+  }
   @keyframes leavePage {
     from {
       transform: translateX(-100%);
     }
     to {
       transform: translateX(0);
+    }
+  }
+  @keyframes chanegDetail {
+    from {
+      transform: translateX(-100%);
+    }
+    99% {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
     }
   }
 
