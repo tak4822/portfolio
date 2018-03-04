@@ -21,7 +21,7 @@ export default {
     renderer.setSize(500, 500);
     // === camera ===
     const camera = new THREE.PerspectiveCamera(25, 1.3, 0.1, 1000);
-    camera.position.z = 7;
+    camera.position.z = 8;
     // === light ===
     const light = new THREE.DirectionalLight(0x404040);
     // const ambLight = new THREE.AmbientLight( 0x404040 );
@@ -55,6 +55,7 @@ export default {
     });
     const pyramidMesh = new THREE.Mesh(pyramidGeometry, pyramidMaterial);
     pyramidMesh.position.set(0.0, 0.0, 0.0);
+    pyramidMesh.rotation.y = 0.8;
     return {
       scene,
       renderer,
@@ -73,7 +74,10 @@ export default {
   mounted() {
     // === DOMを追加, animate ===
     this.$refs.stage.appendChild(this.renderer.domElement);
-    this.animate();
+    this.renderer.render(this.scene, this.camera);
+    setTimeout(() => {
+      this.animate();
+    }, 5500);
   },
   methods: {
     animate() {

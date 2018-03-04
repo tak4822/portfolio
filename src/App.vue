@@ -166,9 +166,9 @@ export default {
     display: block;
     .leave-normal-el {
       &.white {
-        animation: chanegDetail forwards ease-in-out;
-        animation-duration: 0.8s;
-        animation-delay: 0.3s;
+        animation: changeDetail forwards ease-in-out;
+        animation-duration: 1.3s;
+        animation-delay: 0.4s;
       }
     }
   }
@@ -180,9 +180,12 @@ export default {
       transform: translateX(0);
     }
   }
-  @keyframes chanegDetail {
+  @keyframes changeDetail {
     from {
       transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(0);
     }
     99% {
       transform: translateX(0);

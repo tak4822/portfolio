@@ -3,7 +3,7 @@
     <div class="prev-container btn-container"
          @click="clickHandler('prev')">
       <router-link :to="{ name: 'changeDetail', params: { id: prevWorkId }}">
-        <div class="bar"></div>
+        <div class="bar" :class="{'active': prevBtnActive}"></div>
         <p class="prev-btn" :class="{'active': prevBtnActive}">PREVIOUS WORK</p>
       </router-link>
     </div>
@@ -14,7 +14,7 @@
     <div class="next-container btn-container"
          @click="clickHandler('next')">
       <router-link :to="{ name: 'changeDetail', params: { id: nextWorkId }}">
-        <div class="bar"></div>
+        <div class="bar" :class="{'active': nextBtnActive}"></div>
         <p class="next-btn" :class="{'active': nextBtnActive}">NEXT WORK</p>
       </router-link>
     </div>
@@ -46,13 +46,13 @@ export default {
         setTimeout(() => {
           this.selectWork(this.prevWorkId);
           this.prevBtnActive = false;
-        }, 700);
+        }, 1000);
       } else if (direction === 'next') {
         this.nextBtnActive = true;
         setTimeout(() => {
           this.selectWork(this.nextWorkId);
           this.nextBtnActive = false;
-        }, 700);
+        }, 1000);
       }
     },
   },
@@ -70,6 +70,7 @@ export default {
   }
   .btn-container {
     width: 20vw;
+    height: 50px;
     position: relative;
   }
   .bar {
@@ -84,9 +85,17 @@ export default {
     text-align: right;
     .bar {
       right: 100%;
+      &.active {
+        right: 0;
+      }
     }
     .prev-btn {
       transition: all 0.6s ease-out;
+      &.active {
+        animation: prevGo forwards;
+        animation-duration: .6s;
+        transition-timing-function: cubic-bezier(.16,-0.5,.58,.3);
+      }
     }
     &:hover {
       .bar {
@@ -95,13 +104,6 @@ export default {
       .prev-btn {
         transform: skewX(-10deg);
       }
-    }
-  }
-  .prev-btn {
-    &.active {
-      animation: prevGo forwards;
-      animation-duration: .6s;
-      transition-timing-function: cubic-bezier(.16,-0.5,.58,.3);
     }
   }
   @keyframes prevGo {
@@ -116,9 +118,17 @@ export default {
     text-align: left;
     .bar {
       left: 100%;
+      &.active {
+        left: 0;
+      }
     }
     .next-btn {
       transition: all 0.6s ease-out;
+      &.active {
+        animation: nextGo forwards;
+        animation-duration: .6s;
+        transition-timing-function: cubic-bezier(.16,-0.5,.58,.3);
+      }
     }
     &:hover {
       .bar {
@@ -127,13 +137,6 @@ export default {
       .next-btn {
         transform: skewX(10deg);
       }
-    }
-  }
-  .next-btn {
-    &.active {
-      animation: nextGo forwards;
-      animation-duration: .6s;
-      transition-timing-function: cubic-bezier(.16,-0.5,.58,.3);
     }
   }
   @keyframes nextGo {

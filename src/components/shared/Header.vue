@@ -9,23 +9,27 @@
       <ul class="global-nav">
         <li class="global-nav-list contact">
           <a class="contact" href="mailto:takeshi@gamil.com">
-            <img src="../../assets/img/assets/mail.svg" alt="">
+            CONTACT
+            <!--{/* <img src="../../assets/img/assets/mail.svg" alt=""> */}-->
           </a>
         </li>
         <li class="global-nav-list">
-          <router-link to="/about">ABOUT</router-link>
+          <div class="bar"></div>
+          <router-link class="header-nav-text" to="/about">
+            ABOUT
+            <div class="bar"></div>
+          </router-link>
         </li>
         <li class="global-nav-list">
-          <router-link to="/works">WORKS</router-link>
+          <router-link class="header-nav-text" to="/works">
+            <div class="bar"></div>
+            WORKS
+          </router-link>
         </li>
       </ul>
     </div>
   </div>
 </template>
-
-<script>
-</script>
-
 <style scoped lang="scss">
   .header-container {
     z-index: 100;
@@ -64,6 +68,33 @@
       img {
         height: 100%;
       }
+    }
+  }
+  .header-nav-text {
+    position: relative;
+    display: block;
+    padding: 0 5px;
+    overflow: hidden;
+    .bar {
+      width: 100%;
+      height: 1px;
+      background: black;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateX(-100%);
+      transition: transform .3s ease-in;
+    }
+    &:hover {
+      .bar {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  .header-nav-text.router-link-exact-active {
+    .bar {
+      transform: translateX(0);
     }
   }
 </style>

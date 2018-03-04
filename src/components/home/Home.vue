@@ -1,18 +1,20 @@
 <template>
   <div class="home-container">
-    <transition name="greeting" appear>
-      <div class="greeting">
-        <h1 class="greeting-text">Hi, I’m Tak.  Front-end creative developper.</h1>
+    <div class="greeting" :class="{'greeting-leave': leave, 'enter': enter }">
+      <div class="greeting-inside">
+        <h1 class="greeting-text">
+          Hi, I’m Tak.  Front-end creative developer.
+        </h1>
         <div>
           <span class="greeting-text border"> | </span>
           <a class="greeting-text contact" href="mailto:takeshi@gmail.com">CONTACT</a>
         </div>
+        <span class="block-reveal"></span>
       </div>
-    </transition>
-
+    </div>
     <div
       class="home-nav-wrapper works"
-      :class="{'to-work': toWork, 'not-active-nav': toAbout}">
+      :class="{'to-work': toWork, 'not-active-nav': toAbout, 'enter': enter }">
       <router-link to="/works">
         <div class="home-nav out">
           <img src="../../assets/img/assets/works_top.svg" alt="">
@@ -24,7 +26,7 @@
     </div>
     <div
       class="home-nav-wrapper about"
-      :class="{'to-about': toAbout, 'not-active-nav': toWork}">
+      :class="{'to-about': toAbout, 'not-active-nav': toWork, 'enter': enter }">
       <router-link to="/about">
         <div class="home-nav out">
           <img src="../../assets/img/assets/about_top.svg" alt="">
@@ -34,55 +36,70 @@
         </div>
       </router-link>
     </div>
-    <div class="home-wrapper" :class="{'home-wrapper-leave': leave}">
-      <div class="home-name-images home-t">
-        <div class="collage-wrap">
-          <img
-            class="rose collage"
-            src="../../assets/img/assets/rose.png"
-            alt=""
-            id="rose">
-        </div>
-        <div class="svg-wrapper" id="nameT">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
-            <clipPath id="t">
+    <div
+      class="home-wrapper"
+      :class="{'home-wrapper-leave': leave, 'home-wrapper-enter': enter }">
+      <div class="inside-block one"></div>
+      <div class="inside-block two"></div>
+      <div class="inside-block three"></div>
+      <div class="inside-block four"></div>
+      <div class="inside-block five"></div>
+      <div class="home-wrapper-inside">
+        <div class="home-name-images home-t">
+          <div class="collage-wrap">
+            <img
+              class="rose collage"
+              src="../../assets/img/assets/rose.png"
+              alt=""
+              id="rose">
+          </div>
+          <div class="svg-wrapper" id="nameT">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
               <polygon
+                id="pol-t"
                 class="svg-name t"
                 points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
               ></polygon>
-            </clipPath>
-            <image clip-path="url(#t)" xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
-          </svg>
+              <clipPath id="t">
+                <use xlink:href="#pol-t"></use>
+              </clipPath>
+              <image
+                clip-path="url(#t)"
+                class="svg-inside-image"
+                xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
+            </svg>
+          </div>
         </div>
-      </div>
-      <div class="home-name-images home-a">
-        <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">-->
-          <!--<polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>-->
-        <!--</svg>-->
-        <app-triangle
-        />
-      </div>
-      <div class="home-name-images home-k">
-        <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
-        <img class="women collage" src="../../assets/img/assets/women.png" alt="" id="women">
-        <div class="svg-wrapper" id="nameK">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
-            <clipPath id="k">
+        <div class="home-name-images home-a">
+          <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">-->
+            <!--<polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>-->
+          <!--</svg>-->
+          <app-triangle/>
+        </div>
+        <div class="home-name-images home-k">
+          <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
+          <img class="women collage" src="../../assets/img/assets/women.png" alt="" id="women">
+          <div class="svg-wrapper" id="nameK">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
               <polygon
+                id="pol-k"
                 class="svg-name k"
                 points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
               ></polygon>
-            </clipPath>
-            <image
-              clip-path="url(#k)"
-              height="100%"
-              xlink:href="../../assets/img/assets/bg_red.jpg">
-            </image>
-          </svg>
+              <clipPath id="k">
+                <use xlink:href="#pol-k"></use>
+              </clipPath>
+              <image
+                class="svg-inside-image"
+                clip-path="url(#k)"
+                height="100%"
+                xlink:href="../../assets/img/assets/bg_red.jpg">
+              </image>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -96,6 +113,7 @@ export default {
       leave: false,
       toAbout: false,
       toWork: false,
+      enter: false,
     };
   },
   methods: {
@@ -106,6 +124,7 @@ export default {
     },
   },
   mounted() {
+    this.enter = true;
     assignAnimation();
     window.addEventListener('mousemove', getMouse, false);
     interactiveTAK();
@@ -130,60 +149,219 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .home-wrapper-leave {
-    animation: home-wrapper-leave forwards;
-    animation-duration: 1s;
+  .home-wrapper-leave, .greeting-leave {
+    animation: home-leave forwards;
+    animation-duration: 0.3s;
   }
-  @keyframes home-wrapper-leave {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(1500px);
-    }
-  }
-
   .hidden {
     opacity: 0;
   }
-  @keyframes home-leave {
-    from {
-      top: 12%;
-    }
-    to {
-      top: 100%;
-    }
-  }
-
   .greeting {
-    display: flex;
     font-size: 16px;
-    justify-content: center;
-    align-items: center;
+    margin: 50px auto 0;
     text-align: center;
-    margin: 50px auto 0 ;
+    .greeting-inside {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
     .greeting-text {
       font-size: 16px;
       font-weight: 200;
+      position: relative;
+      opacity: 0;
     }
     .border {
       margin: 0 20px;
     }
+    .block-reveal {
+      position: absolute;
+      top: 0;
+      right: 100%;
+      width: 100%;
+      height: 100%;
+      background: black;
+    }
+    &.enter {
+      /*animation: greeting-enter 1s linear forwards 3.5s ;*/
+      .greeting-text {
+        animation: greeting-text-enter 0.1s forwards 5.25s
+      }
+      .block-reveal {
+        animation: greeting-enter 1.5s ease-in-out forwards 4.5s
+      }
+    }
+  }
+  @keyframes greeting-text-enter {
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes greeting-enter {
+    from {
+      right: 100%;
+    }
+    50% {
+      right: 0;
+    }
+    to {
+      right: -100%;
+    }
   }
 
   .home-wrapper {
-    background: $beige;
     position: absolute;
+    overflow: hidden;
     top: 12%;
     left: 8%;
     right: 8%;
     bottom: 12%;
     height: 76%;
     width: 84%;
+    .inside-block {
+      position: absolute;
+      width: 20%;
+      height: 100%;
+      background: $beige;
+      transform: translateY(100%);
+      &.one{
+        left: 0;
+      }
+      &.two{
+        left: 20%;
+      }
+      &.three{
+        left: 40%;
+      }
+      &.four{
+        left: 60%;
+      }
+      &.five{
+        left: 80%;
+      }
+    }
+  }
+  .home-wrapper-enter {
+    .inside-block {
+      &.one{
+        animation: blockUp 1s ease-out forwards 2s;
+      }
+      &.two{
+        animation: blockUp 1s ease-out forwards 2.1s;
+      }
+      &.three{
+        animation: blockUp 1s ease-out forwards 2.15s;
+      }
+      &.four{
+        animation: blockUp 1s ease-out forwards 2.18s;
+      }
+      &.five{
+        animation: blockUp 1s ease-out forwards 2.2s;
+      }
+    }
+    .svg-name {
+      animation: svg-draw 3s linear forwards 0.3s;
+    }
+    .svg-inside-image {
+      animation: fade-in 1s linear forwards 2s ;
+    }
+    .svg-wrapper {
+      &:after {
+        animation: fade-in 1s linear forwards 2.5s ;
+      }
+    }
+    .collage {
+      animation: fade-in 1s linear forwards 4.5s ;
+    }
+  }
+  @keyframes blockUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes svg-draw {
+    from {
+      stroke-dashoffset: 2000;
+      opacity: 1;
+    }
+    80% {
+      stroke-dashoffset: 0;
+    }
+    80% {
+      opacity: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
+  }
+  .home-nav-wrapper{
+    &.enter {
+      &.works {
+        animation: workEnter .5s ease-out forwards 3s;
+        /*.home-nav.inside {*/
+          /*animation: insideUp 4s linear .5s;*/
+        /*}*/
+        /*.home-nav.out {*/
+          /*animation: outDown 4s ease-in .5s;*/
+        /*}*/
+      }
+      &.about {
+        animation: aboutEnter .5s ease-out forwards 3s;
+        /*.home-nav.inside {*/
+          /*animation: outDown 4s linear .5s;*/
+        /*}*/
+        /*.home-nav.out {*/
+          /*animation: insideUp 4s linear .5s;*/
+        /*}*/
+      }
+    }
+  }
+  @keyframes workEnter {
+    to {
+      top: calc(52% + 128px);
+    }
+  }
+  @keyframes insideUp {
+    from {
+      transform: translateX(0);
+    }
+    95% {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(15px);
+    }
+  }
+  @keyframes outDown {
+    from {
+      transform: translateX(0);
+    }
+    95% {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-15px);
+    }
+  }
+  @keyframes aboutEnter {
+    to {
+      top: calc(44% - 116px);
+    }
+  }
+
+  .home-wrapper-inside {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    height: 100%;
   }
   /* =====  nav  ====== */
   .home-nav {
@@ -199,7 +377,7 @@ export default {
     transform: rotate(-90deg);
     cursor: pointer;
     &.works {
-      top: calc(52% + 128px);
+      top: -500px;
       left: calc(8% - 26px);
       transform-origin: 0 0;
       .inside, .out {
@@ -240,7 +418,7 @@ export default {
       }
     }
     &.about {
-      top: calc(44% - 116px);
+      top: calc(100% + 200px);
       right: calc(8% - 26px);
       transform-origin: 100% 100%;
       .inside, .out {
@@ -302,127 +480,6 @@ export default {
       }
     }
   }
-  /* ========  TO WORK ========== */
-  @keyframes toWork {
-    from {
-      top: calc(52% + 128px);
-      left: calc(8% - 26px);
-      transform: rotate(-90deg);
-    }
-    25% {
-      top: calc(50% - 30px);
-      left: calc(8% - 26px);
-      transform: rotate(0);
-    }
-    60% {
-      top: calc(50% - 30px);
-      left: calc(50% - 128px);
-      transform: rotate(0);
-    }
-    to {
-      top: calc(50% - 30px);
-      left: calc(50% - 128px);
-      transform: rotate(0);
-    }
-  }
-  @keyframes work-nav-inside-move {
-    from {
-      transform: translateX(0);
-    }
-    60% {
-      transform: translateX(0);
-    }
-    90% {
-      transform: translateX(30px);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  @keyframes work-nav-outside-move {
-    from {
-      transform: translateX(0);
-    }
-    40% {
-      transform: translateX(0);
-    }
-    85% {
-      transform: translateX(50px);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  /* ========  TO About ========== */
-  @keyframes toAbout {
-    from {
-      top: calc(44% - 116px);
-      right: calc(8% - 26px);
-      transform: rotate(-90deg);
-    }
-    25% {
-      top: calc(50% - 30px);
-      right: calc(8% - 26px);
-      transform: rotate(0);
-    }
-    60% {
-      top: calc(50% - 30px);
-      right: calc(50% - 116px);
-      transform: rotate(0);
-    }
-    to {
-      top: calc(50% - 30px);
-      right: calc(50% - 116px);
-      transform: rotate(0);
-    }
-  }
-  @keyframes about-nav-inside-move {
-    from {
-      transform: translateX(0);
-    }
-    60% {
-      transform: translateX(0);
-    }
-    90% {
-      transform: translateX(-30px);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  @keyframes about-nav-outside-move {
-    from {
-      transform: translateX(0);
-    }
-    40% {
-      transform: translateX(0);
-    }
-    85% {
-      transform: translateX(-60px);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  /* ========  TO WORK & ABOUT LEAVE ========== */
-  @keyframes home-nav-inside-leave {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-30px);
-    }
-  }
-  @keyframes home-nav-outside-leave {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(30px);
-    }
-  }
-  /* ========  TO ABOUT ========== */
-
 
   /* =====  SVG  ====== */
   .home-name-images {
@@ -431,6 +488,7 @@ export default {
     position: relative;
     z-index: 100;
     transform-style: preserve-3d;
+    perspective: 1000px;
     &.home-a {
       width: 500px;
     }
@@ -439,15 +497,27 @@ export default {
       height: 100%;
       svg {
         height: 100%;
+        .svg-name {
+          stroke: black;
+          stroke-width: 10px;
+          fill-opacity: 0;
+          stroke-dasharray: 2000;
+          stroke-dashoffset: 2000;
+        }
       }
     }
-
   }
+  .svg-inside-image {
+    opacity: 0;
+    transition: all 0.8s ease-in;
+  }
+  /*.home-wrapper-enter {*/
+    /*.svg-wrapper {*/
+      /*animation: takAppear .5s ease-in forwards 0.4s;*/
+    /*}*/
+  /*}*/
   svg {
     z-index: 10;
-  }
-  .svg-name {
-    fill: white;
   }
   .collage-wrap {
     overflow: hidden;
@@ -456,6 +526,7 @@ export default {
     }
   }
   .collage {
+    opacity: 0;
     position: absolute;
     z-index:-1;
   }
@@ -467,6 +538,7 @@ export default {
     position: relative;
     .svg-wrapper {
       &:after {
+        opacity: 0;
         content: url("../../assets/img/assets/t_shadow.png");
         position: absolute;
         width: 100%;
@@ -481,8 +553,9 @@ export default {
   .home-a {
     display: flex;
     align-items: center;
+    justify-content: center;
     svg {
-      width: 100%
+      width: 54%
     }
   }
   /* =====  K  ====== */
@@ -490,6 +563,7 @@ export default {
     // margin-left: 100px;
     .svg-wrapper {
       &:after {
+        opacity: 0;
         content: url("../../assets/img/assets/k_shadow.png");
         position: absolute;
         width: 100%;

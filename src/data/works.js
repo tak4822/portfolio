@@ -17,7 +17,7 @@ export default [
     ],
     url: 'http://alpha.boardbuddiesapp.com',
     testimonials: [],
-    images: ['boardBuddies/mainPage.jpg', 'boardBuddies/detailPage.jpg', 'boardBuddies/createPage.jpg'],
+    images: ['boardBuddies/mainPage_1.jpg', 'boardBuddies/detailPage_1.jpg', 'boardBuddies/createPage_1.jpg'],
   },
   {
     id: 1,
@@ -26,7 +26,7 @@ export default [
     mainImage: 'ken_priebe.svg',
     date: 'Sep - Dec 2017',
     shortDesc: 'Portfolio site with custom CMS for Ken Priebe, who is auther and animater. Minimal design to focus on his works its self.',
-    subTitle: 'Hero is a client',
+    subTitle: 'Client is the hero',
     client: 'Ken Priebe',
     color: '#EAE9DB',
     role: ['Planning', 'Design', 'Development'],
