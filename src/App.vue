@@ -1,21 +1,24 @@
 <template>
   <div id="app">
-    <transition name="slide" >
-      <app-header v-show="!homePage"/>
-    </transition>
-    <transition
-      :name="transitionName"
-      mode="out-in"
-      @leave="leavePage"
-    >
-      <router-view/>
-    </transition>
-    <div
-      class="leave-normal-page"
-      :class="{'leaving': normalLeave, 'change-detail': changeDetail}" >
-      <div class="leave-normal-el black"></div>
-      <div class="leave-normal-el white"></div>
+    <div>
+      <transition name="slide" v-if="!preloading">
+        <app-header v-show="!homePage"/>
+      </transition>
+      <transition
+        :name="transitionName"
+        mode="out-in"
+        @leave="leavePage"
+      >
+        <router-view/>
+      </transition>
+      <div
+        class="leave-normal-page"
+        :class="{'leaving': normalLeave, 'change-detail': changeDetail}" >
+        <div class="leave-normal-el black"></div>
+        <div class="leave-normal-el white"></div>
+      </div>
     </div>
+    <div v-if="preloading"><p>Hello</p></div>
   </div>
 </template>
 
@@ -27,6 +30,7 @@ export default {
   name: 'App',
   data() {
     return {
+      preloading: true,
       transitionName: 'normal',
       normalLeave: false,
     };
@@ -41,6 +45,9 @@ export default {
       }
       return false;
     },
+  },
+  mounted() {
+    this.preloading = false;
   },
   methods: {
     ...mapActions({

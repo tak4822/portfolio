@@ -8,7 +8,7 @@
     <div class="global-nav-container">
       <ul class="global-nav">
         <li class="global-nav-list contact">
-          <a class="contact" href="mailto:takeshi@gamil.com">
+          <a class="contact" href="mailto:tkc4822@gmail.com">
             CONTACT
             <!--{/* <img src="../../assets/img/assets/mail.svg" alt=""> */}-->
           </a>

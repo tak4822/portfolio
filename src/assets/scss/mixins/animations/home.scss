@@ -88,13 +88,13 @@
 }
 @keyframes about-nav-outside-move {
   from {
-    transform: translateX(0) rotate(0);
+    transform: translateX(0);
   }
   40% {
-    transform: translateX(0) rotate(90deg);
+    transform: translateX(0);
   }
   85% {
-    transform: translateX(-60px);
+    transform: translateX(-60px) ;
   }
   to {
     transform: translateX(0);

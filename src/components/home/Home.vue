@@ -16,11 +16,15 @@
       class="home-nav-wrapper works"
       :class="{'to-work': toWork, 'not-active-nav': toAbout, 'enter': enter }">
       <router-link to="/works">
-        <div class="home-nav out">
-          <img src="../../assets/img/assets/works_top.svg" alt="">
+        <div class="out-in">
+          <div class="home-nav out">
+            <img src="../../assets/img/assets/works_top.svg" alt="">
+          </div>
         </div>
-        <div class="home-nav inside">
-          <img src="../../assets/img/assets/works_bottom.svg" alt="">
+        <div class="inside-in">
+          <div class="home-nav inside">
+            <img src="../../assets/img/assets/works_bottom.svg" alt="">
+          </div>
         </div>
       </router-link>
     </div>
@@ -28,11 +32,15 @@
       class="home-nav-wrapper about"
       :class="{'to-about': toAbout, 'not-active-nav': toWork, 'enter': enter }">
       <router-link to="/about">
-        <div class="home-nav out">
-          <img src="../../assets/img/assets/about_top.svg" alt="">
+        <div class="out-in">
+          <div class="home-nav out">
+            <img src="../../assets/img/assets/about_top.svg" alt="">
+          </div>
         </div>
-        <div class="home-nav inside">
-          <img src="../../assets/img/assets/about_bottom.svg" alt="">
+        <div class="inside-in">
+          <div class="home-nav inside">
+            <img src="../../assets/img/assets/about_bottom.svg" alt="">
+          </div>
         </div>
       </router-link>
     </div>
@@ -44,6 +52,7 @@
       <div class="inside-block three"></div>
       <div class="inside-block four"></div>
       <div class="inside-block five"></div>
+      <div class="inside-block six"></div>
       <div class="home-wrapper-inside">
         <div class="home-name-images home-t">
           <div class="collage-wrap">
@@ -149,6 +158,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .home-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
   .home-wrapper-leave, .greeting-leave {
     animation: home-leave forwards;
     animation-duration: 0.3s;
@@ -223,66 +238,92 @@ export default {
     width: 84%;
     .inside-block {
       position: absolute;
-      width: 20%;
-      height: 100%;
+      width: 71%;
+      height: 50%;
       background: $beige;
-      transform: translateY(100%);
+      transform: skew(-45deg) rotate(-45deg) translateX(100%);
+      transform-origin: left center;
+      // opacity: 0.5;
       &.one{
-        left: 0;
+        top: -13%;
+        // background: yellow;
       }
       &.two{
-        left: 20%;
+        top: 22.2%;
       }
       &.three{
-        left: 40%;
+        top: 57.5%;
+        // background: yellow;
       }
       &.four{
-        left: 60%;
+        top: 92.7%;
       }
       &.five{
-        left: 80%;
+        top: 128%;
+        // background: yellow;
+      }
+      &.six{
+        top: 163.3%;
       }
     }
   }
   .home-wrapper-enter {
     .inside-block {
       &.one{
-        animation: blockUp 1s ease-out forwards 2s;
+        animation: blockUp 1s cubic-bezier(1,0,.47,1) forwards 1s;
       }
       &.two{
-        animation: blockUp 1s ease-out forwards 2.1s;
+        animation: blockDown 1s cubic-bezier(1,0,.47,1) forwards 1s;
       }
       &.three{
-        animation: blockUp 1s ease-out forwards 2.15s;
+        animation: blockUp 1s cubic-bezier(1,0,.47,1) forwards 1s;
       }
       &.four{
-        animation: blockUp 1s ease-out forwards 2.18s;
+        animation: blockDown 1s cubic-bezier(1,0,.47,1) forwards 1s;
       }
       &.five{
-        animation: blockUp 1s ease-out forwards 2.2s;
+        animation: blockUp 1s cubic-bezier(1,0,.47,1) forwards 1s;
+      }
+      &.six{
+        animation: blockDown 1s cubic-bezier(1,0,.47,1) forwards 1s;
       }
     }
-    .svg-name {
-      animation: svg-draw 3s linear forwards 0.3s;
-    }
     .svg-inside-image {
-      animation: fade-in 1s linear forwards 2s ;
+      animation: slide-Up 1s forwards 0.5s ;
+      transition-timing-function: cubic-bezier(.84,0,1,.63);
     }
     .svg-wrapper {
       &:after {
-        animation: fade-in 1s linear forwards 2.5s ;
+        animation: slide-Up 1s forwards 0.5s ;
+        transition-timing-function: cubic-bezier(.84,0,1,.63);
       }
     }
     .collage {
-      animation: fade-in 1s linear forwards 4.5s ;
+      animation: fade-in 1.2s linear forwards 3.2s ;
+    }
+  }
+  @keyframes slide-Up {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: translateY(0);;
     }
   }
   @keyframes blockUp {
     from {
-      transform: translateY(100%);
+      transform: skew(-45deg) rotate(-45deg) translateX(100%);
     }
     to {
-      transform: translateY(0);
+      transform: skew(-45deg) rotate(-45deg) translateX(0);
+    }
+  }
+  @keyframes blockDown {
+    from {
+      transform: skew(-45deg) rotate(-45deg) translateX(-100%);
+    }
+    to {
+      transform: skew(-45deg) rotate(-45deg) translateX(0);
     }
   }
   @keyframes svg-draw {
@@ -304,22 +345,22 @@ export default {
   .home-nav-wrapper{
     &.enter {
       &.works {
-        animation: workEnter .5s ease-out forwards 3s;
-        /*.home-nav.inside {*/
-          /*animation: insideUp 4s linear .5s;*/
-        /*}*/
-        /*.home-nav.out {*/
-          /*animation: outDown 4s ease-in .5s;*/
-        /*}*/
+        animation: workEnter .5s ease-in forwards 1.5s;
+        .inside-in {
+          animation: insideUp 2.8s ease-in forwards .5s;
+        }
+        .out-in {
+          animation: outDown 2.8s ease-in forwards .5s;
+        }
       }
       &.about {
-        animation: aboutEnter .5s ease-out forwards 3s;
-        /*.home-nav.inside {*/
-          /*animation: outDown 4s linear .5s;*/
-        /*}*/
-        /*.home-nav.out {*/
-          /*animation: insideUp 4s linear .5s;*/
-        /*}*/
+        animation: aboutEnter .5s ease-in forwards 1.5s;
+        .inside-in {
+          animation: outDown 2.8s ease-in forwards .5s;
+        }
+        .out-in {
+          animation: insideUp 2.8s ease-in forwards .5s;
+        }
       }
     }
   }
@@ -330,24 +371,24 @@ export default {
   }
   @keyframes insideUp {
     from {
-      transform: translateX(0);
+      transform: translateX(-15px);
     }
-    95% {
-      transform: translateX(0);
+    90% {
+      transform: translateX(-15px);
     }
     to {
-      transform: translateX(15px);
+      transform: translateX(0);
     }
   }
   @keyframes outDown {
     from {
-      transform: translateX(0);
+      transform: translateX(15px);
     }
-    95% {
-      transform: translateX(0);
+    90% {
+      transform: translateX(15px);
     }
     to {
-      transform: translateX(-15px);
+      transform: translateX(0);
     }
   }
   @keyframes aboutEnter {
@@ -487,8 +528,6 @@ export default {
     height: 400px;
     position: relative;
     z-index: 100;
-    transform-style: preserve-3d;
-    perspective: 1000px;
     &.home-a {
       width: 500px;
     }
@@ -496,26 +535,15 @@ export default {
       width: 100%;
       height: 100%;
       svg {
+        fill-opacity: 0;
         height: 100%;
-        .svg-name {
-          stroke: black;
-          stroke-width: 10px;
-          fill-opacity: 0;
-          stroke-dasharray: 2000;
-          stroke-dashoffset: 2000;
-        }
       }
     }
   }
   .svg-inside-image {
-    opacity: 0;
+    transform: translateY(110%);
     transition: all 0.8s ease-in;
   }
-  /*.home-wrapper-enter {*/
-    /*.svg-wrapper {*/
-      /*animation: takAppear .5s ease-in forwards 0.4s;*/
-    /*}*/
-  /*}*/
   svg {
     z-index: 10;
   }
@@ -537,8 +565,9 @@ export default {
     text-align: right;
     position: relative;
     .svg-wrapper {
-      &:after {
-        opacity: 0;
+      position: relative;
+      overflow: hidden;
+      &::after {
         content: url("../../assets/img/assets/t_shadow.png");
         position: absolute;
         width: 100%;
@@ -546,6 +575,7 @@ export default {
         top: -10%;
         left: 0;
         z-index: -2;
+        transform: translateY(110%);
       }
     }
   }
@@ -562,8 +592,9 @@ export default {
   .home-k {
     // margin-left: 100px;
     .svg-wrapper {
+      position: relative;
+      overflow: hidden;
       &:after {
-        opacity: 0;
         content: url("../../assets/img/assets/k_shadow.png");
         position: absolute;
         width: 100%;
@@ -571,13 +602,14 @@ export default {
         top: -10%;
         left: -10%;
         z-index: -2;
+        transform: translateY(110%);
       }
     }
   }
   .rose {
     width: 285px;
-    top: 68%;
-    right: -8%;
+    top: 65%;
+    right: -12%;
   }
   .planet {
     width: 225px;

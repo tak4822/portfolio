@@ -77,7 +77,7 @@ export default {
     this.renderer.render(this.scene, this.camera);
     setTimeout(() => {
       this.animate();
-    }, 5500);
+    }, 3300);
   },
   methods: {
     animate() {

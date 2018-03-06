@@ -2,19 +2,19 @@
   <section class="about-contact">
     <div class="about-contact-left">
       <div class="about-contact-socials">
-        <a class="icon-wrap contact" href="mailto:takeshoide@gmail.com">
+        <a class="icon-wrap contact" href="mailto:tkc4822@gmail.com">
           <img src="../../assets/img/assets/mail.svg" alt="">
         </a>
-        <a href="" class="icon-wrap">
+        <a href="https://github.com/tak4822" class="icon-wrap">
           <img src="../../assets/img/assets/github.svg" alt="">
         </a>
-        <a href="" class="icon-wrap">
+        <a href="https://www.linkedin.com/in/takeshi-oide-42b451153/" class="icon-wrap">
           <img src="../../assets/img/assets/linkedin.svg" alt="">
         </a>
       </div>
-      <div class="about-contact-resume">
+      <a href="/resume.pdf" target="_blank" class="about-contact-resume">
         View My Resume
-      </div>
+      </a>
     </div>
     <div class="about-contact-right">
       <img src="../../assets/img/assets/takeshi_smile_bw.jpg" alt="">
