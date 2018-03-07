@@ -1,7 +1,17 @@
 <template>
-  <div id="app">
-    <div>
-      <transition name="slide" v-if="!preloading">
+  <div>
+    <div class="pre-container" v-if="!enter && homePage">
+      <div class="pre-svg-wrapper">
+        <div class="pre-svg-leave" :class="{'leave': !preloading}">
+          <svg class="pre-svg" :class="{'loading': preloading}"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">
+            <polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div id="app">
+      <transition name="slide">
         <app-header v-show="!homePage"/>
       </transition>
       <transition
@@ -18,7 +28,6 @@
         <div class="leave-normal-el white"></div>
       </div>
     </div>
-    <div v-if="preloading"><p>Hello</p></div>
   </div>
 </template>
 
@@ -30,7 +39,6 @@ export default {
   name: 'App',
   data() {
     return {
-      preloading: true,
       transitionName: 'normal',
       normalLeave: false,
     };
@@ -38,6 +46,8 @@ export default {
   computed: {
     ...mapGetters({
       changeDetail: 'changeDetail',
+      preloading: 'preloading',
+      enter: 'enter',
     }),
     homePage() {
       if (this.$route.path === '/') {
@@ -45,9 +55,6 @@ export default {
       }
       return false;
     },
-  },
-  mounted() {
-    this.preloading = false;
   },
   methods: {
     ...mapActions({
@@ -103,6 +110,55 @@ export default {
 </script>
 
 <style lang="scss">
+  .pre-container {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pre-svg-wrapper {
+    width: 500px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .pre-svg-leave {
+    width: 20%;
+    transition: all 0.5s ease-out;
+    &.leave {
+      transform: rotateY(90deg);
+    }
+  }
+  .pre-svg {
+    width: 100%;
+    &.loading {
+      animation: preloading infinite;
+      animation-duration: 3s;
+      transform-origin: center;
+    }
+  }
+  @keyframes preloading {
+    from {
+      transform: rotate(0);
+    }
+    33% {
+      transform: rotate(120deg);
+    }
+    66% {
+      transform: rotate(240deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  /* ==========  TRANSITION ============= */
   .slide-enter-active {
     animation: slide-in 400ms ease-in forwards;
   }
@@ -111,7 +167,7 @@ export default {
     animation: slide-out 400ms ease-in-out forwards;
   }
 
-  @keyframes  slide-in{
+  @keyframes  slide-in {
     from {
       transform: translateY(-30px);
       opacity: 0;

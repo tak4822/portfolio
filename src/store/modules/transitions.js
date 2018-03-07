@@ -1,6 +1,8 @@
 /* eslint-disable no-shadow */
 
 const state = {
+  preloading: true,
+  enter: false,
   homeLeaving: false,
   toDetail: false,
   changeDetail: false,
@@ -25,6 +27,12 @@ const mutations = {
       state.changeDetail = false;
     }, 3500);
   },
+  FINISH_PRELOADING(state) {
+    state.preloading = false;
+  },
+  ENTER_PAGE(state) {
+    state.enter = true;
+  },
 };
 
 const actions = {
@@ -43,12 +51,20 @@ const actions = {
   changeDetail({ commit }) {
     commit('CHANGE_DETAIL');
   },
+  finishPreloading({ commit }) {
+    commit('FINISH_PRELOADING');
+    setTimeout(() => {
+      commit('ENTER_PAGE');
+    }, 500);
+  },
 };
 
 const getters = {
   isLeaving: state => state.homeLeaving,
   toDetail: state => state.toDetail,
   changeDetail: state => state.changeDetail,
+  preloading: state => state.preloading,
+  enter: state => state.enter,
 };
 
 export default {

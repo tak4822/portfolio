@@ -83,7 +83,7 @@
           <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">-->
             <!--<polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>-->
           <!--</svg>-->
-          <app-triangle/>
+          <app-triangle v-if="enter"/>
         </div>
         <div class="home-name-images home-k">
           <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
@@ -113,8 +113,15 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import { assignAnimation, getMouse, interactiveTAK } from '../../utils/homeMouseOver';
 import Triangle from './Triangle';
+import preloadImg from '../../utils/preload';
+import image1 from '../../assets/img/assets/bg_red.jpg';
+import image2 from '../../assets/img/assets/bg_blue.jpg';
+import image3 from '../../assets/img/assets/t_shadow.png';
+import image4 from '../../assets/img/assets/k_shadow.png';
+
 
 export default {
   data() {
@@ -122,8 +129,12 @@ export default {
       leave: false,
       toAbout: false,
       toWork: false,
-      enter: false,
     };
+  },
+  computed: {
+    ...mapGetters({
+      enter: 'enter',
+    }),
   },
   methods: {
     reset() {
@@ -131,9 +142,11 @@ export default {
       this.toAbout = false;
       this.toWork = false;
     },
+    ...mapActions({
+      finishPreloading: 'finishPreloading',
+    }),
   },
   mounted() {
-    this.enter = true;
     assignAnimation();
     window.addEventListener('mousemove', getMouse, false);
     interactiveTAK();
@@ -149,6 +162,13 @@ export default {
       next();
       this.reset();
     }, 1500);
+  },
+  created() {
+    const imageArr = [image1, image2, image3, image4];
+    Promise.all(imageArr.map(img => preloadImg(img)))
+      .then(() => {
+        this.finishPreloading();
+      });
   },
   components: {
     appTriangle: Triangle,
@@ -171,6 +191,114 @@ export default {
   .hidden {
     opacity: 0;
   }
+  .home-wrapper-inside {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  /* =====  SVG  ====== */
+  .home-name-images {
+    width: 320px;
+    height: 400px;
+    position: relative;
+    z-index: 100;
+    &.home-a {
+      width: 500px;
+    }
+    .svg-wrapper {
+      width: 100%;
+      height: 100%;
+      svg {
+        fill-opacity: 0;
+        height: 100%;
+      }
+    }
+  }
+  .svg-inside-image {
+    transform: translateY(110%);
+    transition: all 0.8s ease-in;
+  }
+  svg {
+    z-index: 10;
+  }
+  .collage-wrap {
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  .collage {
+    opacity: 0;
+    position: absolute;
+    z-index:-1;
+  }
+
+  /* =====  T  ====== */
+  .home-t {
+    // margin-right: 100px;
+    text-align: right;
+    position: relative;
+    .svg-wrapper {
+      position: relative;
+      overflow: hidden;
+      &::after {
+        content: url("../../assets/img/assets/t_shadow.png");
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -10%;
+        left: 0;
+        z-index: -2;
+        transform: translateY(110%);
+      }
+    }
+  }
+  /* =====  A ====== */
+  .home-a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 54%
+    }
+  }
+  /* =====  K  ====== */
+  .home-k {
+    // margin-left: 100px;
+    .svg-wrapper {
+      position: relative;
+      overflow: hidden;
+      &:after {
+        content: url("../../assets/img/assets/k_shadow.png");
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -10%;
+        left: -10%;
+        z-index: -2;
+        transform: translateY(110%);
+      }
+    }
+  }
+  .rose {
+    width: 285px;
+    top: 65%;
+    right: -12%;
+  }
+  .planet {
+    width: 225px;
+    bottom: calc(100% - 130px);
+    left: -130px;
+  }
+  .women {
+    height: 180px;
+    position: absolute;
+    top: 76%;
+    right: -14%;
+  }
+  /* ========  GREETING ========== */
   .greeting {
     font-size: 16px;
     margin: 50px auto 0;
@@ -203,30 +331,14 @@ export default {
     &.enter {
       /*animation: greeting-enter 1s linear forwards 3.5s ;*/
       .greeting-text {
-        animation: greeting-text-enter 0.1s forwards 5.25s
+        animation: greeting-text-enter 0.1s forwards 4.95s
       }
       .block-reveal {
-        animation: greeting-enter 1.5s ease-in-out forwards 4.5s
+        animation: greeting-enter 1.3s ease-in-out forwards 4.2s
       }
     }
   }
-  @keyframes greeting-text-enter {
-    to {
-      opacity: 1;
-    }
-  }
-  @keyframes greeting-enter {
-    from {
-      right: 100%;
-    }
-    50% {
-      right: 0;
-    }
-    to {
-      right: -100%;
-    }
-  }
-
+  /* ========  ENTER ========== */
   .home-wrapper {
     position: absolute;
     overflow: hidden;
@@ -302,50 +414,10 @@ export default {
       animation: fade-in 1.2s linear forwards 3.2s ;
     }
   }
-  @keyframes slide-Up {
-    from {
-      transform: translateY(110%);
-    }
-    to {
-      transform: translateY(0);;
-    }
-  }
-  @keyframes blockUp {
-    from {
-      transform: skew(-45deg) rotate(-45deg) translateX(100%);
-    }
-    to {
-      transform: skew(-45deg) rotate(-45deg) translateX(0);
-    }
-  }
-  @keyframes blockDown {
-    from {
-      transform: skew(-45deg) rotate(-45deg) translateX(-100%);
-    }
-    to {
-      transform: skew(-45deg) rotate(-45deg) translateX(0);
-    }
-  }
-  @keyframes svg-draw {
-    from {
-      stroke-dashoffset: 2000;
-      opacity: 1;
-    }
-    80% {
-      stroke-dashoffset: 0;
-    }
-    80% {
-      opacity: 1;
-    }
-    to {
-      stroke-dashoffset: 0;
-      opacity: 0;
-    }
-  }
   .home-nav-wrapper{
     &.enter {
       &.works {
-        animation: workEnter .5s ease-in forwards 1.5s;
+        animation: workEnter .6s ease-out forwards 1.9s;
         .inside-in {
           animation: insideUp 2.8s ease-in forwards .5s;
         }
@@ -354,7 +426,7 @@ export default {
         }
       }
       &.about {
-        animation: aboutEnter .5s ease-in forwards 1.5s;
+        animation: aboutEnter .6s ease-out forwards 1.9s;
         .inside-in {
           animation: outDown 2.8s ease-in forwards .5s;
         }
@@ -363,46 +435,6 @@ export default {
         }
       }
     }
-  }
-  @keyframes workEnter {
-    to {
-      top: calc(52% + 128px);
-    }
-  }
-  @keyframes insideUp {
-    from {
-      transform: translateX(-15px);
-    }
-    90% {
-      transform: translateX(-15px);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  @keyframes outDown {
-    from {
-      transform: translateX(15px);
-    }
-    90% {
-      transform: translateX(15px);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  @keyframes aboutEnter {
-    to {
-      top: calc(44% - 116px);
-    }
-  }
-
-  .home-wrapper-inside {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
   }
   /* =====  nav  ====== */
   .home-nav {
@@ -520,107 +552,6 @@ export default {
         }
       }
     }
-  }
-
-  /* =====  SVG  ====== */
-  .home-name-images {
-    width: 320px;
-    height: 400px;
-    position: relative;
-    z-index: 100;
-    &.home-a {
-      width: 500px;
-    }
-    .svg-wrapper {
-      width: 100%;
-      height: 100%;
-      svg {
-        fill-opacity: 0;
-        height: 100%;
-      }
-    }
-  }
-  .svg-inside-image {
-    transform: translateY(110%);
-    transition: all 0.8s ease-in;
-  }
-  svg {
-    z-index: 10;
-  }
-  .collage-wrap {
-    overflow: hidden;
-    img {
-      width: 100%;
-    }
-  }
-  .collage {
-    opacity: 0;
-    position: absolute;
-    z-index:-1;
-  }
-
-  /* =====  T  ====== */
-  .home-t {
-    // margin-right: 100px;
-    text-align: right;
-    position: relative;
-    .svg-wrapper {
-      position: relative;
-      overflow: hidden;
-      &::after {
-        content: url("../../assets/img/assets/t_shadow.png");
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: -10%;
-        left: 0;
-        z-index: -2;
-        transform: translateY(110%);
-      }
-    }
-  }
-  /* =====  A ====== */
-  .home-a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    svg {
-      width: 54%
-    }
-  }
-  /* =====  K  ====== */
-  .home-k {
-    // margin-left: 100px;
-    .svg-wrapper {
-      position: relative;
-      overflow: hidden;
-      &:after {
-        content: url("../../assets/img/assets/k_shadow.png");
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: -10%;
-        left: -10%;
-        z-index: -2;
-        transform: translateY(110%);
-      }
-    }
-  }
-  .rose {
-    width: 285px;
-    top: 65%;
-    right: -12%;
-  }
-  .planet {
-    width: 225px;
-    bottom: calc(100% - 130px);
-    left: -130px;
-  }
-  .women {
-    height: 180px;
-    position: absolute;
-    top: 76%;
-    right: -14%;
   }
 
 </style>

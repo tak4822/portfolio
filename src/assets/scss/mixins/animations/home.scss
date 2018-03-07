@@ -131,3 +131,82 @@
 }
 
 /* ========  ENTER ========== */
+@keyframes greeting-text-enter {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes greeting-enter {
+  from {
+    right: 100%;
+  }
+  50% {
+    right: 0;
+  }
+  to {
+    right: -100%;
+  }
+}
+
+@keyframes slide-Up {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);;
+  }
+}
+@keyframes blockUp {
+  from {
+    transform: skew(-45deg) rotate(-45deg) translateX(100%);
+  }
+  to {
+    transform: skew(-45deg) rotate(-45deg) translateX(0);
+  }
+}
+@keyframes blockDown {
+  from {
+    transform: skew(-45deg) rotate(-45deg) translateX(-100%);
+  }
+  to {
+    transform: skew(-45deg) rotate(-45deg) translateX(0);
+  }
+}
+@keyframes workEnter {
+  75% {
+    top: calc(52% + 148px);
+  }
+  to {
+    top: calc(52% + 128px);
+  }
+}
+@keyframes aboutEnter {
+  75% {
+    top: calc(44% - 136px);
+  }
+  to {
+    top: calc(44% - 116px);
+  }
+}
+@keyframes insideUp {
+  from {
+    transform: translateX(-15px);
+  }
+  90% {
+    transform: translateX(-15px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes outDown {
+  from {
+    transform: translateX(15px);
+  }
+  90% {
+    transform: translateX(15px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
