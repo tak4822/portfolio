@@ -18,7 +18,8 @@ export default {
     // === renderer ===
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor(0xFFFFFF, 0);
-    renderer.setSize(500, 500);
+    const size = (window.innerWidth / 100) * 31;
+    renderer.setSize(size, size);
     // === camera ===
     const camera = new THREE.PerspectiveCamera(25, 1.3, 0.1, 1000);
     camera.position.z = 8;
@@ -28,9 +29,6 @@ export default {
     light.position.set(0, 0, 10);
 
     // === model ===
-    // const geometry = new THREE.BoxGeometry(1, 1, 1);
-    // const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
-    // const cube = new THREE.Mesh(geometry, material);
     const pyramidGeometry = new THREE.CylinderGeometry(0, 1.5, 1.5, 4, false);
     for (let i = 0; i < pyramidGeometry.faces.length; i += 1) {
       if (pyramidGeometry.faces[i] instanceof THREE.Face4) {

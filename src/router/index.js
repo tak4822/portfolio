@@ -5,8 +5,6 @@ import Home from '../components/home/Home';
 import About from '../components/about/About';
 import Works from '../components/works/Works';
 import Detail from '../components/detail/Detail';
-import Triangle from '../components/home/Triangle';
-// import test from '../components/works/test';
 
 Vue.use(Router);
 
@@ -32,7 +30,6 @@ export default new Router({
         },
       ],
     },
-    { path: '/test', component: Triangle },
   ],
   scrollBehavior() {
     return { x: 0, y: 0 };

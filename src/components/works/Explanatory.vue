@@ -56,14 +56,11 @@ export default {
   .exp-container {
     &.to-detail {
       animation: to-detail forwards;
-      animation-duration: 0.6s;
+      animation-duration: 0.5s;
       transition-timing-function: cubic-bezier(.14,0,.39,.75);
     }
   }
   @keyframes to-detail {
-    from {
-      left: calc(100% + 70px);
-    }
     to {
       left: calc(300%);
     }

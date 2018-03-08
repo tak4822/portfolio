@@ -46,7 +46,10 @@
     </div>
     <div
       class="home-wrapper"
-      :class="{'home-wrapper-leave': leave, 'home-wrapper-enter': enter }">
+      :class="{
+        'home-wrapper-leave': leave,
+        'home-wrapper-enter': enter,
+        'finishEnter': finishEnter }">
       <div class="inside-block one"></div>
       <div class="inside-block two"></div>
       <div class="inside-block three"></div>
@@ -126,6 +129,7 @@ import image4 from '../../assets/img/assets/k_shadow.png';
 export default {
   data() {
     return {
+      finishEnter: false,
       leave: false,
       toAbout: false,
       toWork: false,
@@ -150,6 +154,9 @@ export default {
     assignAnimation();
     window.addEventListener('mousemove', getMouse, false);
     interactiveTAK();
+    setTimeout(() => {
+      this.finishEnter = true;
+    }, 4000);
   },
   beforeRouteLeave(to, from, next) {
     this.leave = true;
@@ -198,21 +205,44 @@ export default {
     justify-content: center;
     height: 100%;
   }
+
   /* =====  SVG  ====== */
   .home-name-images {
     width: 320px;
     height: 400px;
     position: relative;
     z-index: 100;
+    @media screen and (max-width: 1400px) {
+      width: 250px;
+      height: 300px;
+    }
+    @media screen and (max-width: 1100px) {
+      width: 200px;
+      height: 250px;
+    }
     &.home-a {
-      width: 500px;
+      width: 36%;
     }
     .svg-wrapper {
       width: 100%;
       height: 100%;
+      position: relative;
+      overflow: hidden;
       svg {
         fill-opacity: 0;
         height: 100%;
+      }
+      &::after {
+        content: '';
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: -5%;
+        left: -5%;
+        width: 120%;
+        height: 120%;
+        z-index: -2;
+        transform: translateY(110%);
       }
     }
   }
@@ -237,21 +267,11 @@ export default {
 
   /* =====  T  ====== */
   .home-t {
-    // margin-right: 100px;
     text-align: right;
     position: relative;
     .svg-wrapper {
-      position: relative;
-      overflow: hidden;
       &::after {
-        content: url("../../assets/img/assets/t_shadow.png");
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: -10%;
-        left: 0;
-        z-index: -2;
-        transform: translateY(110%);
+        background-image: url("../../assets/img/assets/t_shadow.png");
       }
     }
   }
@@ -266,34 +286,32 @@ export default {
   }
   /* =====  K  ====== */
   .home-k {
-    // margin-left: 100px;
     .svg-wrapper {
-      position: relative;
-      overflow: hidden;
       &:after {
-        content: url("../../assets/img/assets/k_shadow.png");
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: -10%;
-        left: -10%;
-        z-index: -2;
-        transform: translateY(110%);
+        background-image: url("../../assets/img/assets/k_shadow.png");
       }
     }
   }
   .rose {
-    width: 285px;
+    width: 70%;
     top: 65%;
     right: -12%;
   }
   .planet {
-    width: 225px;
+    width: 73%;
     bottom: calc(100% - 130px);
     left: -130px;
+    @media screen and (max-width: 1400px) {
+      bottom: calc(100% - 100px);
+      left: -100px;
+    }
+    @media screen and (max-width: 1100px) {
+      left: -80px;
+      bottom: calc(100% - 80px);
+    }
   }
   .women {
-    height: 180px;
+    width: 190%;
     position: absolute;
     top: 76%;
     right: -14%;
@@ -301,7 +319,7 @@ export default {
   /* ========  GREETING ========== */
   .greeting {
     font-size: 16px;
-    margin: 50px auto 0;
+    margin: 3% auto 0;
     text-align: center;
     .greeting-inside {
       position: relative;
@@ -348,6 +366,13 @@ export default {
     bottom: 12%;
     height: 76%;
     width: 84%;
+    &.finishEnter {
+      background: $beige;
+      overflow: visible;
+      .inside-block {
+        display: none;
+      }
+    }
     .inside-block {
       position: absolute;
       width: 71%;

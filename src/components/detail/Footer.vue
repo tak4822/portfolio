@@ -7,10 +7,10 @@
         <p class="prev-btn" :class="{'active': prevBtnActive}">PREVIOUS WORK</p>
       </router-link>
     </div>
-    <div class="contact-container">
+    <a href="mailto:tkc4822@gmail.com" class="contact-container">
       <img src="../../assets/img/assets/barcode.svg" alt="">
-      <a class="detail-contact" href="mailto:tkc4822@gmail.com">LET'S TALK</a>
-    </div>
+      <span class="detail-contact">LET'S TALK</span>
+    </a>
     <div class="next-container btn-container"
          @click="clickHandler('next')">
       <router-link :to="{ name: 'changeDetail', params: { id: nextWorkId }}">

@@ -19,7 +19,7 @@
         mode="out-in"
         @leave="leavePage"
       >
-        <router-view/>
+          <router-view/>
       </transition>
       <div
         class="leave-normal-page"
