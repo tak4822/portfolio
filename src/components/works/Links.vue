@@ -84,6 +84,10 @@ export default {
     position: absolute;
     top: -30px;
     left: -210px;
+    @media screen and (max-width: 1500px) {
+      top: -120px;
+      left: -180px;
+    }
   }
   .links {
     margin: 0;
@@ -96,6 +100,9 @@ export default {
     margin-bottom: 10px;
     cursor: pointer;
     z-index: 2;
+    @media screen and (max-width: 1500px) {
+      font-size: 1.8rem;
+    }
     &.active {
       .hover-effect {
         color: white;

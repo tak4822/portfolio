@@ -28,7 +28,7 @@
         class="door"
         :class="{'to-detail': toDetail}"
         :style="{'background-color': selectedWork.color, }"></div>
-      <transition name="lSide ">
+      <transition name="lSide">
         <div
           v-if="isShowing"
           class="ripple"
@@ -38,7 +38,7 @@
       <transition name="rSide">
         <div
           v-if="isShowing"
-          class="ripple r-side"
+          class="ripple"
           :class="{'to-detail': toDetail}"
           :style="{'background-color': selectedWork.color}"></div>
       </transition>
@@ -120,6 +120,9 @@ export default {
     bottom: -50px;
     left: 50%;
     overflow: hidden;
+    @media screen and (max-width: 1500px) {
+      bottom: -100px;
+    }
     &.to-detail {
       .scroll-icon {
         width: 100%;
@@ -150,6 +153,11 @@ export default {
     align-items: center;
     justify-content: center;
     perspective: 1000px;
+    @media screen and (max-width: 1500px) {
+      width: 400px;
+      height: 340px;
+      margin: 230px auto;
+    }
   }
   .three-d-door {
     top: calc(50% - 300px);
@@ -159,22 +167,12 @@ export default {
     position: absolute;
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 1500px) {
+      height: 340px;
+      top: calc(50% - 170px);
+    }
   }
   /* ===== To Detail animation ====== */
-  @keyframes zoom-work {
-    from {
-      width: 400px;
-      height: 300px;
-      top: calc(50% - 150px);
-      left: calc(50% - 200px);
-    }
-    to {
-      width: 70vw;
-      height: 60vh;
-      left: calc(50% - 40vw);
-      top: calc(50% - 30vh);
-    }
-  }
   .image-shadow {
     &.to-detail {
       animation: fade-out forwards linear;
@@ -196,9 +194,6 @@ export default {
     }
   }
   @keyframes door-to-detail {
-    from {
-      top: calc(50% - 300px);
-    }
     to {
       top: -1000px;
     }
@@ -236,6 +231,11 @@ export default {
     animation: door-enter forwards;
     animation-delay: 0.5s;
     animation-duration: 1s;
+    /*@media screen and (max-width: 1500px) {*/
+      /*animation: door-enter-small forwards;*/
+      /*animation-delay: 0.5s;*/
+      /*animation-duration: 1s;*/
+    /*}*/
     .door-color-top {
       animation: door-appear-top forwards;
       animation-duration: 0.5s;
@@ -245,36 +245,6 @@ export default {
       animation: door-appear-bottom forwards;
       animation-duration: 0.5s;
       transition-timing-function: ease;
-    }
-  }
-  @keyframes door-enter {
-    from {
-      left: calc(50% - 100px);
-      transform: rotateY(0) translateZ(0);
-    }
-    50% {
-      left: 100%;
-      transform: rotateY(0) translateZ(0);
-    }
-    to {
-      left: 100%;
-      transform: rotateY(90deg) translateZ(-100px);
-    }
-  }
-  @keyframes  door-appear-top {
-    from {
-      transform: translateY(300px);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  @keyframes  door-appear-bottom {
-    from {
-      transform: translateY(-300px);
-    }
-    to {
-      transform: translateY(0);
     }
   }
 
@@ -297,18 +267,28 @@ export default {
     }
   }
   .image-wrap {
-    width: 400px;
     height: 300px;
+    width: 400px;
     top: calc(50% - 150px);
     left: calc(50% - 200px);
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
+    @media screen and (max-width: 1500px) {
+      height: 200px;
+      width: 250px;
+      top: calc(50% - 100px);
+      left: calc(50% - 125px);
+    }
     img {
       width: 250px;
       height: 250px;
       object-fit: contain;
+      @media screen and (max-width: 1500px) {
+        width: 150px;
+        height: 150px;
+      }
     }
     .image-shadow {
       width: 400px;
@@ -319,6 +299,12 @@ export default {
       bottom: -140px;
       border-radius: 50%;
       filter: blur(5px);
+      @media screen and (max-width: 1500px) {
+        height: 2px;
+        width: 200px;
+        left: calc(50% - 100px);
+        bottom: -68px;
+      }
     }
   }
   .door {
@@ -328,6 +314,11 @@ export default {
     top: calc(50% - 250px);
     right: 0;
     transform: translateZ(100px);
+    @media screen and (max-width: 1500px) {
+      width: 15px;
+      height: 280px;
+      top: calc(50% - 140px);
+    }
   }
 
   /* ======  animation ======*/
@@ -338,35 +329,15 @@ export default {
   .come-enter-active {
     animation: come-in .8s ease-out forwards;
     transition: all .3s;
+    @media screen and (max-width: 1500px) {
+      animation: come-in-small .8s ease-out forwards;
+      transition: all .3s;
+    }
   }
 
   .come-leave-active {
     animation: come-out .3s linear forwards;
     transition: all .1s
-  }
-
-  @keyframes come-in {
-    from {
-      transform: translateX(700px);
-    }
-    70% {
-      transform: translateX(100px);
-    }
-    95% {
-      transform: translateX(-10px);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes come-out {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-500px);
-    }
   }
 
   .slide-enter {
@@ -382,35 +353,20 @@ export default {
     transition: all .1s;
   }
 
-  @keyframes slide-in {
-    from {
-      transform: translateX(-30px);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  @keyframes slide-out {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(-30px);
-      opacity: 0;
-    }
-  }
-
   /* ========  ripple  =========*/
   .ripple {
     width: 150px;
     height: 150px;
-    background-color: yellow;
-    overflow: hidden;
     border-radius: 50%;
     position: absolute;
     right: -125px;
     top: calc(50% - 75px);
+    @media screen and (max-width: 1500px) {
+      width: 80px;
+      height: 80px;
+      right: -65px;
+      top: calc(50% - 40px);
+    }
   }
   .ripple {
     &.to-detail {
@@ -418,65 +374,24 @@ export default {
     }
   }
   .rSide-enter-active {
+    background: blue;
     animation: r-side-ripple;
     animation-duration: .7s;
     animation-delay: 0.6s;
+    @media screen and (max-width: 1500px) {
+      animation: r-side-ripple-small;
+      animation-duration: .7s;
+      animation-delay: 0.6s;
+    }
   }
   .lSide-enter-active {
     animation: l-side-ripple;
     animation-duration: .7s;
     animation-delay: 0.6s;
-  }
-  @keyframes l-side-ripple {
-    0% {
-      top: calc(50% - 75px);
-      right: -125px;
-    }
-    30% {
-      top: calc(50% - 75px);
-      right: -125px;
-    }
-    45% {
-      top: calc(50% - 75px);
-      right: -30px;
-    }
-    50% {
-      top: calc(50% - 130px);
-      right: -125px;
-    }
-    60% {
-      top: calc(50% - 250px);
-      right: -110px;
-    }
-    100% {
-      top: calc(50% - 300px);
-      right: -125px;
-    }
-  }
-  @keyframes r-side-ripple {
-    0% {
-      top: calc(50% - 75px);
-      right: -125px;
-    }
-    30% {
-      top: calc(50% - 75px);
-      right: -125px;
-    }
-    45% {
-      top: calc(50% - 75px);
-      right: -30px;
-    }
-    50% {
-      top: calc(50% - 20px);
-      right: -125px;
-    }
-    60% {
-      top: calc(50% + 100px);
-      right: -110px;
-    }
-    100% {
-      top: calc(50% + 150px);
-      right: -125px;
+    @media screen and (max-width: 1500px) {
+      animation: l-side-ripple-small;
+      animation-duration: .7s;
+      animation-delay: 0.6s;
     }
   }
 </style>

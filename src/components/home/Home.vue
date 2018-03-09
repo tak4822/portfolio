@@ -7,7 +7,7 @@
         </h1>
         <div>
           <span class="greeting-text border"> | </span>
-          <a class="greeting-text contact" href="mailto:takeshi@gmail.com">CONTACT</a>
+          <a class="greeting-text contact" href="mailto:tkc4822@gmail.com">CONTACT</a>
         </div>
         <span class="block-reveal"></span>
       </div>

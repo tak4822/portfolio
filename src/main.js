@@ -7,7 +7,7 @@ import App from './App';
 import router from './router';
 import store from './store/store';
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 router.beforeEach((to, from, next) => {
   if (to.name === 'changeDetail') {

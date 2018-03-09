@@ -32,11 +32,13 @@
         </p>
       </div>
     </article>
-    <div class="video-container">
-      <video autoplay loop>
-        <source src="../../assets/img/assets/portfolio_2.mp4" type="video/mp4">
-      </video>
-    </div>
+      <div class="video-container">
+        <transition name="fade-in" appear>
+          <video autoplay loop>
+            <source src="../../assets/img/assets/portfolio_2.mp4" type="video/mp4">
+          </video>
+        </transition>
+      </div>
   </section>
 </template>
 
@@ -171,7 +173,10 @@ export default {
   .about-introduce-container {
     width: 480px;
     margin-left: 13%;
-    margin-top: 350px;
+    margin-top: 20%;
+    @media screen and (max-width: 1500px) {
+      margin-left: 10%;
+    }
   }
   .about-introduce-name {
     font-weight: 800;
@@ -188,13 +193,16 @@ export default {
   }
   .about-introduce {
     margin: 0;
+    &.en {
+      background: rgba(255,255,255, 0.7);
+    }
   }
 
   .video-container {
     position: absolute;
     top: 90px;
-    right: 40px;
-    width: 1100px;
+    right: 0;
+    width: 65%;
     height: 700px;
     z-index: -10;
     video {

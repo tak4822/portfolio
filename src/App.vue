@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <div id="app">
+    <div id="app" v-if="desktop">
       <transition name="slide">
         <app-header v-show="!homePage"/>
       </transition>
@@ -28,12 +28,16 @@
         <div class="leave-normal-el white"></div>
       </div>
     </div>
+    <div v-else>
+      <app-mobile></app-mobile>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Header from './components/shared/Header';
+import Mobile from './components/mobile/Mobile';
 
 export default {
   name: 'App',
@@ -54,6 +58,10 @@ export default {
         return true;
       }
       return false;
+    },
+    desktop() {
+      console.log(window.innerWidth);
+      return window.innerWidth > 1000;
     },
   },
   methods: {
@@ -105,6 +113,7 @@ export default {
   },
   components: {
     appHeader: Header,
+    appMobile: Mobile,
   },
 };
 </script>

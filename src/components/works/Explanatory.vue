@@ -33,8 +33,15 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    @media screen and (max-width: 1500px) {
+      bottom: -23px;
+      left: calc(100% + 50px);
+      font-size: 0.9rem;
+      width: 250px
+    }
   }
   .exp-date {
+    font-size: 0.8rem;
     font-style: italic;
     margin-bottom: 0;
   }
@@ -43,6 +50,9 @@ export default {
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 10px;
+    @media screen and (max-width: 1500px) {
+      font-size: 1.2rem;
+    }
   }
   .exp-short-desc {
     margin-top: 0;
