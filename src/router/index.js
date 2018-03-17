@@ -1,17 +1,19 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '../components/home/Home';
-import About from '../components/about/About';
-import Works from '../components/works/Works';
-import Detail from '../components/detail/Detail';
+const Responsive = () => import('../components/shared/Responsive');
+const Home = () => import('../components/home/Home');
+const About = () => import('../components/about/About');
+const Works = () => import('../components/works/Works');
+const Detail = () => import('../components/detail/Detail');
+const mobileDetail = () => import('../components/mobile/Detail');
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/', component: Home },
+    { path: '/', component: Responsive },
     { path: '/about', component: About },
     { path: '/works',
       component: Works,
@@ -29,6 +31,11 @@ export default new Router({
           // props: true,
         },
       ],
+    },
+    {
+      path: '/m/detail/:id',
+      name: 'mobileDetail',
+      component: mobileDetail,
     },
   ],
   scrollBehavior() {

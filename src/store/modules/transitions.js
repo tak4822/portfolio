@@ -3,18 +3,11 @@
 const state = {
   preloading: true,
   enter: false,
-  homeLeaving: false,
   toDetail: false,
   changeDetail: false,
 };
 
 const mutations = {
-  START_LEAVING(state) {
-    state.homeLeaving = true;
-  },
-  END_LEAVING(state) {
-    state.homeLeaving = false;
-  },
   TO_DETAIL(state) {
     state.toDetail = true;
   },
@@ -36,12 +29,6 @@ const mutations = {
 };
 
 const actions = {
-  leaveHome({ commit }) {
-    commit('START_LEAVING');
-    setTimeout(() => {
-      commit('END_LEAVING');
-    }, 2000);
-  },
   toDetail({ commit }) {
     commit('TO_DETAIL');
   },
@@ -60,7 +47,6 @@ const actions = {
 };
 
 const getters = {
-  isLeaving: state => state.homeLeaving,
   toDetail: state => state.toDetail,
   changeDetail: state => state.changeDetail,
   preloading: state => state.preloading,

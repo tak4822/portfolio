@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="pre-container" v-if="!enter && homePage">
+    <div class="pre-container" v-if="!enter && homePage && desktop">
       <div class="pre-svg-wrapper">
         <div class="pre-svg-leave" :class="{'leave': !preloading}">
           <svg class="pre-svg" :class="{'loading': preloading}"
@@ -10,8 +10,8 @@
         </div>
       </div>
     </div>
-    <div id="app" v-if="desktop">
-      <transition name="slide">
+    <div id="app">
+      <transition name="slide" v-if="desktop">
         <app-header v-show="!homePage"/>
       </transition>
       <transition
@@ -28,16 +28,13 @@
         <div class="leave-normal-el white"></div>
       </div>
     </div>
-    <div v-else>
-      <app-mobile></app-mobile>
-    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Header from './components/shared/Header';
-import Mobile from './components/mobile/Mobile';
+
 
 export default {
   name: 'App',
@@ -52,16 +49,13 @@ export default {
       changeDetail: 'changeDetail',
       preloading: 'preloading',
       enter: 'enter',
+      desktop: 'desktop',
     }),
     homePage() {
       if (this.$route.path === '/') {
         return true;
       }
       return false;
-    },
-    desktop() {
-      console.log(window.innerWidth);
-      return window.innerWidth > 1000;
     },
   },
   methods: {
@@ -70,6 +64,7 @@ export default {
       resetWork: 'resetWork',
       toDetail: 'toDetail',
       resetToDetail: 'resetToDetail',
+      handleWindowResize: 'handleWindowResize',
     }),
     leavePage(el, done) {
       this.resetToDetail();
@@ -111,9 +106,12 @@ export default {
       }
     },
   },
+  mounted() {
+    window.addEventListener('resize', this.handleWindowResize);
+    this.handleWindowResize();
+  },
   components: {
     appHeader: Header,
-    appMobile: Mobile,
   },
 };
 </script>
@@ -150,7 +148,7 @@ export default {
     &.loading {
       animation: preloading infinite;
       animation-duration: 3s;
-      transform-origin: center;
+      transform-origin: center center;
     }
   }
   @keyframes preloading {
@@ -228,7 +226,7 @@ export default {
         animation-duration: 0.7s;
       }
       &.white {
-        animation: leavePage forwards ease-in-out;
+        animation: leavePage cubic-bezier(.76,.01,.28,.99) forwards;
         animation-duration: 0.7s;
         animation-delay: .9s;
       }
@@ -238,7 +236,7 @@ export default {
     display: block;
     .leave-normal-el {
       &.white {
-        animation: changeDetail forwards ease-in-out;
+        animation: changeDetail ease-in-out forwards;
         animation-duration: 1.3s;
         animation-delay: 0.4s;
       }

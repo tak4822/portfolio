@@ -26,7 +26,7 @@
         <div :class="{'block-reveal bottom' : showName}"></div>
         <p class="about-introduce jp" :class="{ 'hidden': !showText }">
           こんにちは。Takと呼ばれています。<br>
-          カナダでWebもデザインとデベロップメントをするフリーランス活動をしています。
+          カナダでWebデザインとデベロップメントをするフリーランス活動をしています。
           ビジネスの信念に寄り添い、ゴールを常に意識したデザインと、JavaScriptで創るクリエイティブでリッチなユーザー体験が強みです。
           ウェブだけではなく、面白いこと美しいことをいつも探しています。
         </p>
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import video from '../../assets/img/assets/portfolio_2.mp4';
+
 export default {
   data() {
     return {
@@ -61,16 +63,14 @@ export default {
         this.showText = true;
       }, 1000);
     },
-    // reset() {
-    //   this.showBlock = false;
-    //   this.showName = false;
-    //   this.showText = false;
-    // },
   },
   mounted() {
     setTimeout(() => {
       this.triggerCollage();
     }, 500);
+  },
+  beforeRouteEnter(to, from, next) {
+    Promise.all[video].then(() => next());
   },
 };
 </script>
@@ -143,13 +143,6 @@ export default {
       transform: translateX(-100%);
     }
   }
-  /*.block-reveal {*/
-    /*&.fromRight {*/
-      /*animation: block-reveal-right forwards;*/
-      /*animation-delay: 1s;*/
-      /*animation-duration: 0.6s;*/
-    /*}*/
-  /*}*/
   @keyframes block-reveal-right {
     from {
       left: 100%;

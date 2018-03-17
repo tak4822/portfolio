@@ -83,9 +83,6 @@
           </div>
         </div>
         <div class="home-name-images home-a">
-          <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.4 203">-->
-            <!--<polygon class="svg-name a" points="0 203 234.4 203 117.2 0 0 203"></polygon>-->
-          <!--</svg>-->
           <app-triangle v-if="enter"/>
         </div>
         <div class="home-name-images home-k">
@@ -124,7 +121,8 @@ import image1 from '../../assets/img/assets/bg_red.jpg';
 import image2 from '../../assets/img/assets/bg_blue.jpg';
 import image3 from '../../assets/img/assets/t_shadow.png';
 import image4 from '../../assets/img/assets/k_shadow.png';
-
+import '../works/Works';
+import '../about/About';
 
 export default {
   data() {
@@ -154,9 +152,6 @@ export default {
     assignAnimation();
     window.addEventListener('mousemove', getMouse, false);
     interactiveTAK();
-    setTimeout(() => {
-      this.finishEnter = true;
-    }, 4000);
   },
   beforeRouteLeave(to, from, next) {
     this.leave = true;
@@ -175,6 +170,9 @@ export default {
     Promise.all(imageArr.map(img => preloadImg(img)))
       .then(() => {
         this.finishPreloading();
+        setTimeout(() => {
+          this.finishEnter = true;
+        }, 4000);
       });
   },
   components: {
