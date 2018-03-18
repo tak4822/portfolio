@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '../components/home/Home';
-import About from '../components/about/About';
-import Works from '../components/works/Works';
-import Triangle from '../components/home/Triangle';
-// import test from '../components/works/test';
+const Home = () => import('../components/home/Home');
+const Mobile = () => import('../components/mobile/Mobile');
+const About = () => import('../components/about/About');
+const Works = () => import('../components/works/Works');
+const Detail = () => import('../components/detail/Detail');
+const mobileDetail = () => import('../components/mobile/Detail');
 
 Vue.use(Router);
 
@@ -14,7 +15,40 @@ export default new Router({
   routes: [
     { path: '/', component: Home },
     { path: '/about', component: About },
-    { path: '/works', component: Works },
-    { path: '/test', component: Triangle },
+    { path: '/works',
+      component: Works,
+      children: [
+        {
+          path: ':id',
+          name: 'detail',
+          component: Detail,
+        },
+        {
+          path: 'change/:id',
+          name: 'changeDetail',
+          component: Detail,
+          // props: true,
+        },
+      ],
+    },
+    {
+      path: '/mobile',
+      component: Mobile,
+    },
+    {
+      path: '/m/detail/:id',
+      name: 'mobileDetail',
+      component: mobileDetail,
+      props: true,
+    },
+    {
+      path: '/m/detail/change/:id',
+      name: 'mobileDetailChange',
+      component: mobileDetail,
+      props: true,
+    },
   ],
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
 });

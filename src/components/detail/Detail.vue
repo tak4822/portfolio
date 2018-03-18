@@ -10,33 +10,77 @@
     :description="selectedWork.description[0]"
     :url="selectedWork.url"
   />
-  <!--<app-image-->
-    <!--:src="selectedWork.images[0]"-->
-  <!--/>-->
+  <app-image :src="selectedWork.images[0]"/>
+  <app-image :src="selectedWork.images[1]" v-if="selectedWork.images[1]"/>
+  <div class="sec-comment-wrapper" v-if="selectedWork.description[1]">
+    <p class="sec-comment">{{selectedWork.description[1]}}</p>
+  </div>
+  <app-image :src="selectedWork.images[2]" v-if="selectedWork.images[2]"/>
+  <app-image :src="selectedWork.images[3]" v-if="selectedWork.images[3]"/>
+  <div class="testimonial-wrapper" v-if="selectedWork.testimonials.length >= 2">
+    <p class="testimonial">{{selectedWork.testimonials[0]}}</p>
+    <p class="testimonial">- {{selectedWork.testimonials[1]}}</p>
+  </div>
+  <app-footer
+    :prevWorkId="prevWorkId"
+    :nextWorkId="nextWorkId"
+  />
 </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Description from './Description';
-import Image from './Image';
-// import works from '../../data/works';
-import EventBus from '../../store/EventBus';
+import Image from '../shared/Image';
+import Footer from './Footer';
 
 export default {
   components: {
     appDescription: Description,
     appImage: Image,
+    appFooter: Footer,
   },
-  data() {
-    return {
-      selectedWork: {},
-    };
-  },
-  created() {
-    EventBus.$on('workWasChanged', (work) => {
-      this.selectedWork = work;
-    });
+  computed: {
+    ...mapGetters({
+      selectedWork: 'selectedWork',
+      worksLength: 'worksLength',
+    }),
+    prevWorkId() {
+      if (this.selectedWork.id === 0) return this.worksLength - 1;
+      return this.selectedWork.id - 1;
+    },
+    nextWorkId() {
+      if (this.selectedWork.id === this.worksLength - 1) return 0;
+      return this.selectedWork.id + 1;
+    },
   },
 };
-
 </script>
+
+<style scoped lang="scss">
+  .sec-comment-wrapper {
+    width: 550px;
+    margin: 300px auto;
+  }
+  .sec-comment {
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+  }
+  .testimonial-wrapper {
+    width: 550px;
+    margin: 300px auto;
+    position: relative;
+    &:before {
+      z-index: -20;
+      position: absolute;
+      top: -120px;
+      left: -50px;
+      content: url("../../assets/img/assets/testimonial-icon.svg");
+      width: 250px;
+    }
+  }
+  .testimonial {
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+  }
+</style>

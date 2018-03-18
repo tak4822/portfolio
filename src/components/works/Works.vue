@@ -1,21 +1,29 @@
 <template>
   <div>
-    <app-header/>
     <app-screen/>
-    <app-detail/>
+    <!--<app-detail/>-->
+    <router-view class="child"/>
   </div>
 </template>
 
 <script>
-import Header from '../shared/Header';
+import { mapActions } from 'vuex';
 import Screen from './Screen';
 import Detail from '../detail/Detail';
 
 export default {
   components: {
-    appHeader: Header,
     appScreen: Screen,
     appDetail: Detail,
+  },
+  methods: {
+    ...mapActions({
+      resetWork: 'resetWork',
+    }),
+  },
+  beforeRouteLeave(to, from, next) {
+    this.resetWork();
+    next();
   },
 };
 </script>

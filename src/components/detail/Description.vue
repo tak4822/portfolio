@@ -13,7 +13,7 @@
             </ul>
           </div>
           <div class="desc-bullet">
-            <p class="desc-bullet-title">ROLE</p>
+            <p class="desc-bullet-title">ROLES</p>
             <img src="../../assets/img/assets/desc-bullet-deco.svg" alt="">
             <ul class="desc-bullet-list-wrap">
               <li
@@ -39,7 +39,7 @@
         </div>
         <p class="desc-text">{{ description }}</p>
       </div>
-      <a :href="url" class="visit-site-container">
+      <a :href="url" target="_blank" class="visit-site-container" v-if="url">
         <img class="big-deco" src="../../assets/img/assets/desc_deco_bottom.svg" alt="">
         <p class="visit-site-link">
           VIEW SITE
@@ -94,8 +94,11 @@ export default {
 
 <style lang="scss" scoped>
   .desc-container {
-    padding: 300px 0;
+    padding: 50px 0;
     margin-left: calc(50% - 500px);
+    @media screen and (max-width: 1200px) {
+      margin-left: calc(50% - 400px); // left: 300px right: 500px
+    }
   }
   .desc-name {
     font-size: 4rem;
@@ -146,6 +149,9 @@ export default {
     font-style: italic;
     font-weight: 400;
     margin-top: 0;
+    @media screen and (max-width: 1200px) {
+      width: 300px
+    }
   }
   .desc-right {
     width: 500px;

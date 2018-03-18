@@ -1,43 +1,93 @@
 <template>
-  <div class="links-container">
-    <ul class="links">
+  <div class="links-container" :class="{ 'to-detail': toDetail }">
+    <transition-group tag="ul" class="links" appear v-if="linksAppear"
+      name="links"
+      @before-enter="beforeEnter"
+      @after-enter="afterEnter"
+      @enter-cancelled="afterEnter">
       <li
         class="links-list"
         v-for="(name, index) in workNames"
         :key="index"
-        :class="index === selected ? 'active' : ''"
-        @mouseover="select(index)"
+        :data-index="index"
+        :class="{'active' : index === selectedId }"
+        @mouseover="hoverWork(index)"
       >
-        <span class="hover-effect">{{ name }}</span>
+        <router-link
+          :to="{ name: 'detail', params: { id: index }}"
+          class="hover-effect">{{ name }}</router-link>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  props: ['selected'],
+  props: ['linksAppear'],
+  computed: {
+    ...mapGetters({
+      workNames: 'workNames',
+      selectedId: 'selectedId',
+      toDetail: 'toDetail',
+    }),
+  },
   methods: {
     ...mapActions({
       select: 'selectWork',
     }),
-  },
-  computed: {
-    workNames() {
-      return this.$store.getters.workNames;
+    hoverWork(id) {
+      if (!this.toDetail) {
+        this.select(id);
+      }
+    },
+    beforeEnter(el) {
+      // eslint-disable-next-line no-param-reassign
+      el.style.transitionDelay = `${100 * el.dataset.index}ms`;
+    },
+    afterEnter(el) {
+      // eslint-disable-next-line no-param-reassign
+      el.style.transitionDelay = '';
     },
   },
-
 };
 </script>
 
 <style scoped lang="scss">
+  /* ======== Enter animation ========= */
+  .links-enter {
+    opacity: 0;
+    transform: translatex(-20px);
+  }
+  .links-enter-active {
+    transition: all 0.3s ease;
+  }
+  /* ======== To Detail animation ========= */
+  .links-container {
+    &.to-detail {
+      animation: links-to-detail forwards;
+      animation-duration: 0.6s;
+      transition-timing-function: cubic-bezier(.14,0,.39,.75);
+    }
+  }
+  @keyframes links-to-detail {
+    from {
+      left: -210px;
+    }
+    to {
+      left: -1000px;
+    }
+  }
+  /* ======== General ========= */
   .links-container {
     position: absolute;
-    top: -100px;
+    top: -30px;
     left: -210px;
+    @media screen and (max-width: 1500px) {
+      top: -120px;
+      left: -180px;
+    }
   }
   .links {
     margin: 0;
@@ -50,9 +100,12 @@ export default {
     margin-bottom: 10px;
     cursor: pointer;
     z-index: 2;
+    @media screen and (max-width: 1500px) {
+      font-size: 1.8rem;
+    }
     &.active {
-      color: white;
       .hover-effect {
+        color: white;
         position: relative ;
         overflow: hidden;
         &::before, &::after {

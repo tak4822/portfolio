@@ -7,7 +7,17 @@ import App from './App';
 import router from './router';
 import store from './store/store';
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'changeDetail') {
+    setTimeout(() => {
+      next();
+    }, 1500);
+  } else {
+    next();
+  }
+});
 
 /* eslint-disable no-new */
 new Vue({
