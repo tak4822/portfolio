@@ -32,7 +32,7 @@ export default [
     role: ['Planning', 'Design', 'Development'],
     skills: ['PHP', 'CMS', 'Twig', 'jQuery', 'Responsible', 'Website & Logo Design'],
     description: [
-      'This is a portfolio site for Ken Priebe who is an author, illustrator and animator.I chose a minimal design so the website itself wouldn’t distract from his work. For instance, I had an idea to put animation for his characters that is located in every pages to enhance user experience. However, I considered it might disturbing his works, because he already had put some motion on his characters even if it is illustration. I focused to the goal of this site which is not showing cool effect but appealing his great works.',
+      'This is a portfolio site for Ken Priebe who is an author, illustrator and animator. I chose a minimal design so the website itself wouldn’t distract from his work. For instance, I had an idea to put animation for his characters that is located in every pages to enhance user experience. However, I considered it might disturbing his works, because he already had put some motion on his characters even if it is illustration. I focused to the goal of this site which is not showing cool effect but appealing his great works.',
       'Another place I put my effort is a user-friendly and flexible CMS. \n I made this so the client could keep taking care of his site and edit all content by himself.',
     ],
     url: 'http://kenpriebe.takeshioide.com',

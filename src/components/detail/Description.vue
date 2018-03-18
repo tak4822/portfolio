@@ -13,7 +13,7 @@
             </ul>
           </div>
           <div class="desc-bullet">
-            <p class="desc-bullet-title">ROLE</p>
+            <p class="desc-bullet-title">ROLES</p>
             <img src="../../assets/img/assets/desc-bullet-deco.svg" alt="">
             <ul class="desc-bullet-list-wrap">
               <li

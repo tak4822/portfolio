@@ -36,6 +36,7 @@ const mutations = {
 
 const actions = {
   selectWork: ({ commit }, id) => {
+    console.log('select');
     commit('SELECT_ID', id);
     commit('START_ANIMATION');
     commit('SELECT_WORK', works[id]);
@@ -61,7 +62,7 @@ const getters = {
   selectedId: state => state.selectedId,
   worksLength: state => state.worksLength,
   showScrollIcon: state => state.showScrollIcon,
-
+  thumbnails: () => works.map(({ mainImage, color }) => ({ mainImage, color })),
 };
 
 export default {

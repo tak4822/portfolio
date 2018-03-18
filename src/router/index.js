@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import('../components/home/Home'); // dont delete
 const Responsive = () => import('../components/shared/Responsive');
-const Home = () => import('../components/home/Home');
 const About = () => import('../components/about/About');
 const Works = () => import('../components/works/Works');
 const Detail = () => import('../components/detail/Detail');
@@ -22,7 +22,6 @@ export default new Router({
           path: ':id',
           name: 'detail',
           component: Detail,
-          // props: true,
         },
         {
           path: 'change/:id',
@@ -36,6 +35,13 @@ export default new Router({
       path: '/m/detail/:id',
       name: 'mobileDetail',
       component: mobileDetail,
+      props: true,
+    },
+    {
+      path: '/m/detail/change/:id',
+      name: 'mobileDetailChange',
+      component: mobileDetail,
+      props: true,
     },
   ],
   scrollBehavior() {

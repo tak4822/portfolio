@@ -31,9 +31,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import Description from './Description';
-import Image from './Image';
+import Image from '../shared/Image';
 import Footer from './Footer';
-// import works from '../../data/works';
 
 export default {
   components: {
@@ -70,6 +69,15 @@ export default {
   .testimonial-wrapper {
     width: 550px;
     margin: 300px auto;
+    position: relative;
+    &:before {
+      z-index: -20;
+      position: absolute;
+      top: -120px;
+      left: -50px;
+      content: url("../../assets/img/assets/testimonial-icon.svg");
+      width: 250px;
+    }
   }
   .testimonial {
     font-size: 1.1rem;

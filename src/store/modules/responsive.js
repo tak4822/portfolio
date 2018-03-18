@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 const state = {
-  desktop: true,
+  desktop: false,
 };
 
 const mutations = {

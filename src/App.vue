@@ -106,7 +106,7 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     window.addEventListener('resize', this.handleWindowResize);
     this.handleWindowResize();
   },

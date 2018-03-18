@@ -8,7 +8,9 @@
       <h3 class="exp-title">{{ work.shortTitle }}</h3>
       <p class="exp-short-desc">{{ work.shortDesc }}</p>
       <p class="exp-skills">{{ work.skills.join(' / ') }}</p>
-      <router-link :to="{ name: 'mobileDetail', params: { id: work.id } }" class="button-container">
+      <router-link
+        :to="{ name: 'mobileDetail', params: { id: work.id } }"
+        class="button-container">
         <p class="button-text">VIEW DETAIL</p>
         <div class="mobile-button-bar"></div>
       </router-link>

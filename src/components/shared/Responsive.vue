@@ -17,8 +17,8 @@ export default {
     }),
   },
   components: {
-    appMobile: Mobile,
     appHome: Home,
+    appMobile: Mobile,
   },
 };
 

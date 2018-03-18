@@ -34,9 +34,18 @@ export default {
     align-items: center;
     justify-content: center;
     background: $silver;
+    @media screen and (max-width: 1024px) {
+      margin-top: 100px;
+    }
+    @media screen and (max-width: 700px) {
+      margin-left: 0;
+      width: 100%;
+      height: 72vw;
+      margin-top: 60px;
+    }
     img {
-      width: 80%;
-      height: 80%;
+      width: 90%;
+      height: 70%;
       object-fit: cover;
     }
   }
