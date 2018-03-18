@@ -36,7 +36,6 @@ const mutations = {
 
 const actions = {
   selectWork: ({ commit }, id) => {
-    console.log('select');
     commit('SELECT_ID', id);
     commit('START_ANIMATION');
     commit('SELECT_WORK', works[id]);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="pre-container" v-if="!enter && homePage && desktop">
+    <div class="pre-container" v-if="!enter && homePage">
       <div class="pre-svg-wrapper">
         <div class="pre-svg-leave" :class="{'leave': !preloading}">
           <svg class="pre-svg" :class="{'loading': preloading}"
@@ -23,7 +23,10 @@
       </transition>
       <div
         class="leave-normal-page"
-        :class="{'leaving': normalLeave, 'change-detail': changeDetail}" >
+        :class="{
+          'leaving': normalLeave,
+          'change-detail': changeDetail,
+          'mobileTransition': mobileTransition}" >
         <div class="leave-normal-el black"></div>
         <div class="leave-normal-el white"></div>
       </div>
@@ -50,9 +53,10 @@ export default {
       preloading: 'preloading',
       enter: 'enter',
       desktop: 'desktop',
+      mobileTransition: 'mobileTransition',
     }),
     homePage() {
-      if (this.$route.path === '/') {
+      if (this.$route.path === '/' || this.$route.path === '/mobile') {
         return true;
       }
       return false;
@@ -74,20 +78,23 @@ export default {
           done();
           this.normalLeave = false;
         }, 1600);
-      }
-      if (this.transitionName === 'home') {
+      } else {
         done();
       }
-      if (this.transitionName === 'toDetail') {
-        done();
+    },
+    resizeWindow() {
+      this.handleWindowResize();
+      if (!this.desktop) {
+        this.$router.push('/mobile');
       }
     },
   },
   watch: {
     $route(to, from) {
       const toDepthLength = to.path.split('/').length;
-      // const fromDepthLength = from.path.split('/').length;
-      if (from.path === '/' || to.path === '/') {
+      if (to.name === 'mobileDetail' || to.name === 'mobileDetailChange' || to.path === '/mobile') {
+        this.transitionName = 'mobile';
+      } else if (from.path === '/' || to.path === '/') {
         this.transitionName = 'home';
       } else if (toDepthLength === 3) {
         this.transitionName = 'toDetail';
@@ -107,7 +114,7 @@ export default {
     },
   },
   created() {
-    window.addEventListener('resize', this.handleWindowResize);
+    window.addEventListener('resize', this.resizeWindow);
     this.handleWindowResize();
   },
   components: {
@@ -148,7 +155,7 @@ export default {
     &.loading {
       animation: preloading infinite;
       animation-duration: 3s;
-      transform-origin: center center;
+      transform-origin: center 65%;
     }
   }
   @keyframes preloading {
@@ -258,6 +265,29 @@ export default {
       transform: translateX(0);
     }
     99% {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  .leave-normal-page.mobileTransition {
+    display: block;
+    .leave-normal-el {
+      &.black {
+        animation: mobileLeave forwards;
+        animation-duration: 1.5s;
+      }
+    }
+  }
+  @keyframes mobileLeave {
+    from {
+      transform: translateX(-100%);
+    }
+    20% {
+      transform: translateX(0);
+    }
+    80% {
       transform: translateX(0);
     }
     to {

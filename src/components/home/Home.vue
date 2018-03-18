@@ -148,6 +148,13 @@ export default {
       finishPreloading: 'finishPreloading',
     }),
   },
+  beforeRouteEnter(to, from, next) {
+    if (window.innerWidth <= 1024) {
+      next('/mobile');
+    } else {
+      next();
+    }
+  },
   mounted() {
     assignAnimation();
     window.addEventListener('mousemove', getMouse, false);
@@ -345,12 +352,11 @@ export default {
       background: black;
     }
     &.enter {
-      /*animation: greeting-enter 1s linear forwards 3.5s ;*/
       .greeting-text {
-        animation: greeting-text-enter 0.1s forwards 4.95s
+        animation: block-reveal-text 0.1s forwards 4.95s
       }
       .block-reveal {
-        animation: greeting-enter 1.3s ease-in-out forwards 4.2s
+        animation: block-reveal-block 1.3s ease-in-out forwards 4.2s
       }
     }
   }

@@ -44,9 +44,13 @@ export default {
       margin-top: 60px;
     }
     img {
-      width: 90%;
-      height: 70%;
+      width: 80%;
+      height: 75%;
       object-fit: cover;
+      @media screen and (max-width: 700px) {
+        width: 90%;
+        height: 75%;
+      }
     }
   }
 </style>

@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import('../components/home/Home'); // dont delete
-const Responsive = () => import('../components/shared/Responsive');
+const Home = () => import('../components/home/Home');
+const Mobile = () => import('../components/mobile/Mobile');
 const About = () => import('../components/about/About');
 const Works = () => import('../components/works/Works');
 const Detail = () => import('../components/detail/Detail');
@@ -13,7 +13,7 @@ Vue.use(Router);
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/', component: Responsive },
+    { path: '/', component: Home },
     { path: '/about', component: About },
     { path: '/works',
       component: Works,
@@ -30,6 +30,10 @@ export default new Router({
           // props: true,
         },
       ],
+    },
+    {
+      path: '/mobile',
+      component: Mobile,
     },
     {
       path: '/m/detail/:id',

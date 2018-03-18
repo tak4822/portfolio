@@ -85,15 +85,15 @@
 
 @keyframes l-side-ripple {
   0% {
-    top: calc(50% - 40px);
+    top: calc(50% - 75px);
     right: -125px;
   }
   30% {
-    top: calc(50% - 40px);
+    top: calc(50% - 75px);
     right: -125px;
   }
   45% {
-    top: calc(50% - 40px);
+    top: calc(50% - 75px);
     right: -30px;
   }
   50% {
@@ -111,15 +111,15 @@
 }
 @keyframes r-side-ripple {
   0% {
-    top: calc(50% - 40px);
+    top: calc(50% - 75px);
     right: -125px;
   }
   30% {
-    top: calc(50% - 40px);
+    top: calc(50% - 75px);
     right: -125px;
   }
   45% {
-    top: calc(50% - 40px);
+    top: calc(50% - 75px);
     right: -30px;
   }
   50% {

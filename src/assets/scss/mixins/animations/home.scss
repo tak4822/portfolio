@@ -131,23 +131,6 @@
 }
 
 /* ========  ENTER ========== */
-@keyframes greeting-text-enter {
-  to {
-    opacity: 1;
-  }
-}
-@keyframes greeting-enter {
-  from {
-    right: 100%;
-  }
-  50% {
-    right: 0;
-  }
-  to {
-    right: -100%;
-  }
-}
-
 @keyframes slide-Up {
   from {
     transform: translateY(110%);

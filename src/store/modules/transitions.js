@@ -5,6 +5,7 @@ const state = {
   enter: false,
   toDetail: false,
   changeDetail: false,
+  mobileTransition: false,
 };
 
 const mutations = {
@@ -26,6 +27,12 @@ const mutations = {
   ENTER_PAGE(state) {
     state.enter = true;
   },
+  MOBILE_TRANSITION(state) {
+    state.mobileTransition = true;
+    setTimeout(() => {
+      state.mobileTransition = false;
+    }, 2000);
+  },
 };
 
 const actions = {
@@ -40,9 +47,12 @@ const actions = {
   },
   finishPreloading({ commit }) {
     commit('FINISH_PRELOADING');
-    setTimeout(() => {
+    setTimeout(() => { // for delete transition of pre loading
       commit('ENTER_PAGE');
     }, 500);
+  },
+  mobileTransition({ commit }) {
+    commit('MOBILE_TRANSITION');
   },
 };
 
@@ -51,6 +61,7 @@ const getters = {
   changeDetail: state => state.changeDetail,
   preloading: state => state.preloading,
   enter: state => state.enter,
+  mobileTransition: state => state.mobileTransition,
 };
 
 export default {

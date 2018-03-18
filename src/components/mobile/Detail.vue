@@ -78,7 +78,7 @@
         <img :src="getMainImage(work.mainImage)" alt="">
       </router-link>
     </div>
-    <router-link to="/" class="detail-footer-logo-wrapper">
+    <router-link to="/mobile" class="detail-footer-logo-wrapper">
       <img src="../../assets/img/assets/logo_glitch.svg" alt="" class="detail-footer-logo">
     </router-link>
     <app-footer/>
@@ -105,6 +105,7 @@ export default {
   methods: {
     ...mapActions({
       selectWork: 'selectWork',
+      mobileTransition: 'mobileTransition',
     }),
     getMainImage(src) {
       return require(`../../assets/img/mainImages/${src}`); // eslint-disable-line
@@ -121,8 +122,19 @@ export default {
     appFooter: Footer,
   },
   beforeRouteUpdate(to, from, next) {
-    this.selectWork(to.params.id);
-    next();
+    this.mobileTransition();
+    setTimeout(() => {
+      this.selectWork(to.params.id);
+      next();
+    }, 500);
+  },
+  beforeRouteLeave(to, from, next) {
+    if (to.path === '/mobile') {
+      this.mobileTransition();
+      setTimeout(() => {
+        next();
+      }, 500);
+    }
   },
 };
 
@@ -221,7 +233,7 @@ export default {
       height: 30px;
     }
     .visit-site-link {
-      font-weight: 800;
+      font-weight: 600;
       padding-left: 10px;
     }
     .arrow {
@@ -308,7 +320,6 @@ export default {
     width: 50%;
     max-width: 250px;
     margin: 50px auto 0;
-    text-align: center;
   }
 
 </style>

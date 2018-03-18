@@ -49,7 +49,7 @@ export default [
     subTitle: 'Proof what client can',
     client: 'Vanarts project',
     color: '#183f4d',
-    role: ['Design, Development'],
+    role: ['Website & Logo Design', 'Development'],
     skills: ['Three.js', 'jQuery', 'PHP', 'CMS', 'Responsible', 'Website & Logo Design'],
     description: [
       'This is a site for a Design company specializing food and beverage industry. They do every design in their industry including interior, graphic and web. So, I considered their website should be well designed and looks fantastic, because customer expect that the website would be the products for them. I put 3D model of cutlery moving around rather than image of restaurant, so that user can sense that this company is related to food industry but not normal restaurant',
@@ -69,7 +69,7 @@ export default [
     subTitle: 'Edgy and energetic',
     client: 'Vanarts project',
     color: '#fcdd49',
-    role: ['Design, Development'],
+    role: ['Website & Logo Design', 'Development'],
     skills: ['Node.js', 'Express.js', 'Query', 'CMS', 'Responsible', 'Website & Logo Design'],
     description:
     [
@@ -89,7 +89,7 @@ export default [
     subTitle: 'Romantic getaway',
     client: 'Vanarts project',
     color: '#223255',
-    role: ['Design, Development'],
+    role: ['Website & Logo Design', 'Development'],
     skills: ['jQuery', 'Sass', 'Website & Logo Design'],
     description: ['This is a site for B&B hostel that also has winery. They provides a romantic getaway mainly for couples live in city. I created romantic feeling with parallax and SVG animation.'],
     url: 'http://hamptons.takeshioide.com/',
@@ -106,7 +106,7 @@ export default [
     subTitle: 'Elegant and friendly E-commerce',
     client: 'Vanarts project',
     color: '#c6b7d9',
-    role: ['PHP', 'Sass', 'Website & Logo Design'],
+    role: ['Website & Logo Design', 'Development'],
     skills: ['PHP', 'CMS', 'Responsible', 'Website & Logo Design', 'JQuery'],
     description: [''],
     url: 'http://timetodoyou.takeshioide.com/',
@@ -123,7 +123,7 @@ export default [
     subTitle: 'Eyes movement',
     client: '',
     color: '#EAE9DB',
-    role: [''],
+    role: ['Graphic Design'],
     skills: ['Typography', 'Graphic Design'],
     description:
     [
@@ -144,7 +144,7 @@ export default [
     subTitle: 'Colors in print',
     client: '',
     color: '#6acde4',
-    role: [''],
+    role: ['Graphic Design'],
     skills: ['Print Design', 'Graphic Design'],
     description: ['I created graphic design for print. I applied same style for two different flowers. I tried making good color combinations and best practice of setting for print.'],
     url: '',
