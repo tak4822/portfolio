@@ -1,0 +1,15 @@
+/* ==========  PRE_LOADING ============= */
+@keyframes preloading {
+  from {
+    transform: rotate(0);
+  }
+  33% {
+    transform: rotate(120deg);
+  }
+  66% {
+    transform: rotate(240deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

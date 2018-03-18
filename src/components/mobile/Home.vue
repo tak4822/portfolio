@@ -116,10 +116,10 @@ export default {
   }
   .home-name.enter {
     .name, .role {
-      animation: block-reveal-text 0.1s forwards 2.45s
+      animation: block-reveal-text 0.1s forwards 2.2s
     }
     .block-reveal {
-      animation: block-reveal-block 1.3s ease-in-out forwards 1.7s
+      animation: block-reveal-block 1s cubic-bezier(.95,0,.35,1.01)  forwards 1.7s
     }
   }
   /* ======= General =======*/

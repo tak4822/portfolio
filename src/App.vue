@@ -124,6 +124,7 @@ export default {
 </script>
 
 <style lang="scss">
+  /* ==========  PRE_LOADING ============= */
   .pre-container {
     width: 100%;
     height: 100vh;
@@ -158,50 +159,15 @@ export default {
       transform-origin: center 65%;
     }
   }
-  @keyframes preloading {
-    from {
-      transform: rotate(0);
-    }
-    33% {
-      transform: rotate(120deg);
-    }
-    66% {
-      transform: rotate(240deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  /* ==========  TRANSITION ============= */
+  /* ==========  HEADER TRANSITION ============= */
   .slide-enter-active {
-    animation: slide-in 400ms ease-in forwards;
+    animation: slide-in-down 400ms ease-in forwards;
   }
 
   .slide-leave-active {
-    animation: slide-out 400ms ease-in-out forwards;
+    animation: slide-out-up 400ms ease-in-out forwards;
   }
-
-  @keyframes  slide-in {
-    from {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes  slide-out{
-    from {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-  }
+  /* ==========  PAGE TRANSITION ============= */
   .leave-normal-page {
     display: none;
     position: fixed;
@@ -249,28 +215,6 @@ export default {
       }
     }
   }
-  @keyframes leavePage {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  @keyframes changeDetail {
-    from {
-      transform: translateX(-100%);
-    }
-    50% {
-      transform: translateX(0);
-    }
-    99% {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(100%);
-    }
-  }
   .leave-normal-page.mobileTransition {
     display: block;
     .leave-normal-el {
@@ -280,19 +224,4 @@ export default {
       }
     }
   }
-  @keyframes mobileLeave {
-    from {
-      transform: translateX(-100%);
-    }
-    20% {
-      transform: translateX(0);
-    }
-    80% {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(100%);
-    }
-  }
-
 </style>

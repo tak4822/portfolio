@@ -1,0 +1,36 @@
+@keyframes leavePage {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes changeDetail {
+  from {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  99% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes mobileLeave {
+  from {
+    transform: translateX(-100%);
+  }
+  20% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

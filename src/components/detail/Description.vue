@@ -93,6 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  /* ========  DESCRIPTION GENERAL ========== */
   .desc-container {
     padding: 50px 0;
     margin-left: calc(50% - 500px);
@@ -117,6 +118,7 @@ export default {
       height: 50px;
       transition: all 0.2s linear;
     }
+    /* ======== VISIT SITE URL ========== */
     .visit-site-link {
       margin-top: 80px;
       display: flex;
@@ -143,6 +145,7 @@ export default {
       }
     }
   }
+  /* ======== LEFT SIDE ========== */
   .sub-title {
     width: 500px;
     font-size: 1.8rem;
@@ -153,6 +156,7 @@ export default {
       width: 300px
     }
   }
+  /* ======== RIGHT SIDE ========== */
   .desc-right {
     width: 500px;
     img {

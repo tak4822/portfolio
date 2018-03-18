@@ -353,10 +353,10 @@ export default {
     }
     &.enter {
       .greeting-text {
-        animation: block-reveal-text 0.1s forwards 4.95s
+        animation: block-reveal-text 0.1s forwards 4.5s
       }
       .block-reveal {
-        animation: block-reveal-block 1.3s ease-in-out forwards 4.2s
+        animation: block-reveal-block 1s cubic-bezier(.95,0,.35,1.01)  forwards 4s
       }
     }
   }
@@ -384,24 +384,20 @@ export default {
       background: $beige;
       transform: skew(-45deg) rotate(-45deg) translateX(100%);
       transform-origin: left center;
-      // opacity: 0.5;
       &.one{
         top: -13%;
-        // background: yellow;
       }
       &.two{
         top: 22.2%;
       }
       &.three{
         top: 57.5%;
-        // background: yellow;
       }
       &.four{
         top: 92.7%;
       }
       &.five{
         top: 128%;
-        // background: yellow;
       }
       &.six{
         top: 163.3%;
@@ -465,7 +461,7 @@ export default {
       }
     }
   }
-  /* =====  nav  ====== */
+  /* =====  NAVIGATION ====== */
   .home-nav {
     height: 26px;
     img {
@@ -582,5 +578,202 @@ export default {
       }
     }
   }
+
+  /* ========  TO WORK ========== */
+  @keyframes toWork {
+    from {
+      top: calc(52% + 128px);
+      left: calc(8% - 26px);
+      transform: rotate(-90deg);
+    }
+    25% {
+      top: calc(50% - 30px);
+      left: calc(8% - 26px);
+      transform: rotate(0);
+    }
+    60% {
+      top: calc(50% - 30px);
+      left: calc(50% - 128px);
+      transform: rotate(0);
+    }
+    to {
+      top: calc(50% - 30px);
+      left: calc(50% - 128px);
+      transform: rotate(0);
+    }
+  }
+  @keyframes work-nav-inside-move {
+    from {
+      transform: translateX(0);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    90% {
+      transform: translateX(30px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes work-nav-outside-move {
+    from {
+      transform: translateX(0);
+    }
+    40% {
+      transform: translateX(0);
+    }
+    85% {
+      transform: translateX(50px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  /* ========  TO About ========== */
+  @keyframes toAbout {
+    from {
+      top: calc(44% - 116px);
+      right: calc(8% - 26px);
+      transform: rotate(-90deg);
+    }
+    25% {
+      top: calc(50% - 30px);
+      right: calc(8% - 26px);
+      transform: rotate(0);
+    }
+    60% {
+      top: calc(50% - 30px);
+      right: calc(50% - 116px);
+      transform: rotate(0);
+    }
+    to {
+      top: calc(50% - 30px);
+      right: calc(50% - 116px);
+      transform: rotate(0);
+    }
+  }
+  @keyframes about-nav-inside-move {
+    from {
+      transform: translateX(0);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    90% {
+      transform: translateX(-30px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes about-nav-outside-move {
+    from {
+      transform: translateX(0);
+    }
+    40% {
+      transform: translateX(0);
+    }
+    85% {
+      transform: translateX(-60px) ;
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  /* ========  TO WORK & ABOUT LEAVE ========== */
+  @keyframes home-nav-inside-leave {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-30px);
+    }
+  }
+  @keyframes home-nav-outside-leave {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(30px);
+    }
+  }
+
+  /* ========  LEAVE GENERAL ========== */
+  @keyframes home-leave {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+
+  /* ========  ENTER ========== */
+  @keyframes slide-Up {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: translateY(0);;
+    }
+  }
+  @keyframes blockUp {
+    from {
+      transform: skew(-45deg) rotate(-45deg) translateX(100%);
+    }
+    to {
+      transform: skew(-45deg) rotate(-45deg) translateX(0);
+    }
+  }
+  @keyframes blockDown {
+    from {
+      transform: skew(-45deg) rotate(-45deg) translateX(-100%);
+    }
+    to {
+      transform: skew(-45deg) rotate(-45deg) translateX(0);
+    }
+  }
+  @keyframes workEnter {
+    75% {
+      top: calc(52% + 148px);
+    }
+    to {
+      top: calc(52% + 128px);
+    }
+  }
+  @keyframes aboutEnter {
+    75% {
+      top: calc(44% - 136px);
+    }
+    to {
+      top: calc(44% - 116px);
+    }
+  }
+  @keyframes insideUp {
+    from {
+      transform: translateX(-15px);
+    }
+    90% {
+      transform: translateX(-15px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes outDown {
+    from {
+      transform: translateX(15px);
+    }
+    90% {
+      transform: translateX(15px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
 
 </style>

@@ -60,6 +60,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  /* ========  GNERAL ========== */
   .detail-footer-container {
     margin-top: 400px;
     display: flex;
@@ -81,6 +82,7 @@ export default {
     border-bottom: 1px solid $text;
     transition: all 0.3s ease-out;
   }
+  /* ========  PREVIOUS BUTTON ========== */
   .prev-container {
     text-align: right;
     .bar {
@@ -114,6 +116,7 @@ export default {
       transform: translateX(-400px);
     }
   }
+  /* ========  NEXT BUTTON ========== */
   .next-container {
     text-align: left;
     .bar {
@@ -147,7 +150,7 @@ export default {
       transform: translateX(400px);
     }
   }
-
+  /* ========  LETS TALK BUTTON ========== */
   .contact-container {
     width: 85px;
     display: flex;

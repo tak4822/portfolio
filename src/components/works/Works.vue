@@ -1,7 +1,6 @@
 <template>
   <div>
     <app-screen/>
-    <!--<app-detail/>-->
     <router-view class="child"/>
   </div>
 </template>
@@ -28,6 +27,3 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
