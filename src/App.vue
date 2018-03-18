@@ -85,7 +85,7 @@ export default {
     resizeWindow() {
       this.handleWindowResize();
       if (!this.desktop) {
-        this.$router.push('/mobile');
+        this.$router.push('/resize');
       }
     },
   },

@@ -89,6 +89,7 @@ export default {
       isShowing: 'isShowing',
       toDetail: 'toDetail',
       showScrollIcon: 'showScrollIcon',
+      changeDetail: 'changeDetail',
     }),
   },
   methods: {
@@ -396,8 +397,6 @@ export default {
       transform: translateX(-150%);
     }
   }
-
-
   .slide-enter {
     opacity: 0;
   }

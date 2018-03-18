@@ -7,6 +7,7 @@ const About = () => import('../components/about/About');
 const Works = () => import('../components/works/Works');
 const Detail = () => import('../components/detail/Detail');
 const mobileDetail = () => import('../components/mobile/Detail');
+const Resize = () => import('../components/shared/Resize');
 
 Vue.use(Router);
 
@@ -46,6 +47,10 @@ export default new Router({
       name: 'mobileDetailChange',
       component: mobileDetail,
       props: true,
+    },
+    {
+      path: '/resize',
+      component: Resize,
     },
   ],
   scrollBehavior() {
