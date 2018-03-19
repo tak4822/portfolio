@@ -60,6 +60,9 @@ export default {
       }
       return false;
     },
+    windowSize() {
+      return window.innerWidth;
+    },
   },
   methods: {
     ...mapActions({
@@ -82,9 +85,11 @@ export default {
       }
     },
     resizeWindow() {
-      this.handleWindowResize();
-      if (!this.desktop) {
-        this.$router.push('/resize');
+      if (this.windowSize !== window.innerWidth) {
+        this.handleWindowResize();
+        if (!this.desktop) {
+          this.$router.push('/resize');
+        }
       }
     },
     checkResizeWindow() { // only very first time
