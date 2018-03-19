@@ -14,6 +14,7 @@ const mutations = {
   },
   RESET_TO_DETAIL(state) {
     state.toDetail = false;
+    state.enter = false;
   },
   CHANGE_DETAIL(state) {
     state.changeDetail = true;
@@ -46,6 +47,7 @@ const actions = {
     commit('CHANGE_DETAIL');
   },
   finishPreloading({ commit }) {
+    console.log('finish preloading');
     commit('FINISH_PRELOADING');
     setTimeout(() => { // for delete transition of pre loading
       commit('ENTER_PAGE');

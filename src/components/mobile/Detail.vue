@@ -77,7 +77,7 @@
         <img :src="getMainImage(work.mainImage)" alt="">
       </router-link>
     </div>
-    <router-link to="/mobile" class="detail-footer-logo-wrapper">
+    <router-link :to="{ path: '/mobile', query: { back: true }}" class="detail-footer-logo-wrapper">
       <img src="../../assets/img/assets/logo_glitch.svg" alt="" class="detail-footer-logo">
     </router-link>
     <app-footer/>

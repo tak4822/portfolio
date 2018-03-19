@@ -33,6 +33,11 @@ import image1 from '../../assets/img/assets/home_t.png';
 import image2 from '../../assets/img/assets/home_k.png';
 
 export default {
+  data() {
+    return {
+      back: false,
+    };
+  },
   computed: {
     ...mapGetters({
       enter: 'enter',
@@ -47,10 +52,13 @@ export default {
     const imageArr = [image1, image2];
     Promise.all(imageArr.map(img => preloadImg(img)))
       .then(() => {
-        this.finishPreloading();
-        setTimeout(() => {
-          this.finishEnter = true;
-        }, 3000);
+        if (!this.$router.history.current.query.back) {
+          this.finishPreloading();
+        } else {
+          setTimeout(() => {
+            this.finishPreloading();
+          }, 500);
+        }
       });
   },
 };

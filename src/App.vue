@@ -87,6 +87,11 @@ export default {
         this.$router.push('/resize');
       }
     },
+    checkResizeWindow() { // only very first time
+      if (!this.desktop) {
+        this.$router.push('/mobile');
+      }
+    },
   },
   watch: {
     $route(to, from) {
@@ -113,8 +118,9 @@ export default {
     },
   },
   created() {
-    window.addEventListener('resize', this.resizeWindow);
     this.handleWindowResize();
+    this.checkResizeWindow();
+    window.addEventListener('resize', this.resizeWindow, false);
   },
   components: {
     appHeader: Header,
@@ -184,6 +190,7 @@ export default {
     height: 100%;
     transform: translateX(-100%);
     &.black {
+      z-index: 100;
       background: $text;
     }
     &.white {

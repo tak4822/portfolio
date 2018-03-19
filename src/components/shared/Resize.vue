@@ -23,14 +23,13 @@ export default {
       handleWindowResize: 'handleWindowResize',
     }),
     checkResizeWindow() {
-      this.handleWindowResize();
       if (this.desktop) {
         this.$router.push('/');
       }
     },
   },
   created() {
-    window.addEventListener('resize', this.checkResizeWindow);
+    window.addEventListener('resize', this.checkResizeWindow, false);
   },
 };
 </script>
