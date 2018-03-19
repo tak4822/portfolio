@@ -189,7 +189,7 @@ export default {
     height: 400px;
     position: relative;
     z-index: 100;
-    @media screen and (max-width: 1400px) {
+    @media screen and (max-width: 1500px) {
       width: 250px;
       height: 300px;
     }
@@ -278,7 +278,7 @@ export default {
     width: 73%;
     bottom: calc(100% - 130px);
     left: -130px;
-    @media screen and (max-width: 1400px) {
+    @media screen and (max-width: 1500px) {
       bottom: calc(100% - 100px);
       left: -100px;
     }

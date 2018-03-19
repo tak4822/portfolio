@@ -158,7 +158,7 @@ export default {
     @media screen and (max-width: 1500px) {
       width: 400px;
       height: 340px;
-      margin: 230px auto;
+      margin: 280px auto;
     }
   }
   .screen-bg {
