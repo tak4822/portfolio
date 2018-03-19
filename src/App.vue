@@ -216,8 +216,8 @@ export default {
     display: block;
     .leave-normal-el {
       &.white {
-        animation: changeDetail ease-in-out forwards;
-        animation-duration: 2s;
+        animation: changeDetail cubic-bezier(.76,.01,.28,.99) forwards;
+        animation-duration: 1.5s;
         animation-delay: 0.4s;
       }
     }

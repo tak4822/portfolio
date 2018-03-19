@@ -47,7 +47,6 @@ const actions = {
     commit('CHANGE_DETAIL');
   },
   finishPreloading({ commit }) {
-    console.log('finish preloading');
     commit('FINISH_PRELOADING');
     setTimeout(() => { // for delete transition of pre loading
       commit('ENTER_PAGE');

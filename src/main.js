@@ -13,7 +13,7 @@ router.beforeEach((to, from, next) => {
   if (to.name === 'changeDetail') {
     setTimeout(() => {
       next();
-    }, 1500);
+    }, 1000);
   } else {
     next();
   }
