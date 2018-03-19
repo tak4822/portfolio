@@ -40,13 +40,11 @@ export default new Router({
       path: '/m/detail/:id',
       name: 'mobileDetail',
       component: mobileDetail,
-      props: true,
     },
     {
       path: '/m/detail/change/:id',
       name: 'mobileDetailChange',
       component: mobileDetail,
-      props: true,
     },
     {
       path: '/resize',

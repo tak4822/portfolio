@@ -66,20 +66,7 @@
               id="rose">
           </div>
           <div class="svg-wrapper" id="nameT">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
-              <polygon
-                id="pol-t"
-                class="svg-name t"
-                points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
-              ></polygon>
-              <clipPath id="t">
-                <use xlink:href="#pol-t"></use>
-              </clipPath>
-              <image
-                clip-path="url(#t)"
-                class="svg-inside-image"
-                xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
-            </svg>
+            <img class="svg-inside-image t" src="../../assets/img/assets/home_t.png" alt="">
           </div>
         </div>
         <div class="home-name-images home-a">
@@ -89,22 +76,7 @@
           <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
           <img class="women collage" src="../../assets/img/assets/women.png" alt="" id="women">
           <div class="svg-wrapper" id="nameK">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
-              <polygon
-                id="pol-k"
-                class="svg-name k"
-                points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
-              ></polygon>
-              <clipPath id="k">
-                <use xlink:href="#pol-k"></use>
-              </clipPath>
-              <image
-                class="svg-inside-image"
-                clip-path="url(#k)"
-                height="100%"
-                xlink:href="../../assets/img/assets/bg_red.jpg">
-              </image>
-            </svg>
+            <img class="svg-inside-image t" src="../../assets/img/assets/home_k.png" alt="">
           </div>
         </div>
       </div>
@@ -117,8 +89,8 @@ import { mapActions, mapGetters } from 'vuex';
 import { assignAnimation, getMouse, interactiveTAK } from '../../utils/homeMouseOver';
 import Triangle from './Triangle';
 import preloadImg from '../../utils/preload';
-import image1 from '../../assets/img/assets/bg_red.jpg';
-import image2 from '../../assets/img/assets/bg_blue.jpg';
+import image1 from '../../assets/img/assets/home_t.png';
+import image2 from '../../assets/img/assets/home_k.png';
 import image3 from '../../assets/img/assets/t_shadow.png';
 import image4 from '../../assets/img/assets/k_shadow.png';
 import '../works/Works';
@@ -247,13 +219,13 @@ export default {
         width: 120%;
         height: 120%;
         z-index: -2;
-        transform: translateY(110%);
+        opacity: 0;
       }
     }
   }
   .svg-inside-image {
+    height: 100%;
     transform: translateY(110%);
-    transition: all 0.8s ease-in;
   }
   svg {
     z-index: 10;
@@ -353,10 +325,10 @@ export default {
     }
     &.enter {
       .greeting-text {
-        animation: block-reveal-text 0.1s forwards 4.5s
+        animation: block-reveal-text 0.1s forwards 4.75s
       }
       .block-reveal {
-        animation: block-reveal-block 1s cubic-bezier(.95,0,.35,1.01)  forwards 4s
+        animation: block-reveal-block 1.3s ease-in-out forwards 4s
       }
     }
   }
@@ -427,12 +399,10 @@ export default {
     }
     .svg-inside-image {
       animation: slide-Up 1s forwards 0.5s ;
-      transition-timing-function: cubic-bezier(.84,0,1,.63);
     }
     .svg-wrapper {
       &:after {
-        animation: slide-Up 1s forwards 0.5s ;
-        transition-timing-function: cubic-bezier(.84,0,1,.63);
+        animation: fade-in 1.2s forwards 3.2s ;
       }
     }
     .collage {

@@ -68,9 +68,8 @@
     </a>
     <div class="works-grid-container">
       <router-link
-        :to="{ name: 'mobileDetailChange', params: { id: index } }"
+        :to="{ name: 'mobileDetail', params: { id: index } }"
         v-for="(work, index) in thumbnails"
-        @click="selectWork(index)"
         :key="index"
         class="works-grid"
         :style="{'background-color': work.color}"
@@ -286,6 +285,7 @@ export default {
   }
 
   .works-grid-container {
+    z-index: 10;
     margin: 100px auto;
     width: 570px;
     display: flex;

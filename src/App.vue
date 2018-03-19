@@ -38,7 +38,6 @@
 import { mapActions, mapGetters } from 'vuex';
 import Header from './components/shared/Header';
 
-
 export default {
   name: 'App',
   data() {
@@ -153,6 +152,7 @@ export default {
   }
   .pre-svg {
     width: 100%;
+    fill: $text;
     &.loading {
       animation: preloading infinite;
       animation-duration: 3s;
@@ -210,7 +210,7 @@ export default {
     .leave-normal-el {
       &.white {
         animation: changeDetail ease-in-out forwards;
-        animation-duration: 1.3s;
+        animation-duration: 2s;
         animation-delay: 0.4s;
       }
     }

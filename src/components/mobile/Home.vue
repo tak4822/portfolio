@@ -8,36 +8,10 @@
       </div>
       <div class="back-square">
         <div class="t">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
-            <polygon
-              id="pol-t"
-              points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
-            ></polygon>
-            <clipPath id="t">
-              <use xlink:href="#pol-t"></use>
-            </clipPath>
-            <image
-              clip-path="url(#t)"
-              class="svg-inside-image"
-              xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
-          </svg>
+          <img class="svg-inside-image" src="../../assets/img/assets/home_t.png" alt="">
         </div>
         <div class="k">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
-            <polygon
-              id="pol-k"
-              points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
-            ></polygon>
-            <clipPath id="k">
-              <use xlink:href="#pol-k"></use>
-            </clipPath>
-            <image
-              class="svg-inside-image"
-              clip-path="url(#k)"
-              height="100%"
-              xlink:href="../../assets/img/assets/bg_red.jpg">
-            </image>
-          </svg>
+          <img class="svg-inside-image" src="../../assets/img/assets/home_k.png" alt="">
         </div>
       </div>
       <div class="square-block"></div>
@@ -55,8 +29,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import preloadImg from '../../utils/preload';
-import image1 from '../../assets/img/assets/bg_red.jpg';
-import image2 from '../../assets/img/assets/bg_blue.jpg';
+import image1 from '../../assets/img/assets/home_t.png';
+import image2 from '../../assets/img/assets/home_k.png';
 
 export default {
   computed: {
@@ -187,7 +161,8 @@ export default {
     position: absolute;
     height: 155%;
     fill-opacity: 0;
-    svg {
+    overflow: hidden;
+    img {
       height: 100%
     }
   }
@@ -195,14 +170,14 @@ export default {
     bottom: 0;
     right: 50%;
     .svg-inside-image {
-      transform: translateY(100%);
+      transform: translateY(110%);
     }
   }
   .k {
     top: 100%;
     left: 50%;
     .svg-inside-image {
-      transform: translateY(-100%);
+      transform: translateY(-110%);
     }
   }
   .home-name {
