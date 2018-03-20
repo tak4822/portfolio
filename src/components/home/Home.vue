@@ -66,20 +66,7 @@
               id="rose">
           </div>
           <div class="svg-wrapper" id="nameT">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210.5 315">
-              <polygon
-                id="pol-t"
-                class="svg-name t"
-                points="181 0 113.5 0 0 0 52 97 113.5 97 113.5 315 210.5 315 210.5 0 181 0"
-              ></polygon>
-              <clipPath id="t">
-                <use xlink:href="#pol-t"></use>
-              </clipPath>
-              <image
-                clip-path="url(#t)"
-                class="svg-inside-image"
-                xlink:href="../../assets/img/assets/bg_blue.jpg"></image>
-            </svg>
+            <img class="svg-inside-image t" src="../../assets/img/assets/home_t.png" alt="">
           </div>
         </div>
         <div class="home-name-images home-a">
@@ -89,22 +76,7 @@
           <img class="planet collage" src="../../assets/img/assets/planet.png" alt="" id="planet">
           <img class="women collage" src="../../assets/img/assets/women.png" alt="" id="women">
           <div class="svg-wrapper" id="nameK">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 316">
-              <polygon
-                id="pol-k"
-                class="svg-name k"
-                points="181 0 0 0 0 1 0 311 0 316 180.7 316 89.56 157.12 181 0"
-              ></polygon>
-              <clipPath id="k">
-                <use xlink:href="#pol-k"></use>
-              </clipPath>
-              <image
-                class="svg-inside-image"
-                clip-path="url(#k)"
-                height="100%"
-                xlink:href="../../assets/img/assets/bg_red.jpg">
-              </image>
-            </svg>
+            <img class="svg-inside-image t" src="../../assets/img/assets/home_k.png" alt="">
           </div>
         </div>
       </div>
@@ -117,8 +89,8 @@ import { mapActions, mapGetters } from 'vuex';
 import { assignAnimation, getMouse, interactiveTAK } from '../../utils/homeMouseOver';
 import Triangle from './Triangle';
 import preloadImg from '../../utils/preload';
-import image1 from '../../assets/img/assets/bg_red.jpg';
-import image2 from '../../assets/img/assets/bg_blue.jpg';
+import image1 from '../../assets/img/assets/home_t.png';
+import image2 from '../../assets/img/assets/home_k.png';
 import image3 from '../../assets/img/assets/t_shadow.png';
 import image4 from '../../assets/img/assets/k_shadow.png';
 import '../works/Works';
@@ -217,7 +189,7 @@ export default {
     height: 400px;
     position: relative;
     z-index: 100;
-    @media screen and (max-width: 1400px) {
+    @media screen and (max-width: 1500px) {
       width: 250px;
       height: 300px;
     }
@@ -247,13 +219,13 @@ export default {
         width: 120%;
         height: 120%;
         z-index: -2;
-        transform: translateY(110%);
+        opacity: 0;
       }
     }
   }
   .svg-inside-image {
+    height: 100%;
     transform: translateY(110%);
-    transition: all 0.8s ease-in;
   }
   svg {
     z-index: 10;
@@ -306,7 +278,7 @@ export default {
     width: 73%;
     bottom: calc(100% - 130px);
     left: -130px;
-    @media screen and (max-width: 1400px) {
+    @media screen and (max-width: 1500px) {
       bottom: calc(100% - 100px);
       left: -100px;
     }
@@ -353,10 +325,10 @@ export default {
     }
     &.enter {
       .greeting-text {
-        animation: block-reveal-text 0.1s forwards 4.95s
+        animation: block-reveal-text 0.1s forwards 4.75s
       }
       .block-reveal {
-        animation: block-reveal-block 1.3s ease-in-out forwards 4.2s
+        animation: block-reveal-block 1.3s ease-in-out forwards 4s
       }
     }
   }
@@ -384,24 +356,20 @@ export default {
       background: $beige;
       transform: skew(-45deg) rotate(-45deg) translateX(100%);
       transform-origin: left center;
-      // opacity: 0.5;
       &.one{
         top: -13%;
-        // background: yellow;
       }
       &.two{
         top: 22.2%;
       }
       &.three{
         top: 57.5%;
-        // background: yellow;
       }
       &.four{
         top: 92.7%;
       }
       &.five{
         top: 128%;
-        // background: yellow;
       }
       &.six{
         top: 163.3%;
@@ -431,12 +399,10 @@ export default {
     }
     .svg-inside-image {
       animation: slide-Up 1s forwards 0.5s ;
-      transition-timing-function: cubic-bezier(.84,0,1,.63);
     }
     .svg-wrapper {
       &:after {
-        animation: slide-Up 1s forwards 0.5s ;
-        transition-timing-function: cubic-bezier(.84,0,1,.63);
+        animation: fade-in 1.2s forwards 3.2s ;
       }
     }
     .collage {
@@ -465,7 +431,7 @@ export default {
       }
     }
   }
-  /* =====  nav  ====== */
+  /* =====  NAVIGATION ====== */
   .home-nav {
     height: 26px;
     img {
@@ -582,5 +548,202 @@ export default {
       }
     }
   }
+
+  /* ========  TO WORK ========== */
+  @keyframes toWork {
+    from {
+      top: calc(52% + 128px);
+      left: calc(8% - 26px);
+      transform: rotate(-90deg);
+    }
+    25% {
+      top: calc(50% - 30px);
+      left: calc(8% - 26px);
+      transform: rotate(0);
+    }
+    60% {
+      top: calc(50% - 30px);
+      left: calc(50% - 128px);
+      transform: rotate(0);
+    }
+    to {
+      top: calc(50% - 30px);
+      left: calc(50% - 128px);
+      transform: rotate(0);
+    }
+  }
+  @keyframes work-nav-inside-move {
+    from {
+      transform: translateX(0);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    90% {
+      transform: translateX(30px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes work-nav-outside-move {
+    from {
+      transform: translateX(0);
+    }
+    40% {
+      transform: translateX(0);
+    }
+    85% {
+      transform: translateX(50px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  /* ========  TO About ========== */
+  @keyframes toAbout {
+    from {
+      top: calc(44% - 116px);
+      right: calc(8% - 26px);
+      transform: rotate(-90deg);
+    }
+    25% {
+      top: calc(50% - 30px);
+      right: calc(8% - 26px);
+      transform: rotate(0);
+    }
+    60% {
+      top: calc(50% - 30px);
+      right: calc(50% - 116px);
+      transform: rotate(0);
+    }
+    to {
+      top: calc(50% - 30px);
+      right: calc(50% - 116px);
+      transform: rotate(0);
+    }
+  }
+  @keyframes about-nav-inside-move {
+    from {
+      transform: translateX(0);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    90% {
+      transform: translateX(-30px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes about-nav-outside-move {
+    from {
+      transform: translateX(0);
+    }
+    40% {
+      transform: translateX(0);
+    }
+    85% {
+      transform: translateX(-60px) ;
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  /* ========  TO WORK & ABOUT LEAVE ========== */
+  @keyframes home-nav-inside-leave {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-30px);
+    }
+  }
+  @keyframes home-nav-outside-leave {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(30px);
+    }
+  }
+
+  /* ========  LEAVE GENERAL ========== */
+  @keyframes home-leave {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+
+  /* ========  ENTER ========== */
+  @keyframes slide-Up {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: translateY(0);;
+    }
+  }
+  @keyframes blockUp {
+    from {
+      transform: skew(-45deg) rotate(-45deg) translateX(100%);
+    }
+    to {
+      transform: skew(-45deg) rotate(-45deg) translateX(0);
+    }
+  }
+  @keyframes blockDown {
+    from {
+      transform: skew(-45deg) rotate(-45deg) translateX(-100%);
+    }
+    to {
+      transform: skew(-45deg) rotate(-45deg) translateX(0);
+    }
+  }
+  @keyframes workEnter {
+    75% {
+      top: calc(52% + 148px);
+    }
+    to {
+      top: calc(52% + 128px);
+    }
+  }
+  @keyframes aboutEnter {
+    75% {
+      top: calc(44% - 136px);
+    }
+    to {
+      top: calc(44% - 116px);
+    }
+  }
+  @keyframes insideUp {
+    from {
+      transform: translateX(-15px);
+    }
+    90% {
+      transform: translateX(-15px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes outDown {
+    from {
+      transform: translateX(15px);
+    }
+    90% {
+      transform: translateX(15px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
 
 </style>

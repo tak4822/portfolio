@@ -17,6 +17,7 @@ import About from './About';
 import Works from './Works';
 import works from '../../data/works';
 import Footer from '../shared/Footer';
+import './Detail';
 
 export default {
   data() {

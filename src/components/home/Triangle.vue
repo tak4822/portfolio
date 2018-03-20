@@ -80,9 +80,6 @@ export default {
   methods: {
     animate() {
       requestAnimationFrame(this.animate);
-      // this.pyramidMesh.rotation.x += 0.05;
-      // this.camera.position.x += ( mouse.x - this.camera.position.x) * 0.00001;
-      // this.camera.position.y += ( - mouse.y - this.camera.position.y) * 0.00001;
       this.pyramidMesh.rotation.y += 0.01;
 
       this.renderer.render(this.scene, this.camera);

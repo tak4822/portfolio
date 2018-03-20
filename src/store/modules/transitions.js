@@ -14,6 +14,7 @@ const mutations = {
   },
   RESET_TO_DETAIL(state) {
     state.toDetail = false;
+    state.enter = false;
   },
   CHANGE_DETAIL(state) {
     state.changeDetail = true;

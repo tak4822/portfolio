@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  /* ======== Enter animation ========= */
+  /* ======== ENTER ANIMATION ========= */
   .links-enter {
     opacity: 0;
     transform: translatex(-20px);
@@ -63,7 +63,7 @@ export default {
   .links-enter-active {
     transition: all 0.3s ease;
   }
-  /* ======== To Detail animation ========= */
+  /* ======== TO DETAIL ========= */
   .links-container {
     &.to-detail {
       animation: links-to-detail forwards;
@@ -74,12 +74,15 @@ export default {
   @keyframes links-to-detail {
     from {
       left: -210px;
+      opacity: 1;
     }
     to {
-      left: -1000px;
+      left: -300px;
+      opacity: 0;
     }
   }
-  /* ======== General ========= */
+
+  /* ======== GENERAL ========= */
   .links-container {
     position: absolute;
     top: -30px;
@@ -103,6 +106,7 @@ export default {
     @media screen and (max-width: 1500px) {
       font-size: 1.8rem;
     }
+    /* ======== HOVER ANIMATION ========= */
     &.active {
       .hover-effect {
         color: white;
@@ -130,7 +134,6 @@ export default {
       }
     }
   }
-
   @keyframes hover-slide-top {
     from {
       transform: translateX(100%);
@@ -148,5 +151,6 @@ export default {
       transform: translateX(0);
     }
   }
+
 
 </style>

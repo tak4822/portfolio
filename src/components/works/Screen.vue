@@ -89,6 +89,7 @@ export default {
       isShowing: 'isShowing',
       toDetail: 'toDetail',
       showScrollIcon: 'showScrollIcon',
+      changeDetail: 'changeDetail',
     }),
   },
   methods: {
@@ -113,6 +114,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  /* ========  SCROLL INDICATION ========== */
   .scroll-icon-wrap {
     position: absolute;
     width: 1px;
@@ -143,7 +145,7 @@ export default {
       transform: translateY(100%);
     }
   }
-
+  /* ===== SCREEN GENERAL ====== */
   .screen-container {
     position: relative;
     width: 700px;
@@ -156,98 +158,9 @@ export default {
     @media screen and (max-width: 1500px) {
       width: 400px;
       height: 340px;
-      margin: 230px auto;
+      margin: 280px auto;
     }
   }
-  .three-d-door {
-    top: calc(50% - 300px);
-    left: calc(50% - 100px);
-    width: 200px;
-    height: 600px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    @media screen and (max-width: 1500px) {
-      height: 340px;
-      top: calc(50% - 170px);
-    }
-  }
-  /* ===== To Detail animation ====== */
-  .image-shadow {
-    &.to-detail {
-      animation: fade-out forwards linear;
-      animation-duration: 0.5s;
-    }
-  }
-  .door {
-    &.to-detail {
-      animation: door-to-detail forwards;
-      animation-duration: 0.6s;
-      transition-timing-function: cubic-bezier(.14,0,.39,.75);
-    }
-  }
-  .three-d-door {
-    &.to-detail {
-      animation: three-d-door-to-detail forwards;
-      animation-duration: 0.6s;
-      transition-timing-function: cubic-bezier(.14,0,.39,.75);
-    }
-  }
-  @keyframes door-to-detail {
-    to {
-      top: -1000px;
-    }
-  }
-  @keyframes three-d-door-to-detail {
-    from {
-      left: 100%;
-      transform: rotateY(90deg) translateZ(-100px) translateY(0);
-    }
-    to {
-      left: 100%;
-      transform: rotateY(90deg) translateZ(-100px) translateY(-1000px);
-    }
-  }
-  /* ===== page enter animation ====== */
-  .door-color-wrapper {
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
-  }
-  .door-color-top {
-    width: 100%;
-    height: 100%;
-    background: black;
-    transform: translateY(300px);
-  }
-  .door-color-bottom {
-    width: 100%;
-    height: 100%;
-    background: black;
-    transform: translateY(-300px);
-  }
-  .door-enter {
-    transform-origin: center center;
-    animation: door-enter forwards;
-    animation-delay: 0.5s;
-    animation-duration: 1s;
-    /*@media screen and (max-width: 1500px) {*/
-      /*animation: door-enter-small forwards;*/
-      /*animation-delay: 0.5s;*/
-      /*animation-duration: 1s;*/
-    /*}*/
-    .door-color-top {
-      animation: door-appear-top forwards;
-      animation-duration: 0.5s;
-      transition-timing-function: ease;
-    }
-    .door-color-bottom {
-      animation: door-appear-bottom forwards;
-      animation-duration: 0.5s;
-      transition-timing-function: ease;
-    }
-  }
-
   .screen-bg {
     position: absolute;
     top: 0;
@@ -307,6 +220,37 @@ export default {
       }
     }
   }
+  /* ===== DOOR GENERAL ====== */
+  .three-d-door {
+    top: calc(50% - 300px);
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 600px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 1500px) {
+      height: 340px;
+      top: calc(50% - 170px);
+    }
+  }
+  .door-color-wrapper {
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+  }
+  .door-color-top {
+    width: 100%;
+    height: 100%;
+    background: black;
+    transform: translateY(300px);
+  }
+  .door-color-bottom {
+    width: 100%;
+    height: 100%;
+    background: black;
+    transform: translateY(-300px);
+  }
   .door {
     width: 30px;
     height: 500px;
@@ -321,7 +265,86 @@ export default {
     }
   }
 
-  /* ======  animation ======*/
+  /* ===== SELECTED WORK TO DETAIL ====== */
+  .image-shadow {
+    &.to-detail {
+      animation: fade-out forwards linear;
+      animation-duration: 0.5s;
+    }
+  }
+  .door {
+    &.to-detail {
+      opacity: 0;
+    }
+  }
+  .three-d-door {
+    &.to-detail {
+      animation: three-d-door-to-detail forwards;
+      animation-duration: 0.6s;
+      transition-timing-function: cubic-bezier(.14,0,.39,.75);
+    }
+  }
+  @keyframes three-d-door-to-detail {
+    from {
+      left: 100%;
+      transform: rotateY(90deg) translateZ(-100px) translateY(0);
+      opacity: 1;
+    }
+    to {
+      left: 100%;
+      transform: rotateY(90deg) translateZ(-100px) translateY(-100px);
+      opacity: 0;
+    }
+  }
+  /* ===== ENTER ANIMATION ====== */
+  .door-enter {
+    transform-origin: center center;
+    animation: door-enter forwards;
+    animation-delay: 0.5s;
+    animation-duration: 1s;
+    .door-color-top {
+      animation: door-appear-top forwards;
+      animation-duration: 0.5s;
+      transition-timing-function: ease;
+    }
+    .door-color-bottom {
+      animation: door-appear-bottom forwards;
+      animation-duration: 0.5s;
+      transition-timing-function: ease;
+    }
+  }
+  @keyframes door-enter {
+    from {
+      left: calc(50% - 100px);
+      transform: rotateY(0) translateZ(0);
+    }
+    50% {
+      left: 100%;
+      transform: rotateY(0) translateZ(0);
+    }
+    to {
+      left: 100%;
+      transform: rotateY(90deg) translateZ(-100px);
+    }
+  }
+  @keyframes  door-appear-top {
+    from {
+      transform: translateY(300px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes  door-appear-bottom {
+    from {
+      transform: translateY(-300px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  /* ======  SELECTING WORK ======*/
   .come-enter {
     opacity: 0;
   }
@@ -334,26 +357,60 @@ export default {
       transition: all .3s;
     }
   }
-
+  @keyframes come-in {
+    from {
+      transform: translateX(700px);
+    }
+    70% {
+      transform: translateX(100px);
+    }
+    95% {
+      transform: translateX(-30px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes come-in-small {
+    from {
+      transform: translateX(400px);
+    }
+    50% {
+      transform: translateX(80px);
+    }
+    95% {
+      transform: translateX(-10px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
   .come-leave-active {
     animation: come-out .3s linear forwards;
     transition: all .1s
   }
-
+  @keyframes come-out {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-150%);
+    }
+  }
   .slide-enter {
     opacity: 0;
   }
   .slide-enter-active {
-    animation: slide-in .4s linear forwards;
+    animation: slide-in-right .4s linear forwards;
     transition: all .4s;
   }
 
   .slide-leave-active {
-    animation: slide-out .4s linear forwards;
+    animation: slide-out-left .4s linear forwards;
     transition: all .1s;
   }
 
-  /* ========  ripple  =========*/
+  /* ========  RIPPLE  =========*/
   .ripple {
     width: 150px;
     height: 150px;
@@ -392,6 +449,112 @@ export default {
       animation: l-side-ripple-small;
       animation-duration: .7s;
       animation-delay: 0.6s;
+    }
+  }
+  @keyframes l-side-ripple {
+    0% {
+      top: calc(50% - 75px);
+      right: -125px;
+    }
+    30% {
+      top: calc(50% - 75px);
+      right: -125px;
+    }
+    45% {
+      top: calc(50% - 75px);
+      right: -30px;
+    }
+    50% {
+      top: calc(50% - 130px);
+      right: -125px;
+    }
+    60% {
+      top: calc(50% - 250px);
+      right: -110px;
+    }
+    100% {
+      top: calc(50% - 300px);
+      right: -125px;
+    }
+  }
+  @keyframes r-side-ripple {
+    0% {
+      top: calc(50% - 75px);
+      right: -125px;
+    }
+    30% {
+      top: calc(50% - 75px);
+      right: -125px;
+    }
+    45% {
+      top: calc(50% - 75px);
+      right: -30px;
+    }
+    50% {
+      top: calc(50% - 20px);
+      right: -125px;
+    }
+    60% {
+      top: calc(50% + 100px);
+      right: -110px;
+    }
+    100% {
+      top: calc(50% + 150px);
+      right: -125px;
+    }
+  }
+
+  @keyframes l-side-ripple-small{
+    0% {
+      top: calc(50% - 40px);
+      right: -65px;
+    }
+    20% {
+      top: calc(50% - 40px);
+      right: -65px;
+    }
+    45% {
+      top: calc(50% - 40px);
+      right: 10px;
+    }
+    50% {
+      top: calc(50% - 60px);
+      right: -65px;
+    }
+    60% {
+      top: calc(50% - 130px);
+      right: -55px;
+    }
+    100% {
+
+      top: calc(50% - 160px);
+      right: -65px;
+    }
+  }
+  @keyframes r-side-ripple-small {
+    0% {
+      top: calc(50% - 40px);
+      right: -65px;
+    }
+    30% {
+      top: calc(50% - 40px);
+      right: -65px;
+    }
+    45% {
+      top: calc(50% - 40px);
+      right: 10px;
+    }
+    50% {
+      top: calc(50% - 20px);
+      right: -65px;
+    }
+    60% {
+      top: calc(50% + 50px);
+      right: -55px;
+    }
+    100% {
+      top: calc(50% + 80px);
+      right: -65px;
     }
   }
 </style>
