@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="7187.5 2579.5 30 5">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        stroke: #000;
+        stroke-width: 0.5px;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="30" height="5"/>
+    </clipPath>
+  </defs>
+  <g id="Repeat_Grid_2" data-name="Repeat Grid 2" class="cls-2" transform="translate(7187.5 2579.5)">
+    <g transform="translate(-843.5 -1207.5)">
+      <line id="Line_4" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-841.5 -1207.5)">
+      <line id="Line_4-2" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-839.5 -1207.5)">
+      <line id="Line_4-3" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-837.5 -1207.5)">
+      <line id="Line_4-4" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-835.5 -1207.5)">
+      <line id="Line_4-5" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-833.5 -1207.5)">
+      <line id="Line_4-6" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-831.5 -1207.5)">
+      <line id="Line_4-7" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-829.5 -1207.5)">
+      <line id="Line_4-8" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-827.5 -1207.5)">
+      <line id="Line_4-9" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-825.5 -1207.5)">
+      <line id="Line_4-10" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-823.5 -1207.5)">
+      <line id="Line_4-11" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-821.5 -1207.5)">
+      <line id="Line_4-12" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-819.5 -1207.5)">
+      <line id="Line_4-13" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-817.5 -1207.5)">
+      <line id="Line_4-14" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+    <g transform="translate(-815.5 -1207.5)">
+      <line id="Line_4-15" data-name="Line 4" class="cls-3" y2="11" transform="translate(844.5 1207.5)"/>
+    </g>
+  </g>
+</svg>

@@ -213,6 +213,8 @@ export default {
     padding-bottom: 0.2rem;
   }
   .desc-text {
+    font-size: 0.9rem;
+    line-height: 1.6rem;
     width: 600px;
     margin: 30px auto;
     @media screen and (max-width: 700px) {

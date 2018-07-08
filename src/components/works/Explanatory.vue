@@ -55,6 +55,7 @@ export default {
   .exp-short-desc {
     margin-top: 0;
     margin-bottom: 20px;
+    font-size: 0.8rem;
   }
   .exp-skills {
     margin-bottom: 0;

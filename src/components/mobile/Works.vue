@@ -82,6 +82,7 @@ export default {
     margin-bottom: 10px;
   }
   .exp-short-desc {
+    font-size: 0.8rem;
     margin-top: 0;
     margin-bottom: 20px;
     @media screen and (max-width: 700px) {

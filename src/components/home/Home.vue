@@ -325,10 +325,10 @@ export default {
     }
     &.enter {
       .greeting-text {
-        animation: block-reveal-text 0.1s forwards 4.75s
+        animation: block-reveal-text 0.1s forwards 4.48s
       }
       .block-reveal {
-        animation: block-reveal-block 1.3s ease-in-out forwards 4s
+        animation: block-reveal-block 1.4s cubic-bezier(1,0,.52,1) forwards 3.6s
       }
     }
   }

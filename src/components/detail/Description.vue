@@ -193,6 +193,8 @@ export default {
   }
   .desc-text {
     margin-bottom: 0;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
   }
 
 
